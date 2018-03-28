@@ -27,7 +27,7 @@ options {
   recursion yes;
 
   # Listen on the private network only (local IP)
-  listen-on { 141.62.75.116; };
+  listen-on { 141.62.75.116;};
 
   # Disable zone transfers, because we don't have a
   # redundant infrastructure (primary / secondary dns)
@@ -38,11 +38,17 @@ options {
 	141.62.64.128;
   };
 
+
+  allow-recursion { any; };
+  allow-query { any; };
+  allow-query-cache { any; };
+
   # Use the default settings for validation and ipv6
   dnssec-validation auto;
   auth-nxdomain no;
   listen-on-v6 { any; };
 };
+
 ```
 
 ### named.conf.local
@@ -66,8 +72,9 @@ zone "75.62.141.in-addr.arpa" {
     file "/etc/bind/zones/db.141.62.75";  # 141.62.75.0/24 class-C subnet
 };
 
+
 ```
-### named.conf.local
+### db.mi.hdm-stuttgart.de
 
 ```
 $TTL    604800
@@ -85,6 +92,34 @@ $TTL    604800
 
 ; name servers - A records
 ns6.mi.hdm-stuttgart.de.          IN      A       141.62.75.116
+
+# mapt einen alias auf den bestehenden eintrag oben drüber
 ;www6_1.mi.hdm-stuttgart.de.       IN      CNAME   ns5.mi.hdm-stuttgart.de.
-;www6_2.mi.hdm-stuttgart.de.       IN      CNAME   ns5.mi.hdm-stuttgart.de.
+
 ```
+
+### db.75.62.142
+
+```
+$TTL    604800
+@       IN      SOA     ns5.mi.hdm-stuttgart.de. root.mi.hdm-stuttgart.de. (
+                     2018032800         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+
+; name servers - NS records
+      IN      NS      ns6.mi.hdm-stuttgart.de.
+
+; PTR Records
+116   IN      PTR     sdi6b.mi.hdm-stuttgart.de.
+
+```
+
+### how to test this stuff
+
++ start dns with config
++ go into hdm vpn on laptop
++ use dig @address of my vm + addresse zum nachschauen
