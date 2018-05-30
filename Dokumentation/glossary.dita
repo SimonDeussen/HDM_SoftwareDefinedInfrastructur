@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossgroup PUBLIC "-//OASIS//DTD DITA Glossary Group//EN" "glossgroup.dtd">
+<glossgroup id="unbenannt3">
+    <title>Glossar</title>
+    <glossentry id="ddl">
+        <glossterm>DNS</glossterm>
+        <glossdef>DNSERKLÄRUNG</glossdef>
+    </glossentry>
+    <glossentry id="id_mjr_lkx_jdb">
+        <glossterm>ANOTHERONE</glossterm>
+        <glossdef>blaotherone</glossdef>
+    </glossentry>
+</glossgroup>

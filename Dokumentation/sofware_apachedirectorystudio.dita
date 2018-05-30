@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="apachedirectorystudio">
+    <title>Apache Directory Studio</title>
+    <shortdesc>The Eclipse-based LDAP browser and directory client</shortdesc>
+    <body>
+        <p>Apache Directory Studio is a graphical user interface for managing … LDAP data</p>
+    </body>
+</topic>

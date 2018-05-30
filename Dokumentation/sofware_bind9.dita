@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="bind9">
+    <title>bind9</title>
+    <shortdesc>Open source DNS Server</shortdesc>
+    <body>
+        <p>bind9 is a software providing DNS services</p>
+        <p>here are some more information about the tool and so on</p>
+    </body>
+</topic>

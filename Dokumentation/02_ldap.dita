@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="ldap02">
+    <title>Lightweight Directory Access Protocol (LDAP)</title>
+    <body>
+        <p>Anwendungsfälle:<ul id="ul_t1r_cyt_ldb">
+                <li>Benutzerdaten</li>
+                <li>Authentifizierung</li>
+                <li>Kennung</li>
+                <li>Name</li>
+                <li>E-Mailadressen </li>
+            </ul></p>
+        <p>Schema<ul id="ul_zp1_325_ldb">
+                <li>Typ</li>
+                <li>ein/mehrwertig</li>
+                <li>zwingend oder optional</li>
+            </ul></p>
+        <p>kein Replication</p>
+        <p>Neuer Entry: RDN: uid only!!!</p>
+    </body>
+</topic>

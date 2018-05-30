@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="dns01">
+    <title>Domain Name System (DNS)</title>
+    <body>
+        <equation-figure>
+            <desc>
+                <p>In this exercise we set up our own <xref href="glossary.dita#ddl">DNS</xref>
+                    Server on the provided Virtual Machines.</p>
+            </desc>
+        </equation-figure>
+        <section id="section_cds_hsf_zdb">
+            <title>How DNS works</title>
+            <lines/>
+            <fig id="fig_qqd_k5w_jdb">
+                <title>How DNS works</title>
+                <image href="images/dns01.png" id="image_rqd_k5w_jdb" width="500"/>
+                <p><i>image from https://safeum.com</i></p>
+            </fig>
+        </section>
+        <section id="section_a4g_jsf_zdb"><title>Prerequisite</title><lines/><p>We have two Virtual
+                Servers with the IP addresses</p><ul id="ul_zp4_3tw_jdb">
+                <li><tt>141.62.75.106</tt></li>
+                <li><tt>141.62.75.116</tt></li>
+            </ul><p>We can access both from our own local machines using ssh. </p>
+            <p><tt><cmdname>ssh root@141.62.75.xx</cmdname></tt></p></section>
+        <section id="section_gnw_msf_zdb">
+            <title>Installing Bind</title>
+            <lines/>
+            <p>First of all we need to install <xref href="sofware_bind9.dita#bind9">bind9</xref>,
+                the software we will use to provide the DNS service.</p>
+            <p><tt><cmdname>apt-get install bind9 bind9utils</cmdname></tt></p>
+            <p>Now we need to configure <xref href="sofware_bind9.dita#bind9">bind9</xref></p>
+            <ul id="ul_oxv_pyf_zdb">
+                <li>Changing the log
+                    level<lines>For adjusting the server's log level we edit the</lines></li>
+            </ul>
+        </section>
+        <section id="section_k1n_cyf_zdb">
+            <title>Basic configuration</title>
+            <p/>
+        </section>
+        <section id="section_w2z_3yf_zdb">
+            <title>Forwarders</title>
+            <p/>
+        </section>
+        <section id="section_yqz_jyf_zdb">
+            <title>Mail exchange record</title>
+            <p/>
+        </section>
+    </body>
+    <related-links>
+        <link href="glossary.dita#ddl"/>
+    </related-links>
+</topic>

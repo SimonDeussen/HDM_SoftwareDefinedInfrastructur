@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <title>Software Defined Infrastructure</title>
+    <topicmeta>
+        <author>Simon Deussen (sd092)</author>
+        <author>Patrick Löw (pl042)</author>
+    </topicmeta>
+    <topichead navtitle="Exercises" collection-type="sequence" type="reference">
+        <topicref href="01_dns.dita"/>
+        <topicref href="02_ldap.dita"/>
+        <topicref href="03_apache.dita"/>
+        <topicref href="04_samba.dita"/>
+        <topicref href="05_mail.dita"/>
+        <topicref href="06_surveillance.dita"/>
+    </topichead>
+    <topichead navtitle="Software">
+        <topicref href="sofware_apachedirectorystudio.dita"/>
+        <topicref href="sofware_bind9.dita"/>
+        <topicref href="software_apachehttpserver.dita"/>
+    </topichead>
+    <topicref href="glossary.dita"/>
+</map>
