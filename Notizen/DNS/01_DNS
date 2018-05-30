@@ -1,0 +1,9 @@
+DNS							    28.03.2018
+----------------------------------------------------------------------
+
+$ sudo apt-get install bind9 bind9utils bind9-doc
+
+$ sudo vim /etc/default/bind9
+       OPTIONS="-4 -u bind"
+
+

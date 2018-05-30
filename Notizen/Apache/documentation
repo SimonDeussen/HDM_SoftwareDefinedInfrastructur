@@ -1,0 +1,39 @@
+aptitude install apache2
+
+/var/www/html -> hier sind die Dateien des Servers
+-> move index.html to /htmlbackup/index.html
+-> Server fnktioniert als "Fileserver"
+
+aptitude install apache2-doc
+
+Dokumentation abrufbar unter sdi6a.mi.hdm-stuttgart.de/manual
+
+mkdir /home/sdidoc
+Dokumentation mit scp reinkopieren:
+scp * root@141.62.75.106:/home/sdidoc
+
+und via scp neue index.html in /var/www/html
+
+Dokumentation in /usr/share/doc/apache2-doc/manual
+
+
+sdidoc.conf in /etc/apache2/conf-available anlegen
+symlink in /etc/apache2/conf-enabled anlegen
+
+für Subdomains das gleiche mit sites-available und sites-enabled
+
+
+
+
+-------
+SSL:
+
+openssl genrsa -out rootCA.key 2048
+(ohne Passwort)
+
+Selfsign:
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
+
+
+
+
