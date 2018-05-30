@@ -1,0 +1,17 @@
+dn: uid=sd092,ou=devel,ou=software,ou=departments,dc=betrayer;dc=com
+changetype: modify
+add: objectClass
+objectClass: posixGroup
+-
+add: objectClass
+objectClass: posixAccount
+-
+add: uidNumber
+uidNumber: 123
+-
+add: gidNumber
+gidNumber: 567
+-
+add: homeDirectory
+homeDirectory: account
+

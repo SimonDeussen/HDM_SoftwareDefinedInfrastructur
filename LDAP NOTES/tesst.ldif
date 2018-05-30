@@ -1,0 +1,6 @@
+version: 1
+
+dn: 
+objectClass: OpenLDAProotDSE
+objectClass: top
+
