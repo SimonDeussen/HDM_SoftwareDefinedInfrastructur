@@ -23,33 +23,117 @@
                 <li><tt>141.62.75.106</tt></li>
                 <li><tt>141.62.75.116</tt></li>
             </ul><p>We can access both from our own local machines using ssh. </p>
-            <p><tt><cmdname>ssh root@141.62.75.xx</cmdname></tt></p></section>
+            <codeblock>ssh root@141.62.75.xx</codeblock></section>
         <section id="section_gnw_msf_zdb">
             <title>Installing Bind</title>
             <lines/>
             <p>First of all we need to install <xref href="sofware_bind9.dita#bind9">bind9</xref>,
                 the software we will use to provide the DNS service.</p>
-            <p><tt><cmdname>apt-get install bind9 bind9utils</cmdname></tt></p>
-            <p>Now we need to configure <xref href="sofware_bind9.dita#bind9">bind9</xref></p>
-            <ul id="ul_oxv_pyf_zdb">
-                <li>Changing the log
-                    level<lines>For adjusting the server's log level we edit the</lines></li>
+            <codeblock>apt-get install bind9 bind9utils</codeblock>
+            <p>
+                <lines/>
+            </p>
+            <p>
+                <ul id="ul_rqc_zzm_zdb">
+                    <li><b>Changing the log level</b></li>
+                </ul>
+            </p>
+            <p>For adjusting the server's log level we edit the
+                    <codeph>/etc/bind/named.conf.local</codeph></p>
+            <p>
+                <codeblock>logging {
+   channel querylog{
+         syslog;
+         severity debug 10;
+         print-category yes;
+         print-time yes;
+         print-severity yes;
+    };
+    category queries { querylog;};
+};</codeblock>
+            </p>
+            <lines/>
+            <ul id="ul_tfr_f1n_zdb">
+                <li><b>Turn off IPv6</b></li>
             </ul>
+            <p>To turn off IPv6, we need to create the file <codeph>/etc/init.d/bind9</codeph>
+                containing the following line<codeblock>OPTIONS="-4 -u bind"</codeblock><lines/><ul
+                    id="ul_epm_l1n_zdb">
+                    <li><b>(Re)Starting the deamon</b></li>
+                </ul></p>
+            <codeblock>service bind9 restart</codeblock>
         </section>
         <section id="section_k1n_cyf_zdb">
-            <title>Basic configuration</title>
-            <p>Lorem ipsum</p>
-        </section>
-        <section id="section_w2z_3yf_zdb">
-            <title>Forwarders</title>
-            <p/>
-        </section>
-        <section id="section_yqz_jyf_zdb">
-            <title>Mail exchange record</title>
-            <p/>
+            <title>Configuration</title>
+            <p><lines/>To use our own Server as the default DNS Server without adding every domain
+                we want to be able to access, we can use <i>recursion</i>. In the file
+                    <codeph>/etc/bind/named.conf.options</codeph> we can active recursion for any
+                clients or just <i>trusted</i>
+                ones.<lines>With adding a <i>forwarder</i>, we can define another external DNS Server to use for those addresses, our own server does not know.</lines><codeblock>options { 
+  directory "/var/cache/bind"; 
+ <b>
+  # Disable recursive DNS queries 
+  recursion yes; 
+ 
+  allow-recursion { any; }; 
+  allow-query { any; }; 
+  allow-query-cache { any; }; </b>
+ 
+  # Listen on the private network only (local IP) 
+  listen-on { 141.62.75.106; }; 
+ 
+  # Disable zone transfers, because we don't have a 
+  # redundant infrastructure (primary / secondary dns) 
+  allow-transfer { none; }; 
+ 
+ <b> # Currently, we don't want to forward requests to stable nameservers 
+  forwarders { 
+        141.62.64.128; 
+  }; </b>
+ 
+  # Use the default settings for validation and ipv6 
+  dnssec-validation auto; 
+  auth-nxdomain no; 
+  listen-on-v6 { any; }; 
+};</codeblock></p>
+            <p><lines/>After that, we want to configure some host aliases. Therefore we need to
+                create two files for the <i>zone</i> and
+                <i>reverse-zone</i>.<lines><codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph></lines><codeblock>$TTL    604800
+@       IN      SOA     ns6.mi.hdm-stuttgart.de. root.mi.hdm-stuttgart.de. (
+                     2018040401         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+
+; name servers - NS records
+        IN      NS      ns6.mi.hdm-stuttgart.de.
+
+; name servers - A records
+ns6.mi.hdm-stuttgart.de.        IN      A       141.62.75.106
+sdi6a.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
+mi.hdm-stuttgart.de.		IN	A	141.62.75.106
+pl042.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
+manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
+
+freedocs.mi.hdm-stuttgart.de.	IN	A	141.62.64.35	</codeblock><lines><codeph>/etc/bind/zones/db.141.62.75</codeph></lines><codeblock>; BIND reverse data file 
+;
+$TTL    604800
+@       IN      SOA     ns4.mi.hdm-stuttgart.de. root.mi.hdm-stuttgart.de. (
+                     2018040402         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+
+; name servers - NS records
+      IN      NS      ns6.mi.hdm-stuttgart.de.
+
+; PTR Records
+106   IN      PTR     sdi6a.mi.hdm-stuttgart.de.    ; 141.62.75.106</codeblock></p>
         </section>
     </body>
-    <related-links>
-        <link href="glossary.dita#ddl"/>
-    </related-links>
+    <related-links/>
 </topic>
