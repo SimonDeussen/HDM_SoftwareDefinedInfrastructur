@@ -21,9 +21,265 @@
                             format="html" scope="external"/></i></p>
             </fig>
         </section>
-        <section id="section_a4g_jsf_zdb"><title>Apache HTTP Server installieren</title><lines/>Wir
-            haben zwei virtuelle Server mit den IP-Adressen<ul id="ul_zp4_3tw_jdb">
-                <li><tt>141.62.75.106</tt></li>
-            </ul></section>
+        <section id="section_a4g_jsf_zdb"><title>Apache HTTP Server
+            installieren</title><lines/>Zuerst müssen wir die aktuellste Version von Apache auf
+            unserem Server installieren. <codeblock>apt get install apache2</codeblock></section>
+        <section id="section_lxy_bjj_y2b">
+            <title>First Steps</title>
+            <lines/>
+            <p>Nach der Installation von Apache bekommen wir beim Aufruf des Servers über einen
+                Browser die Standardseite von Apache präsentiert. So lässt sich zunächst die
+                erfolgreiche Installation des Webservers verifizieren.<fig id="fig_olc_kjj_y2b">
+                    <title>Apache Standardseite</title>
+                    <image href="images/apache-default.jpg" id="image_plc_kjj_y2b"/>
+                </fig></p>
+            <p>Das vorkonfigurierte Standardverzeichnis von Apache liegt unter
+                    <codeph>/var/www/html/</codeph>. Löschen wir die vorgefertigte
+                    <codeph>index.html</codeph> (oder nennen sie um), wird der eigene DocumentRoot
+                    dargestellt.<fig id="fig_w55_clj_y2b">
+                    <title>Document Root</title>
+                    <image href="images/indexroot.png" id="image_x55_clj_y2b"/>
+                </fig></p>
+            <p>Wir können eine beliebige eigene index.html an dieser Stelle hinterlegen. Wenn wir
+                nun mit dem Browser die Seite aufrufen, wird diese angezeigt.<fig
+                    id="fig_nrm_4lj_y2b">
+                    <title>eigene Index.html</title>
+                    <image href="images/customindex.png" id="image_orm_4lj_y2b"/>
+                    <p>Als nächstes möchten wir die Dokumentation für  Apache installieren. Das
+                        entsprechende Paket heißt <codeph>apache2-doc</codeph>. Mit <codeph>apt-get
+                            install apache2-doc</codeph> installieren wir es.</p>
+                    <p>Um das Verzeichnis mit der installierten Dokumentation auf unserem Server
+                        ausfindig zu machen lassen wir uns die zum Paket zugehörigen Dateipfade
+                        ausgeben. Das geht mittels <codeph>dkpg -L apache2-doc</codeph>.</p>
+                    <p>Wir erkennen in der Ausgabe, dass die Dokumentation unter
+                            <codeph>/usr/share/doc/apache2-doc/manual</codeph> zu finden ist. Die
+                        aufzurufende Root-Seite ist die index.html in diesem Verzeichnis.</p>
+                    <p>Als nächstes haben wir diese HTML-Dokumentation (d.h. den Teil, der bereits
+                        geschrieben war) mittels <codeph>scp</codeph> von einem lokalen Client auf
+                        unseren Server
+                        geladen.<codeblock>scp -r * root@141.62.75.106:/home/sdidoc/</codeblock></p>
+                    <p>Damit die Dokumentation nun mit einem Browser aufgerufen werden kann, muss in
+                        Apache ein entsprechender Alias konfiguriert werden.</p>
+                    <p>Wir möchten, dass unsere Dokumentation unter <xref
+                            href="http://sdi6a.mi.hdm-stuttgart.de/doc" format="html"
+                            scope="external"/> zu erreichen ist. Ein Aufruf dieser URL muss also auf
+                        Serverseite in das entsprechende Verzeichnis (hier:
+                            <codeph>/home/sdidoc/</codeph>) verlinkt werden.</p>
+                    <p>Damit das funktioniert, müssen wir nur eine weitere Direktive in der
+                        Standard-Config-File von Apache hinzufügen.</p>
+                    <p><codeblock>Alias /doc/ /home/sdidoc/
+
+&lt;Directory "/home/sdidoc">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require all granted
+        Order allow,deny
+        Allow from all
+&lt;/Directory></codeblock>
+                        Nach einem Neustart von Apache mittels <codeph>systemctl restart
+                            apache2</codeph> ist die Dokumentation nun unter <xref
+                            href="http://sdi6a.mi.hdm-stuttgart.de/doc" format="html"
+                            scope="external"/> zu erreichen.</p>
+                </fig></p>
+        </section>
+        <section id="section_v45_w5j_y2b">
+            <title>Virtual hosts</title>
+            <lines/>
+            <p>Virtual host Direktiven erlauben sogenannte Subdomain. Statt unter <xref
+                    href="http://sdi6a.mi.hdm-stuttgart.de/doc" format="html" scope="external"/>
+                kann die Dokumentation, wenn der eigene DNS-Server verwendet und entsprechend
+                konfiguriert ist, dann auch unter<xref href="http://doc.mi.hdm-stuttgart.de/"
+                    format="html" scope="external"/> erreicht werden.</p>
+            <p>Das soll für die Adressen<ul id="ul_twj_fvj_y2b">
+                    <li><xref href="http://doc.mi.hdm-stuttgart.de/" scope="external" format="html"
+                        /></li>
+                    <li><xref href="http://manual.mi.hdm-stuttgart.de/" format="html"
+                            scope="external"/></li>
+                </ul></p>
+            <p>eingerichtet werden. Die Subdomain <i>doc</i> führt zur Dokumentation dieser
+                Vorlesung, <i>manual</i> zur installierte Dokumentation von Apache selbst. </p>
+            <p>Zunächst konfigurieren wir hierfür <i>bind</i>. In der schon früher angelegten
+                Zone-File (<codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph>). Hier fügen wir
+                folgende Einträge
+                hinzu:<codeblock>doc.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
+manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
+                müssen wir auch Apache selbst konfigurieren. Für jede der beiden Seiten, legen wir
+                eine Konfigurationsdatei in <codeph>/etc/apache2/sites-available</codeph>. Wir
+                nennen sie sdidoc.conf und manual.conf<codeblock><b># sdidoc.conf</b>
+
+&lt;VirtualHost *:80>
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request's Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	<b>ServerName doc.mi.hdm-stuttgart.de</b>
+
+	ServerAdmin webmaster@localhost
+	<b>DocumentRoot /home/sdidoc/</b>
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with "a2disconf".
+	#Include conf-available/serve-cgi-bin.conf
+&lt;/VirtualHost></codeblock>
+                <codeblock><b># manual.conf</b>
+
+&lt;VirtualHost *:80>
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request's Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	<b>ServerName manual.mi.hdm-stuttgart.de</b>
+
+	ServerAdmin webmaster@localhost
+	<b>DocumentRoot /usr/share/doc/apache2-doc/manual/</b>
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with "a2disconf".
+	#Include conf-available/serve-cgi-bin.conf
+&lt;/VirtualHost></codeblock></p>
+            <p>Anschließend muss man die beiden Seiten noch aktivieren. Das ist manuell mittels der
+                Erstellung eines Symlinks möglich oder mit den bereitgestellten Kommandos von Apache
+                selbst (<codeph>a2ensite</codeph> und <codeph>a2dissite</codeph>).</p>
+            <p>Mittels Symlink:</p>
+            <p>
+                <codeblock>cd /etc/apache2/sites-available; ln -s sdidoc.conf ../sites-enabled/</codeblock>
+            </p>
+            <p>Mit den Apachekommandos:</p>
+            <p>
+                <codeblock>a2ensite manual</codeblock>
+            </p>
+            <p>Nach einem Neustart von bind (<codeph>systemctl restart bind9</codeph>) und Apache
+                    (<codeph>systemctl reload apache2</codeph>) funktionieren die Subdomains.<fig
+                    id="fig_uhg_rxj_y2b">
+                    <title>doc.mi.hdm-stuttgart.de</title>
+                    <image href="images/subdomain.png" id="image_vhg_rxj_y2b"/>
+                </fig></p>
+        </section>
+        <section id="section_lvg_hzj_y2b">
+            <title>SSL / TLS Support</title>
+            <lines/>
+            <p>Jetzt wollen wir mittel selbst-zertifizierter Zertifikate die Kommunikation über
+                HTTPS ermöglichen. Obwohl es mittlerweile über <xref href="https://letsencrypt.org"
+                    format="html" scope="external"/> unter Verwendung des <i>certbots</i> eine sehr
+                komfortable Lösung gibt, haben wir in diesem Versuch eine eigene Certificate
+                Authority (CA) erstellt und verwendet.</p>
+            <p><b>1. Eigene Certificate Authority (CA) erstellen</b></p>
+            <p>Zu allererst erstellen wir einen neuen Ordner <codeph>ssl</codeph> in
+                    <codeph>/etc/apache2/</codeph><codeblock>mkdir /etc/apache2/ssl</codeblock></p>
+            <p>Jetzt generieren wir den privaten Key der CA.</p>
+            <p>
+                <codeblock>openssl genrsa -out rootCA.key 2048</codeblock>
+            </p>
+            <p>
+                <fig id="fig_qpn_g2k_y2b">
+                    <title>Generierung des Private Key</title>
+                    <image href="images/genCA.png" id="image_rpn_g2k_y2b"/>
+                </fig>
+            </p>
+            <p>Um den Key mittels Passwort zu schützen kann man zusätzlich noch das Attribut
+                    <codeph>-des3</codeph> verwenden.</p>
+        </section>
+        <section id="section_lyb_bgk_y2b"><p>Jetzt wollen wir ein SSL-Zertifikat erstellen, dass von
+                der CA selbst signiert ist.
+                <codeblock>openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem</codeblock></p><p>Im
+                folgenden Dialog kann man einige Angaben machen zur CA
+                machen.<codeblock>Country Name (2 letter code) [AU]:DE
+State or Province Name (full name) [Some-State]:BW
+Locality Name (eg, city) []:Stuttgart
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:HdM
+Organizational Unit Name (eg, section) []:sdi6a
+Common Name (e.g. server FQDN or YOUR name) []:mi.hdm-stuttgart.de
+Email Address []:</codeblock>Die
+                dadurch generierte Datei <codeph>rootCA.pem</codeph> ist ein selbst-signiertes
+                Zerfitikat. Es ist für 1024 Tage gültig. </p><p><b>2. CA im Browser des Clients
+                    importieren</b></p><p>Damit der selbsterstellen CA in den Browsern der Clients
+                vertraut wird, müssen diese importiert werden. Hierfür benötigt man das erzeugte
+                    <codeph>rootCA.pem</codeph> Zertifikat.</p><p>In <i>Firefox</i> geht man wie
+                folgt vor:<ul id="ul_d5p_rgk_y2b">
+                    <li>Einstellungen öffnen</li>
+                    <li>Reiter <i>Datenschutz &amp; Sicherheit</i> auswählen</li>
+                    <li>Unter <i>Zertifikate</i> auf <i>Zertifikate anzeigen...</i></li>
+                    <li>Unter <i>Zertifizierungstellen</i> auf <i>Importieren...</i></li>
+                    <li><codeph>rootCA.pem</codeph> auswählen</li>
+                </ul></p><p>
+                <fig id="fig_jt3_3hk_y2b">
+                    <title>Importierte CA in Firefox</title>
+                    <image href="images/rootCAimport.png" id="image_kt3_3hk_y2b"/>
+                </fig>
+            </p><p><b>3. SSL Zertifikat erzeugen</b></p>Jetzt generieren wir für unsere Subdomains
+            einen Certificate Signing Request (CSR). <p>Zunächst müssen wir auch hier wieder einen
+                privaten Schlüssel generieren. Das funktioniert mit dem Befehl</p><p>
+                <codeblock>openssl genrsa -out doc.key 2048</codeblock>
+            </p><p>Daraufhin generieren wir einen <i>Certificate Signing Request</i>
+                (CSR).</p><codeblock>openssl req -new -key doc.key -out doc.csr</codeblock><p>Im
+                folgenden Dialog kann man erneut einige Angaben machen. Wichtig für uns ist nur der
+                    <i>Common Name</i>. Dieser muss entsprechend der Subdomain vergeben
+                werden.</p><codeblock>Country Name (2 letter code) [AU]:DE
+State or Province Name (full name) [Some-State]:BW
+Locality Name (eg, city) []:HdM
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:HdM
+Organizational Unit Name (eg, section) []:MI
+<b>Common Name (e.g. server FQDN or YOUR name) []:doc.mi.hdm-stuttgart.de</b>
+Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
+                signieren wir den mittels des CA root keys. </p><p>
+                <pre><b>openssl x509 -req -in doc.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out doc.crt -days 500 -sha256</b></pre>
+            </p><p>Es wird ein Zertifikat generiert, das von der CA signiert wurde.</p><p>Um auf die
+                Subdomain schließlich wie HTTPS zugreifen zu können, erstellen wir eine neue Datei
+                    <codeph>/etc/apache2/sites-available/sdidoc-ssl.conf</codeph></p><codeblock>&lt;IfModule mod_ssl.c>
+        &lt;VirtualHost _default_:443>
+            ServerName doc.mi.hdm-stuttgart.de
+            ServerAdmin webmaster@localhost
+            DocumentRoot /home/sdidoc/
+
+            ErrorLog ${APACHE_LOG_DIR}/error.log
+            CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+            SSLEngine on
+
+            SSLCertificateFile     /etc/apache2/ssl/doc.crt
+            SSLCertificateKeyFile  /etc/apache2/ssl/doc.key 
+        &lt;/VirtualHost>
+&lt;/IfModule></codeblock><p>Rufen
+                wir jetzt <xref href="https://doc.mi.hdm-stuttgart.de" format="html"
+                    scope="external"/> auf, erkennen wir am grünen Schloss links neben der URL, dass
+                HTTPS funktioniert.</p><fig id="fig_wzk_ljk_y2b">
+                <title>HTTPS Übertragung</title>
+                <image href="images/sslworks.png" id="image_xzk_ljk_y2b"/>
+                <p>Äquivalent zu dieser Subdomain, wird der Vorgang für alle weiteren erneut
+                    ausgeführt. Gegebenenfalls kann ein sogenanntes Wildcard-Zertifikat ausgestellt
+                    werden, dass für verschiedene Subdomains des Typs
+                        <tt>https://*.mi.hdm-stuttgart.de</tt> gültig ist. Darauf gehen wir in
+                    dieser Dokumentation allerdings nicht näher ein.</p>
+            </fig></section>
     </body>
 </topic>
