@@ -16,7 +16,8 @@
             <fig id="fig_qqd_k5w_jdb">
                 <title>Wie DNS funktioniert</title>
                 <image href="images/dns01.png" id="image_rqd_k5w_jdb" width="500"/>
-                <p><i>Bild von https://safeum.com</i></p>
+                <p><i>Bild von <xref href="https://safeum.com" format="html" scope="external"
+                            >https://safeum.com</xref></i></p>
             </fig>
         </section>
         <section id="section_a4g_jsf_zdb"><title>Voraussetzungen</title><lines/>Wir haben zwei
