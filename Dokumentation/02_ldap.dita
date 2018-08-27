@@ -6,10 +6,11 @@
     <body>
         <equation-figure>
             <desc>
-                <p>LDAP ist ein Verzeichniszugriffsprotokol zum Abfragen und Ändern von Informationen
-                verteilter Verzeichnissdienste. Es beschreibt im genauen, wie man von einem oder
-                mehreren LDAP-Servern Daten abfrägt. Häufige Anwendungsfälle sind Email-Adressbücher
-                und User-Authentifizierung im Web sowie in Organisationen (Intranet). </p>
+                <p><xref href="glossary/ldap.dita#untitled4">LDAP</xref> ist ein
+                    Verzeichniszugriffsprotokol zum Abfragen und Ändern von Informationen verteilter
+                    Verzeichnissdienste. Es beschreibt im genauen, wie man von einem oder mehreren
+                    LDAP-Servern Daten abfrägt. Häufige Anwendungsfälle sind Email-Adressbücher und
+                    User-Authentifizierung im Web sowie in Organisationen (Intranet). </p>
             </desc>
         </equation-figure>
         <section>

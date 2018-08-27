@@ -5,9 +5,8 @@
     <body>
         <equation-figure>
             <desc>
-                <p>In dieser Aufgabe setzen wir unseren eigenen <xref href="glossary.dita#ddl"
-                        >DNS</xref> Server auf einer der uns zur Vefügung gestellten Virtuellen
-                    Maschinen auf.</p>
+                <p>In dieser Aufgabe setzen wir unseren eigenen DNS Server auf einer der uns zur
+                    Vefügung gestellten Virtuellen Maschinen auf.</p>
             </desc>
         </equation-figure>
         <section id="section_cds_hsf_zdb">

@@ -14,15 +14,15 @@
         <topicref href="05_mail.dita"/>
         <topicref href="06_surveillance.dita"/>
     </topichead>
-    <topichead navtitle="Software">
-        <topicref href="software_docker.dita"/>
-        <topicref href="software_thunderbird.dita"/>
-        <topicref href="untitled4.dita"/>
-        <topicref href="software_openldap.dita"/>
-        <topicref href="software_nexclout.dita"/>
-        <topicref href="sofware_apachedirectorystudio.dita"/>
-        <topicref href="sofware_bind9.dita"/>
-        <topicref href="software_apachehttpserver.dita"/>
+    <topichead navtitle="Glossar">
+        <topicref href="glossary/apache.dita"/>
+        <topicref href="glossary/apachedirectorystudio.dita"/>
+        <topicref href="glossary/bind9.dita"/>
+        <topicref href="glossary/docker.dita"/>
+        <topicref href="glossary/ldap.dita"/>
+        <topicref href="glossary/mariadb.dita"/>
+        <topicref href="glossary/nextcloud.dita"/>
+        <topicref href="glossary/openldap.dita"/>
+        <topicref href="glossary/thunderbird.dita"/>
     </topichead>
-    <topicref href="glossary.dita"/>
 </map>
