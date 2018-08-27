@@ -1,23 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="Unbenannt">
-    <title>Systems surveillance</title>
+    <title>Systems surveillance with Nagios</title>
     <body>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
-            et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. </p>
-        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-            vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-            dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-            facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+        <p>
+            <equation-figure>
+                <desc>In diesem Versuch wird das Monitoring Tool Nagios auf unserem zweiten Server
+                    aufgesetzt. Dies dient dazu den Traffic und Response Zeiten des ersten Servers
+                    zu überwachen.</desc>
+            </equation-figure>
+        </p>
+        <section id="section_vdq_35j_y2b">
+            <title>Installation des Programms</title>
+            <p>Da in aptidue eine alte Versions des Programm ist, installieren wir es nicht mit dem
+                Paket-Manager sondern laden die Datei mit wget-herunter und kompilieren sie dann
+                selbst.
+                <codeblock>wget -O nagioscore.tar.gz https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.4.1.tar.gz</codeblock></p>
+            <p>Auf der Nagios Quickastart Website gibt es diese Liste an Programmen die noch
+                installiert werden müssen:
+                <codeblock>apt-get install apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php7.0 libgd2-xpm-dev</codeblock></p>
+            <p>Nach dem herunterladen, entpacken und installieren mehrerer Pakete, wird die Nagios
+                Kompilation noch
+                konfiguriert:<pre>./configure --with-httpd-conf=/etc/apache2/sites-enabled</pre></p>
+        </section>
+        <section><fig id="fig_mjx_hwj_y2b">
+                <title>Konfiguration der Kompilation</title>
+            </fig> Nun wird kompiliert mit:<codeblock>make all</codeblock>Wichtig ist, jetzt einen
+            nagios-user sowie -user-group anzulegen damit die Binaries installiert werden
+                können:<pre>make install-groups-users
+usermod -a -G nagios www-data</pre><p>Danach
+                werden viele verschiedene Binaries
+                installiert:<codeblock>make install
+make install-daemoninit
+make install-commandmode
+make install-config</codeblock></p><p>Anschließend
+                müssen die Configs für Apache installiert und konfiguriert
+                werden:<pre>make install-webconf
+a2enmod rewrite
+a2enmod cgi</pre></p><p>Jetzt wird
+                ein Passwort für den User <i>nagios-admin</i> angelegt um sich im Web-Interface
+                anmelden zu
+                können.<codeblock>htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin</codeblock></p><p>Nach
+                dem der nagios-deamon gestartet wurde kann jetzt das Web-Interface getestet werden -
+                Es ist da, aber ohne Plugin Installation sieht man noch keine relevanten Werte.
+                Deswegen zeigen alle checks diesen
+                Output:<codeblock>(No output on stdout) stderr: execvp(/usr/local/nagios/libexec/check_load, ...) failed. errno is 2: No such file or directory </codeblock></p><p/><p>Zuerst
+                wieder wieder die File mit wget heruntergeladen, mit tar entpackt und anschließend
+                kompiliert:</p><p>
+                <pre>cd /tmp/nagios-plugins-release-2.2.1/
+./tools/setup
+./configure
+make
+make install</pre>
+            </p><p>Auch dies hat problemlos funktioniert. Nun kann das <xref
+                    href="http://141.62.75.106/nagios/" format="html" scope="external"
+                    >Nagios-Interface </xref>aufgerufen werden.</p><p>Eine Einstellung muss aber
+                noch vorgenommern werden damit es richtig funktioniert: Es muss eine Email Addresse
+                hinterlegt werden. Dazu muss die File
+                    <codeph>/usr/local/nagios/etc/objects/contacts.cfg</codeph> editiert
+                    werden:<codeblock>##############################################################$
+#
+# CONTACTS
+#
+##############################################################$
+
+# Just one contact defined by default - the Nagios admin (that$
+# This contact definition inherits a lot of default values fro$
+# 'generic-contact' template which is defined elsewhere.
+
+define contact {
+
+    contact_name            nagiosadmin             ; Short na$
+    use                     generic-contact         ; Inherit $
+    alias                   Nagios Admin            ; Full nam$
+    email                   sd092@hdm-stuttgart.de  ; &lt;&lt;***** $
+}</codeblock><fig
+                    id="fig_hsc_rgk_y2b">
+                    <title>Nagios funktioniert!</title>
+                    <image href="images/NAGIOS-works.png" id="image_isc_rgk_y2b"/>
+                </fig></p></section>
     </body>
 </topic>

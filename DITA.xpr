@@ -29,7 +29,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>Dokumentation/02_ldap.dita</String>
+                                    <String>Dokumentation/01_dns.dita</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
