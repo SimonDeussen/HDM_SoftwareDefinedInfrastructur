@@ -1,23 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="Unbenannt">
-    <title>Mail</title>
+    <title>Docker</title>
     <body>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
-            et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. </p>
-        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-            vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-            dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-            facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+        <equation-figure>
+            <desc>Hier wird beschrieben wie wir auf dem Server Nextcloud mit Docker aufgesetzt
+                haben. Docker ist eine Software zur Isolierung von Anwendungen, wodurch diese
+                unabhängig vom OS und installierten Paketen ausführbar sind.</desc>
+        </equation-figure>
+        <section id="section_k2l_2mk_y2b">
+            <title>Installation von Docker</title>
+            <p>Damit Docker installiert werden kann, muss zu erst die nötige Software installiert
+                werden:
+                
+                <codeblock>apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common</codeblock></p>
+            <p>Danach wird der GPG Key hinzugefürt:
+                <codeblock>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -</codeblock>Jetzt
+                kann das Packet heruntergeladen und installiert werden
+                .<codeblock>add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+apt-get update
+apt-get install docker-ce</codeblock></p>
+            <p/>
+        </section>
+        <section id="section_otz_xnk_y2b">
+            <title>Installation vom Nextcloud Container</title>
+            <p>Und anschließend kann der Container mit <codeph>docker image pull</codeph> gepullt
+                    werden:<fig id="fig_xrt_14k_y2b">
+                    <title>Nextcloud installation</title>
+                    <image href="images/docker-installation-nextcloud.png" id="image_yrt_14k_y2b"/>
+                </fig></p>
+            <p>Sobald der Download abgeschlossen ist, kann der Container gestartet werden.
+                Wichtig ist, dass der Parameter <codeph>-p 8080:80</codeph>  mitgegeben
+                wird, um den Port entsprechend zu mappen.<fig id="fig_al4_j4k_y2b">
+                    <title>Starting Nextcloud</title>
+                    <image href="images/docker-nectcloud-starting.png"
+                        id="image_bl4_j4k_y2b"/>
+                </fig></p>
+                
+        </section>
+        <section id="section_az2_kpk_y2b">
+            <title>Configuring Nextcloud to use MariaDB</title>
+            <p>Damit der Nextcloud Container eine andere DB benutzt, muss lediglich ein
+                    <codeph>docker-compose </codeph>File erstellt werden, welches den
+                Nextcloud-Container mit einem MariaDB-Container verbindet. Hier waren wir von der
+                immensen Einfachheit überrascht:<fig id="fig_clz_rpk_y2b">
+                    <title>Docker-compose File für MariaDB</title>
+                    <image href="images/docker-using-mariadb.png" id="image_dlz_rpk_y2b"/>
+                </fig></p>
+        </section>
+        <section id="section_h5n_n4k_y2b">
+            <title>Validating Nextcloud</title>
+            <p>Wenn man mit dem Browser auf den C-Server besucht (welcher zur Zeit der Dokumentation
+                leider wieder Offline ist) kann man so auf die containerisierte Nextcloud zugreifen.
+                    <fig id="fig_zy2_v4k_y2b">
+                    <title>Nextcloud in unserem Browser</title>
+                    <image href="images/nextcloud-browser.png" id="image_az2_v4k_y2b"/>
+                </fig></p>
+        </section>
     </body>
 </topic>

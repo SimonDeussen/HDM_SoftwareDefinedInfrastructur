@@ -16,6 +16,7 @@
     </topichead>
     <topichead navtitle="Software">
         <topicref href="sofware_apachedirectorystudio.dita"/>
+        <topicref href="sofware_apachedirectorystudio.dita"/>
         <topicref href="sofware_bind9.dita"/>
         <topicref href="software_apachehttpserver.dita"/>
     </topichead>
