@@ -12,11 +12,8 @@
                 und User-Authentifizierung im Web sowie in Organisationen (Intranet). </p>
             </desc>
         </equation-figure>
-        <section id="section_qln_rw3_y2b">
-            <title>Exercises</title>
-        </section>
         <section>
-            <title>1. Browse an existing LDAP-Server</title>
+            <title>Browse an existing LDAP-Server</title>
             <p>Bei dieser Aufgabe soll eine Verbindung zu dem HdM-LDAP aufgebaut werden mit dem Tool
                 Apache Directory Studio. Anschließend geschiet ein Abfragen der eigenen
                 Benutzerdaten anhand des HdM-Kürzels. </p>
@@ -56,6 +53,101 @@
                 <image href="images/Ldap%20Search.png" id="image_n5v_x1j_y2b"/>
             </fig></p>
         </section>
+        <section id="section_vvd_khj_y2b">
+            <title>Set up an OpenLDAP server</title>
+            <p>In dieser Teilaufgabe wird auf unserer VM ein OpenLDAP Server aufgesetzt. Zunächst
+                muss dieser installiert werden
+                mit:<pre>aptitude install dialog
+aptitude install slapd</pre></p>
+            <p>Nach der Installation erscheint direkt ein Manager in dem die Grundeinstellungen
+                vorgenommen werden können. Zuerst wir das Passwort vergeben.<fig
+                    id="fig_iny_djj_y2b">
+                    <title>Passwort Vergabe slapd</title>
+                    <image href="images/slap-pw.png" id="image_jny_djj_y2b"/>
+                    <p>Als nächstes wird das slapd-Backend gewählt:<fig id="fig_jbz_wjj_y2b">
+                            <title>Auswahl slapd-Backend</title>
+                            <image href="images/slapd-backend.png" id="image_kbz_wjj_y2b"/>
+                        </fig></p>
+                    <p>Hier ist ausgabe der Config-Files zusehen:<fig id="fig_rwm_k4j_y2b">
+                            <title>Slapd Konfiguration</title>
+                            <image href="images/slapd-display_config.png" id="image_swm_k4j_y2b"/>
+                        </fig></p>
+                    <p>Anschließend wurde eine Connection via Apache Directory Studio zu unserem
+                        Server aufgebaut und mit der GUI wurden die Daten wie in der Anleitung
+                        beschrieben eingebaut.<fig id="fig_jkx_hlj_y2b">
+                            <title>Population unseres LDAP Servers erfolgreich</title>
+                            <image href="images/our-own-ldap-works.png" id="image_kkx_hlj_y2b"/>
+                        </fig></p>
+                </fig></p>
+        </section>
+        <section id="section_s4m_llj_y2b">
+            <title>Accessing LDAP date by an email client</title>
+            <p>Bei dieser Aufgabe verwenden wir Thunderbird um die LDAP Daten unseres Servers in das
+                Adressbuch aufzunehmen. Dafür muss in der Thunderbird-GUI zunächst unter
+                    <i>Optionen</i> der Punkt <i>Verfassen</i> und dann <i>Addressieren</i>
+                ausgewählt werden. Dann erscheint folgender Dialog:<fig id="fig_e33_1mj_y2b">
+                    <title>Festlegen des LDAP Servers</title>
+                    <image href="images/thunderbird-1.png" id="image_f33_1mj_y2b"/>
+                </fig></p>
+        </section>
+        <p>Wichtig ist hier, dass die richitgen Suchfilter angelegt werden:<fig id="fig_jy3_fmj_y2b">
+                <title>Suchfilter Thunderbird</title>
+                <image href="images/thunderbird-2.png" id="image_ky3_fmj_y2b"/>
+            </fig>Danach ist die Konfiguration schon fertig und wir können die Daten direkt in
+            Thunderbird sehen.<fig id="fig_gvh_lmj_y2b">
+                <title>LDAP direkt in Thunderbird</title>
+                <image href="images/thunderbird-3.png" id="image_hvh_lmj_y2b"/>
+            </fig></p>
+        <section id="section_i1j_vmj_y2b">
+            <title>LDAP based user login</title>
+            <p>In dieser letzten LDAP Aufgabe, kommt aller bisher erarbeitete schlussendlich
+                zusammen: Unser zweiter Server wird so konfiguriert, dass er den LDAP Server auf
+                unserem ersten zur Authentifizierung der Logins benutzt. Hier gab es einige
+                Probleme, trotzdem schafften wir es als erste Gruppe diesen Teil hinzu bekommen.
+                Denn in dem Tutorial waren für unseren Setup falsche Konfigurationsangaben.</p>
+            <p>Auf dem zweiten Server wurde zu erst libpam-ldap
+                installiert:<codeblock>aptidude install libpam-ldap</codeblock></p>
+            <p>Dann mussten die Files <codeph>/etc/pam.d/common-account</codeph>,
+                    <codeph>/etc/pam.d/common-auth</codeph>,
+                    <codeph>/etc/pam.d/common-password</codeph> und
+                    <codeph>/etc/pam.d/common-session</codeph>. Es wurden die Angaben der in der
+                Doku verlinkten <xref
+                    href="https://wiki.debian.org/LDAP/PAM#PAM_Setup_with_libpam-ldapd"
+                    format="html" scope="external">Website </xref>übernommen.</p>
+            <p>Leider waren die Angaben zur <codeph>common-auth</codeph> File falsch, oder zumindest
+                unglücklich gewählt. Diese Werte wurden in dem Tutorial angegeben:
+                <pre>auth    sufficient      pam_unix.so nullok_secure
+auth    requisite       pam_succeed_if.so uid >= 1000 quiet
+auth    sufficient      pam_ldap.so use_first_pass
+auth    required        pam_deny.so</pre></p>
+            <p>Hier wird in der zweiten Zeile eingestellt, dass die User Id kleiner als 1000 sein
+                muss. Dies hat den Hintergrund, dass oft Systeme so aufgesetzt werde, dass es
+                weniger als 1000 lokale User gibt, und erst ab einer User-Id über 1000 der
+                LDAP-based Login genutzt wird. Das Keyword quiet sorget dafür, dass nichts passierte
+                und auch nichts geprinted wurde. </p>
+            <p>Da alle Konfigs korrekt waren und es auch keine Fehlermeldungen gab, standen wir von
+                dem Problem das es eigentlich richtig funktionieren sollte. Leider gaben wir unseren
+                selbst angelgeten Testuser die User-Id <codeph>123</codeph> und <codeph>567</codeph>
+                die beide unter den 1000 lagen. Schließlich kamen wir auf den Fehler und passten die
+                Konfiguration an: <fig id="fig_qrt_hpj_y2b">
+                    <title>Fehlerhafte konfiguration wurde berichtigt.</title>
+                    <image href="images/ldap-based-login%20works.png" id="image_rrt_hpj_y2b"/>
+                </fig></p>
+        </section>
+        <p>Nachdem der Wert von 1000 auf 100 geändert wurde, klappte der Login und wir konnten auch
+            in der LDAP-Logs des LDAP servers sehen, dass es funktioniert hat:<fig
+                id="fig_lpq_4pj_y2b">
+                <title>LDAP Login works!</title>
+                <image href="images/ldap-works.png" id="image_mpq_4pj_y2b"/>
+            </fig></p>
+        <section id="section_qz1_qpj_y2b">
+            <title>Anmerkung zur Java Application</title>
+            <p>Aufgrund des hohen Zeitaufwands wurde beschlossen, dass die Java-App nicht gebaut
+                werden musste.</p>
+        </section>
+        
+        
+       
               
     </body>
 </topic>
