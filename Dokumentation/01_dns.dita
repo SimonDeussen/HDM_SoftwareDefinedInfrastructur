@@ -5,41 +5,43 @@
     <body>
         <equation-figure>
             <desc>
-                <p>In this exercise we set up our own <xref href="glossary.dita#ddl">DNS</xref>
-                    Server on the provided Virtual Machines.</p>
+                <p>In dieser Aufgabe setzen wir unseren eigenen <xref href="glossary.dita#ddl"
+                        >DNS</xref> Server auf einer der uns zur Vefügung gestellten Virtuellen
+                    Maschinen auf.</p>
             </desc>
         </equation-figure>
         <section id="section_cds_hsf_zdb">
-            <title>How DNS works</title>
+            <title>Wie DNS funktioniert</title>
             <lines/>
             <fig id="fig_qqd_k5w_jdb">
-                <title>How DNS works</title>
+                <title>Wie DNS funktioniert</title>
                 <image href="images/dns01.png" id="image_rqd_k5w_jdb" width="500"/>
-                <p><i>image from https://safeum.com</i></p>
+                <p><i>Bild von https://safeum.com</i></p>
             </fig>
         </section>
-        <section id="section_a4g_jsf_zdb"><title>Prerequisite</title><lines/><p>We have two Virtual
-                Servers with the IP addresses</p><ul id="ul_zp4_3tw_jdb">
+        <section id="section_a4g_jsf_zdb"><title>Voraussetzungen</title><lines/>Wir haben zwei
+            virtuelle Server mit den IP-Adressen<ul id="ul_zp4_3tw_jdb">
                 <li><tt>141.62.75.106</tt></li>
                 <li><tt>141.62.75.116</tt></li>
-            </ul><p>We can access both from our own local machines using ssh. </p>
-            <codeblock>ssh root@141.62.75.xx</codeblock></section>
+            </ul><p>Mittels ssh, können wir von unseren lokalen Maschinen auf die Server
+                zugreifen.</p><codeblock>ssh root@141.62.75.xx</codeblock></section>
         <section id="section_gnw_msf_zdb">
-            <title>Installing Bind</title>
+            <title>Bind installieren</title>
             <lines/>
-            <p>First of all we need to install <xref href="sofware_bind9.dita#bind9">bind9</xref>,
-                the software we will use to provide the DNS service.</p>
+            <p>Als erstes müssen wir <xref href="sofware_bind9.dita#bind9">bind9</xref>
+                installieren. Diese Software stellt uns die DNS Services für unseren Server bereit.
+                Die Installation führen wir mittels APT (Advanced Packaging Tool) durch.</p>
             <codeblock>apt-get install bind9 bind9utils</codeblock>
             <p>
                 <lines/>
             </p>
             <p>
                 <ul id="ul_rqc_zzm_zdb">
-                    <li><b>Changing the log level</b></li>
+                    <li><b>Das Log-Level anpassen</b></li>
                 </ul>
             </p>
-            <p>For adjusting the server's log level we edit the
-                    <codeph>/etc/bind/named.conf.local</codeph></p>
+            <p>Um das von uns gewünschte Log-Level anzupassen, müssen wir die Datei
+                    <codeph>/etc/bind/named.conf.local</codeph> bearbeiten.</p>
             <p>
                 <codeblock>logging {
    channel querylog{
@@ -54,22 +56,24 @@
             </p>
             <lines/>
             <ul id="ul_tfr_f1n_zdb">
-                <li><b>Turn off IPv6</b></li>
+                <li><b>Deaktivieren von IPv6</b></li>
             </ul>
-            <p>To turn off IPv6, we need to create the file <codeph>/etc/init.d/bind9</codeph>
-                containing the following line<codeblock>OPTIONS="-4 -u bind"</codeblock><lines/><ul
+            <p>Um IPv6 zu installieren, müssen wir die Datei <codeph>/etc/init.d/bind9</codeph>
+                erstellen. Sie muss folgende Zeile
+                    beinhalten:<codeblock>OPTIONS="-4 -u bind"</codeblock><lines/><ul
                     id="ul_epm_l1n_zdb">
-                    <li><b>(Re)Starting the deamon</b></li>
+                    <li><b>(Re)Start des Deamon</b></li>
                 </ul></p>
             <codeblock>service bind9 restart</codeblock>
         </section>
         <section id="section_k1n_cyf_zdb">
-            <title>Configuration</title>
-            <p><lines/>To use our own Server as the default DNS Server without adding every domain
-                we want to be able to access, we can use <i>recursion</i>. In the file
-                    <codeph>/etc/bind/named.conf.options</codeph> we can active recursion for any
-                clients or just <i>trusted</i>
-                ones.<lines>With adding a <i>forwarder</i>, we can define another external DNS Server to use for those addresses, our own server does not know.</lines><codeblock>options { 
+            <title>Konfiguration</title>
+            <p><lines/>Um den eigenen Server aus default-DNS-Server verwenden zu können, ohne jede
+                Domain einzeln hinzuzufügen, die wir erreiche können wollen, können wir
+                    <i>recursion</i> verwenden. In der Datei
+                    <codeph>/etc/bind/named.conf.options</codeph> können wir sie akivieren. Das kann
+                entweder für jeden oder nur <i>trusted</i> Clients
+                geschehen.<lines>Durch das hinzufügen eines <i>forwarder</i>, können wir einen anderen, externen DNS-Server definieren, der bei Adressen verwendet wird, die unser eigener Server nicht explizit kennt.</lines><codeblock>options { 
   directory "/var/cache/bind"; 
  <b>
   # Disable recursive DNS queries 
@@ -96,9 +100,12 @@
   auth-nxdomain no; 
   listen-on-v6 { any; }; 
 };</codeblock></p>
-            <p><lines/>After that, we want to configure some host aliases. Therefore we need to
-                create two files for the <i>zone</i> and
-                <i>reverse-zone</i>.<lines><codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph></lines><codeblock>$TTL    604800
+            <p><lines/>Jetzt wollen wir sogenannte <i>host aliases</i> definieren. Dafür müssen wir
+                zwei Dateien erstellen. Eine für die <i>zone</i> und eine für die
+                    <i>reverse-zone</i>.</p>
+            <p>
+                <lines><codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph></lines>
+                <codeblock>$TTL    604800
 @       IN      SOA     ns6.mi.hdm-stuttgart.de. root.mi.hdm-stuttgart.de. (
                      2018040401         ; Serial
                          604800         ; Refresh
@@ -117,7 +124,9 @@ mi.hdm-stuttgart.de.		IN	A	141.62.75.106
 pl042.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
 manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
 
-freedocs.mi.hdm-stuttgart.de.	IN	A	141.62.64.35	</codeblock><lines><codeph>/etc/bind/zones/db.141.62.75</codeph></lines><codeblock>; BIND reverse data file 
+freedocs.mi.hdm-stuttgart.de.	IN	A	141.62.64.35	</codeblock>
+                <lines><codeph>/etc/bind/zones/db.141.62.75</codeph></lines>
+                <codeblock>; BIND reverse data file 
 ;
 $TTL    604800
 @       IN      SOA     ns4.mi.hdm-stuttgart.de. root.mi.hdm-stuttgart.de. (
@@ -132,8 +141,86 @@ $TTL    604800
       IN      NS      ns6.mi.hdm-stuttgart.de.
 
 ; PTR Records
-106   IN      PTR     sdi6a.mi.hdm-stuttgart.de.    ; 141.62.75.106</codeblock></p>
+106   IN      PTR     sdi6a.mi.hdm-stuttgart.de.    ; 141.62.75.106</codeblock>
+            </p>
+            <p>Als nächstes konfigurieren wir den <i>mail exchange record</i>. Der Mailserver der
+                Hochschule ist via <tt>mx1.mi.hdm-stuttgart</tt> zu erreichen. Ein entsprechender
+                Record muss in <codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph> definiert
+                werden.
+                <codeblock>; mail servers - MX records
+mi.hdm-stuttgart.de.	IN	MX	10 	mx1.hdm-stuttgart.de.</codeblock></p>
         </section>
+        <section id="section_jvx_my3_y2b"><title>DNS-Server testen &amp; verwenden</title><p>Nach
+                der erfolgreichen Konfiguration des DNS-Servers, kann er nun verwendet werden. Dafür
+                wird die DNS-Konfiguration einer lokalen Maschine so eingstellt, dass der eigene
+                Server der default-DNS-Server ist. Das macht man, in dem man in
+                    <codeph>/etc/resolv.conf</codeph> den Server als obersten <i>nameserver</i>
+                einträgt.<codeblock>nameserver 141.62.75.106 # IP-Adresse unseres DNS-Servers </codeblock></p>Um
+            den DNS-Server jetzt auf seine Funktionalität zu testen, kann man zum Beispiel das Tool
+                <codeph>dig</codeph> einsetzen. Der Befehl <codeph>dig www.google.de</codeph>
+            liefert folgendes Ergebnis:
+                <codeblock>; &lt;&lt;>> DiG 9.13.0 &lt;&lt;>> www.google.de
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 30031
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 13, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;www.google.de.			IN	A
+
+;; ANSWER SECTION:
+www.google.de.		300	IN	A	172.217.16.67
+
+;; AUTHORITY SECTION:
+.			96784	IN	NS	m.root-servers.net.
+.			96784	IN	NS	b.root-servers.net.
+.			96784	IN	NS	i.root-servers.net.
+.			96784	IN	NS	k.root-servers.net.
+.			96784	IN	NS	d.root-servers.net.
+.			96784	IN	NS	c.root-servers.net.
+.			96784	IN	NS	l.root-servers.net.
+.			96784	IN	NS	e.root-servers.net.
+.			96784	IN	NS	a.root-servers.net.
+.			96784	IN	NS	f.root-servers.net.
+.			96784	IN	NS	j.root-servers.net.
+.			96784	IN	NS	h.root-servers.net.
+.			96784	IN	NS	g.root-servers.net.
+
+;; Query time: 15 msec
+;; SERVER: 141.62.75.106#53(141.62.75.106)
+;; WHEN: Mo Aug 27 12:52:26 C</codeblock><p>Wir
+                können unten sehen, dass der eigene DNS-Server verwendet wird. Weiterhin gibt er uns
+                in der <i>ANSWER SECTION</i> die IP-Adresse von www.google.de zurück. Er
+                funktioniert also.</p><p>Das ganze können wir auch noch für den eingetragenen
+                Mailserver testen. Der Befehl <codeph>dig mi.hdm-stuttgart.de MX</codeph> sucht nach
+                entsprechenden Records. Das Ergebnis zeigt erneut in der <i>ANSWER SECTION</i>, dass
+                auch das
+                funktioniert.<codeblock>; &lt;&lt;>> DiG 9.13.0 &lt;&lt;>> mi.hdm-stuttgart.de MX
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 51267
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;mi.hdm-stuttgart.de.		IN	MX
+
+;; ANSWER SECTION:
+mi.hdm-stuttgart.de.	604800	IN	MX	10 mx1.hdm-stuttgart.de.
+
+;; AUTHORITY SECTION:
+mi.hdm-stuttgart.de.	604800	IN	NS	ns6.mi.hdm-stuttgart.de.
+
+;; ADDITIONAL SECTION:
+ns6.mi.hdm-stuttgart.de. 604800	IN	A	141.62.75.106
+
+;; Query time: 2 msec
+;; SERVER: 141.62.75.106#53(141.62.75.106)
+;; WHEN: Mo Aug 27 12:56:41 CEST 2018
+;; MSG SIZE  rcvd: 102</codeblock></p></section>
     </body>
     <related-links/>
 </topic>
