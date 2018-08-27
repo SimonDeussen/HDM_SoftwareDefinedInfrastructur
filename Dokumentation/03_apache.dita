@@ -281,5 +281,121 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
                         <tt>https://*.mi.hdm-stuttgart.de</tt> gültig ist. Darauf gehen wir in
                     dieser Dokumentation allerdings nicht näher ein.</p>
             </fig></section>
+        <section id="section_sbj_rlk_y2b">
+            <title>LDAP authentication</title>
+            <p>
+                <lines/>
+            </p>
+            <p>Um auf <xref href="https://manual.mi.hdm-stuttgart.de" format="html" scope="external"
+                /> zugreifen zu können, soll nur die Authorisation via LDAP nötig sein.</p>
+            <p>Dafür müssen wir die entsprechende Config-File
+                    <codeph>/etc/apache2/sites-available/manual-ssl.conf</codeph> anpassen. </p>
+            <p>
+                <codeblock>&lt;IfModule mod_ssl.c>
+    &lt;VirtualHost _default_:443>
+
+        ServerName manual.mi.hdm-stuttgart.de
+        ServerAdmin webmaster@localhost
+        DocumentRoot /usr/share/doc/apache2-doc/manual/
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+	
+        SSLEngine on
+        SSLCertificateFile 	/etc/apache2/ssl/manual.crt
+        SSLCertificateKeyFile	/etc/apache2/ssl/manual.key	
+
+        <b>&lt;Directory /usr/share/doc/apache2-doc/manual/>
+            Options Indexes FollowSymLinks MultiViews
+            AuthName "Private"
+            AuthType Basic
+            AuthBasicProvider ldap
+            AuthLDAPURL ldap://141.62.75.106:389/ou=devel,ou=software,ou=departments,dc=betrayer,dc=com?uid
+            Require valid-user
+        &lt;/Directory></b>
+
+    &lt;/VirtualHost>
+&lt;/IfModule>
+</codeblock>
+            </p>
+            <p>Nach einem Neustart von Apache, fordert uns unser Browser nun beim Aufrufen der
+                entsprechenden Adresse auf, uns via LDAP zu authentifizieren.</p>
+            <p>
+                <fig id="fig_aht_d4k_y2b">
+                    <title>Apache fordert Authentifizierung via LDAP</title>
+                    <image href="images/apacheLDAP.png" id="image_bht_d4k_y2b"/>
+                </fig>
+            </p>
+        </section>
+        <section id="section_d3q_t4k_y2b">
+            <title>MySQL database administration</title>
+            <p>Wir möchten MySQL und eine Weboberfläche installieren, mit der der wir die Datenbank
+                administrieren können. Als Weboberfläche verwenden wir <i>phpmyadmin</i>. Außerdem
+                wird noch das Paket <i>apache-utils</i> benötigt.</p>
+            <p>Wir installieren beide Pakete mit</p>
+            <p>
+                <codeblock>apt-get install mysql-server phpmyadmin apache-utils</codeblock>
+            </p>
+            <p>Bei der Installation müssen wir in Dialogen genauere Einstellungen vornehmen.</p>
+            <p>
+                <fig id="fig_kcy_fpk_y2b">
+                    <title>Wahl des Webservers zur automatischen Konfiguration</title>
+                    <image href="images/phpmyadmin1.png" id="image_lcy_fpk_y2b"/>
+                </fig>
+                <fig id="fig_zvx_hpk_y2b">
+                    <title>Automatische Konfiguration</title>
+                    <image href="images/phpmyadmin2.png" id="image_awx_hpk_y2b"/>
+                </fig>
+                <fig id="fig_t5n_kpk_y2b">
+                    <title>Passwortvergabe für die Datenbank</title>
+                    <image href="images/phpmyadmin3.png" id="image_u5n_kpk_y2b"/>
+                    <p>Anschließend müssen wir noch in der Datei
+                            <codeph>/etc/apache2/apache2.conf</codeph> die folgende Zeile
+                        hinzufügen</p>
+                    <p>
+                        <codeblock>Include /etc/phpmyadmin/apache.conf</codeblock>
+                    </p>
+                    <p>Jetzt ist die Weboberfläche unter <xref
+                            href="http://mi.hdm-stuttgart.de/phpmyadmin" format="html"
+                            scope="external"/> zu erreichen.</p>
+                    <p>Benutzername und Passwort können in der Datei
+                            <codeph>/etc/phpmyadmin/config-db.php</codeph> nachgeschaut oder
+                        geändert werden.<fig id="fig_swg_2qk_y2b">
+                            <title>Login-Screen von phpMyAdmin</title>
+                            <image href="images/phpmyadmin.png" id="image_twg_2qk_y2b"/>
+                        </fig></p>
+                </fig>
+            </p>
+        </section>
+        <section id="section_ilc_fqk_y2b">
+            <title>Providing web-based user management to your LDAP Server</title>
+            <p>Zunächst installieren wir das Paket
+                <codeph>ldap-account-manager</codeph><codeblock>apt-get install ldap-account-manager</codeblock></p>
+            <p>Anschließend ist die Weboberfläche direkt unter <xref
+                    href="http://mi.hdm-stuttgart.de/lam" format="html" scope="external"/> zu
+                erreichen.</p>
+            <p>
+                <fig id="fig_rlm_1sk_y2b">
+                    <title>Login-Screen des LDAP Account Managers</title>
+                    <image href="images/lam-login.png" id="image_slm_1sk_y2b"/>
+                </fig>
+            </p>
+            <p>Geht man oben rechts auf <i>LAM-Einstellungen</i> und dann auf <i>Serverprofile
+                    ändern</i>, kann man allgemeine Einstellungen zum verwendeten LDAP-Server
+                vornehmen.</p>
+            <p>Wir konfigurieren unter <i>Allgemeine Einstellungen</i> die Serveradresse
+                    (<tt>ldap://localhost:389</tt>) und die Baumansicht
+                (<tt>dc=betrayer,dc=com</tt>).</p>
+            <p><image href="images/lam1.png" id="image_kls_4sk_y2b"/></p>
+            <p>Außerdem können wir unter <i>Sicherheitseinstellungen</i> > <i>Liste der berechtigten
+                    Benutzer</i> beliebige LDAP-Accounts festlegen, die dann berechtigt sind, sich
+                im LDAP Account Manager anzumelden. Wir entscheiden uns, neben dem Admin, für die
+                beiden früher angelegten Benutzer <i>sd092</i> und <i>pl042</i>.</p>
+            <p>
+                <codeblock>cn=admin,dc=betrayer,dc=com
+uid=sd092,ou=devel,ou=software,ou=departments,dc=betrayer,dc=com
+uid=pl042,ou=devel,ou=software,ou=departments,dc=betrayer,dc=com</codeblock>
+            </p>
+        </section>
     </body>
 </topic>
