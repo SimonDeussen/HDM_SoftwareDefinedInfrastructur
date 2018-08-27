@@ -122,8 +122,6 @@
 ns6.mi.hdm-stuttgart.de.        IN      A       141.62.75.106
 sdi6a.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
 mi.hdm-stuttgart.de.		IN	A	141.62.75.106
-pl042.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
-manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
 
 freedocs.mi.hdm-stuttgart.de.	IN	A	141.62.64.35	</codeblock>
                 <lines><codeph>/etc/bind/zones/db.141.62.75</codeph></lines>
@@ -151,11 +149,15 @@ $TTL    604800
                 <codeblock>; mail servers - MX records
 mi.hdm-stuttgart.de.	IN	MX	10 	mx1.hdm-stuttgart.de.</codeblock></p>
         </section>
-        <section id="section_jvx_my3_y2b"><title>DNS-Server testen &amp; verwenden</title><p>Nach
-                der erfolgreichen Konfiguration des DNS-Servers, kann er nun verwendet werden. Dafür
-                wird die DNS-Konfiguration einer lokalen Maschine so eingstellt, dass der eigene
-                Server der default-DNS-Server ist. Das macht man, in dem man in
-                    <codeph>/etc/resolv.conf</codeph> den Server als obersten <i>nameserver</i>
+        <section id="section_jvx_my3_y2b">
+            <title>DNS-Server testen &amp; verwenden</title>
+        </section>
+        <lines/>
+        <section id="section_mgl_wzj_y2b"><p>Nach der erfolgreichen Konfiguration des DNS-Servers,
+                kann er nun verwendet werden. Dafür wird die DNS-Konfiguration einer lokalen
+                Maschine so eingstellt, dass der eigene Server der default-DNS-Server ist. Das macht
+                man, in dem man in <codeph>/etc/resolv.conf</codeph> den Server als obersten
+                    <i>nameserver</i>
                 einträgt.<codeblock>nameserver 141.62.75.106 # IP-Adresse unseres DNS-Servers </codeblock></p>Um
             den DNS-Server jetzt auf seine Funktionalität zu testen, kann man zum Beispiel das Tool
                 <codeph>dig</codeph> einsetzen. Der Befehl <codeph>dig www.google.de</codeph>
@@ -223,5 +225,4 @@ ns6.mi.hdm-stuttgart.de. 604800	IN	A	141.62.75.106
 ;; WHEN: Mo Aug 27 12:56:41 CEST 2018
 ;; MSG SIZE  rcvd: 102</codeblock></p></section>
     </body>
-    <related-links/>
 </topic>
