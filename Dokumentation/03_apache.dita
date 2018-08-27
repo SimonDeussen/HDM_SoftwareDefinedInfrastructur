@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="Unbenannt">
-    <title>Apache HTTP Server</title>
+<topic id="dns01">
+    <title>Apache HTTP Server (httpd)</title>
     <body>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
-            et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. </p>
-        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-            vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-            dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-            facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+        <equation-figure id="equation-figure_rs4_jgj_y2b">
+            <desc>
+                <p>In dieser Aufgabe setzen wir auf einem der beiden zur Vefügung gestellten
+                    Webserver einen Webserver auf. Wir verwenden den Apache HTTP Server, einen der
+                    meistbenutzten Webserver weltweit. Weitere bekannte Webserver sind
+                    beispielsweise <i>nginx</i>, <i>lighttpd</i> oder <i>express</i> (node.js).</p>
+            </desc>
+        </equation-figure>
+        <section id="section_cds_hsf_zdb">
+            <title>Wie ein Webserver funktioniert</title>
+            <lines/>
+            <fig id="fig_mxb_shj_y2b">
+                <title>Wie ein Webserver funktioniert</title>
+                <image href="images/webserver.png" id="image_nxb_shj_y2b"/>
+                <p><i>Bild von <xref href="https://www.itwissen.info/Webserver-web-server.html"
+                            format="html" scope="external"/></i></p>
+            </fig>
+        </section>
+        <section id="section_a4g_jsf_zdb"><title>Voraussetzungen</title><lines/>Wir haben zwei
+            virtuelle Server mit den IP-Adressen<ul id="ul_zp4_3tw_jdb">
+                <li><tt>141.62.75.106</tt></li>
+            </ul></section>
     </body>
 </topic>
