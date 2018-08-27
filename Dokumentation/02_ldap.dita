@@ -2,19 +2,20 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="ldap02">
     <title>Lightweight Directory Access Protocol (LDAP)</title>
-    
+
     <body>
-        <section>
-            <title>Was ist LDAP?</title>
-            <p>LDAP ist ein Verzeichniszugriffsprotokol zum Abfragen und Ändern von Informationen
+        <equation-figure>
+            <desc>
+                <p>LDAP ist ein Verzeichniszugriffsprotokol zum Abfragen und Ändern von Informationen
                 verteilter Verzeichnissdienste. Es beschreibt im genauen, wie man von einem oder
                 mehreren LDAP-Servern Daten abfrägt. Häufige Anwendungsfälle sind Email-Adressbücher
                 und User-Authentifizierung im Web sowie in Organisationen (Intranet). </p>
-        </section>
+            </desc>
+        </equation-figure>
         <section id="section_qln_rw3_y2b">
             <title>Exercises</title>
         </section>
-        <section id="section_e44_sw3_y2b">
+        <section>
             <title>1. Browse an existing LDAP-Server</title>
             <p>Bei dieser Aufgabe soll eine Verbindung zu dem HdM-LDAP aufgebaut werden mit dem Tool
                 Apache Directory Studio. Anschließend geschiet ein Abfragen der eigenen
@@ -23,84 +24,38 @@
                 musste eine Connection angegeben werden an der LDAP Server der HdM. Folgende Daten
                 wurden verwendet:<fig id="fig_pyy_hy3_y2b">
                     <title>Connection Daten für HdM-Ldap Server</title>
-                    <image href="../Notizen/LDAP_Simon/Ldap%20Server%20Connection%20Daten.png"
-                        id="image_qyy_hy3_y2b"/>
-                    <p/>
-                </fig></p>
-        </section>
-        <p>Zusehen sind hier alle Daten der <codeph>ou-userlist</codeph>: <fig id="fig_obt_qy3_y2b">
+                    <image href="images/Ldap%20Server%20Connection%20Daten.png" id="image_qyy_hy3_y2b"/>
+                    
+                </fig>
+            </p>
+            <p>Zusehen sind hier alle Daten der <codeph>ou-userlist</codeph>: <fig id="fig_obt_qy3_y2b">
                 <title>Alle Benutzer in ou-userlist</title>
-                <image href="../Notizen/LDAP_Simon/All%20Users%20in%20HdM%20Ldap.png"
-                    id="image_pbt_qy3_y2b"/>
+                <image href="images/All%20Users%20in%20HdM%20Ldap.png" id="image_pbt_qy3_y2b"/>
             </fig></p>
-        <p>Der OU-Tag steht für Organisational Unit, ein Verzeichnis in dem die HdM alle
-            registrierten Personen speichert. Diese Personen sind alle Mitglieder ein oder mehrer
-            Gruppen der <codeph>ou=grouplist</codeph>. Diese Gruppen geben den Nutzer ensprechende
-            Rechte innerhalb des HdM Intranets.</p>
-        <p>Anschließend wurde nach dem eigenen Benutzer durch anlegen eines Filters mit
+            <p>Der OU-Tag steht für Organisational Unit, ein Verzeichnis in dem die HdM alle
+                registrierten Personen speichert. Diese Personen sind alle Mitglieder ein oder mehrer
+                Gruppen der <codeph>ou=grouplist</codeph>. Diese Gruppen geben den Nutzer ensprechende
+                Rechte innerhalb des HdM Intranets.</p>
+            <p>Anschließend wurde nach dem eigenen Benutzer durch anlegen eines Filters mit
                 <codeph>(uid=sd092)</codeph><fig id="fig_hw5_3z3_y2b">
-                <title>Nach Eingabe des Filters</title>
-                <image href="../Notizen/LDAP_Simon/Connection%20to%20HdM%20Ldap%20with%20Filter.png"
-                    id="image_iw5_3z3_y2b"/>
-            </fig></p>
-        <p>So konnten die Daten von mir eingesehen werden: <fig id="fig_wts_mz3_y2b">
-                <title>Meine Daten (sd092)</title>
-                <image href="../Notizen/LDAP_Simon/Data%20For%20Myself%20Ldap.png"
-                    id="image_xts_mz3_y2b"/>
-            </fig></p>
-        <p>Der nächste Teil der Aufgabe war noch die Abfrage mit der Commandline. Dafür benutzt man
-            das Tool <codeph>ldapsearch</codeph> mit folgenden
-            Parametern:<codeblock>ldapsearch -D "uid=sd092,ou=userlist,dc=hdm-stuttgart,dc=de" -W -p 389 -h ldap1.mi.hdm-stuttgart.de -b "dc=hdm-stuttgart,dc=de" -s sub "(uid=sd092)"</codeblock></p>
-        <p>Heraus kamen dann die geichen Daten in der Commandline:<fig id="fig_m5v_x1j_y2b">
+                    <title>Nach Eingabe des Filters</title>
+                    <image href="images/Connection%20to%20HdM%20Ldap%20with%20Filter.png" id="image_iw5_3z3_y2b"/>
+                </fig></p>
+            <p>So konnten die Daten von mir eingesehen werden: 
+                <fig id="fig_wts_mz3_y2b">
+                    <title>Meine Daten (sd092)</title>
+                    <image href="images/Data%20For%20Myself%20Ldap.png" id="image_xts_mz3_y2b"/>
+                </fig>
+            </p>
+            <p>Der nächste Teil der Aufgabe war noch die Abfrage mit der Commandline. Dafür benutzt man
+                das Tool <codeph>ldapsearch</codeph> mit folgenden
+                Parametern:<codeblock>ldapsearch -D "uid=sd092,ou=userlist,dc=hdm-stuttgart,dc=de" -W -p 389 -h ldap1.mi.hdm-stuttgart.de -b "dc=hdm-stuttgart,dc=de" -s sub "(uid=sd092)"</codeblock>
+            </p>
+            <p>Heraus kamen dann die geichen Daten in der Commandline:<fig id="fig_m5v_x1j_y2b">
                 <title>Ldap-Search</title>
-                <image href="../Notizen/LDAP_Simon/Ldap%20Search.png" id="image_n5v_x1j_y2b"/>
+                <image href="images/Ldap%20Search.png" id="image_n5v_x1j_y2b"/>
             </fig></p>
-        <p>Anwendungsfälle:<ul id="ul_t1r_cyt_ldb">
-                <li>Benutzerdaten</li>
-                <li>Authentifizierung</li>
-                <li>Kennung</li>
-                <li>Name</li>
-                <li>E-Mailadressen </li>
-            </ul></p>
-        <p>Schema<ul id="ul_zp1_325_ldb">
-                <li>Typ</li>
-                <li>ein/mehrwertig</li>
-                <li>zwingend oder optional</li>
-            </ul></p>
-        <p>kein Replication</p>
-        <p>Neuer Entry: RDN: uid only!!!</p>
-        <p>
-            <codeblock># /etc/nslcd.conf
-# nslcd configuration file. See nslcd.conf(5)
-# for details.
- 
-# The user and group nslcd should run as.
-uid nslcd
-gid nslcd
- 
-# The location at which the LDAP server(s) should be reachable.
-uri ldap://141.62.75.106:389/ 
- 
-# The search base that will be used for all queries.
-base ou=devel,ou=software,ou=departments,dc=betrayer,dc=com &lt;- hier muss eure rein
- 
-# The LDAP protocol version to use.
-#ldap_version 3
- 
-# The DN to bind with for normal lookups.
-#binddn cn=annonymous,dc=example,dc=net
-#bindpw secret
- 
-# The DN used for password modifications by root.
-#rootpwmoddn cn=admin,dc=example,dc=com
- 
-# SSL options
-#ssl off
-#tls_reqcert never
-tls_cacertfile /etc/ssl/certs/ca-certificates.crt
- 
-# The search scope.
-#scope sub</codeblock>
-        </p>
+        </section>
+              
     </body>
 </topic>
