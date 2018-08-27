@@ -21,8 +21,8 @@
                             format="html" scope="external"/></i></p>
             </fig>
         </section>
-        <section id="section_a4g_jsf_zdb"><title>Voraussetzungen</title><lines/>Wir haben zwei
-            virtuelle Server mit den IP-Adressen<ul id="ul_zp4_3tw_jdb">
+        <section id="section_a4g_jsf_zdb"><title>Apache HTTP Server installieren</title><lines/>Wir
+            haben zwei virtuelle Server mit den IP-Adressen<ul id="ul_zp4_3tw_jdb">
                 <li><tt>141.62.75.106</tt></li>
             </ul></section>
     </body>
