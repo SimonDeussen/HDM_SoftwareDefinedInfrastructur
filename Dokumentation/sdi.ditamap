@@ -15,7 +15,11 @@
         <topicref href="06_surveillance.dita"/>
     </topichead>
     <topichead navtitle="Software">
-        <topicref href="sofware_apachedirectorystudio.dita"/>
+        <topicref href="software_docker.dita"/>
+        <topicref href="software_thunderbird.dita"/>
+        <topicref href="untitled4.dita"/>
+        <topicref href="software_openldap.dita"/>
+        <topicref href="software_nexclout.dita"/>
         <topicref href="sofware_apachedirectorystudio.dita"/>
         <topicref href="sofware_bind9.dita"/>
         <topicref href="software_apachehttpserver.dita"/>

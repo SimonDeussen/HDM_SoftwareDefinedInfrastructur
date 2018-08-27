@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="software_docker">
+    <title>Docker</title>
+    <body>
+        <p><b>Docker</b> ist eine <xref href="https://de.wikipedia.org/wiki/Open_Source"
+                format="html" scope="external">Open-Source</xref>-<xref
+                href="https://de.wikipedia.org/wiki/Software" format="html" scope="external"
+                >Software</xref> zur Isolierung von Anwendungen mit <xref
+                href="https://de.wikipedia.org/wiki/Containervirtualisierung" format="html"
+                scope="external">Containervirtualisierung</xref>. </p>
+        <p>Docker vereinfacht die Bereitstellung von Anwendungen, weil sich Container, die alle
+            nötigen Pakete enthalten, leicht als Dateien transportieren und installieren lassen.
+            Container gewýhrleisten die Trennung und Verwaltung der auf einem Rechner genutzten
+            Ressourcen. Das beinhaltet laut Aussage der Entwickler: Code, Laufzeitmodul,
+            Systemwerkzeuge, Systembibliotheken – alles was auf einem Rechner installiert werden
+            kann.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/Docker_(Software)" format="html"
+                scope="external">Quelle</xref></p>
+    </body>
+</topic>

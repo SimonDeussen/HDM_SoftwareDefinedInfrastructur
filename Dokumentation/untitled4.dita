@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="untitled4">
+    <title>LDAP</title>
+    <body>
+        <p>Das <b>Lightweight Directory Access Protocol</b> (<b>LDAP</b>), deutsch etwa
+                <i>Leichtgewichtiges Verzeichniszugriffsprotokoll</i>, ist ein <xref
+                href="https://de.wikipedia.org/wiki/Netzwerkprotokoll" format="html"
+                scope="external">Netzwerkprotokoll</xref> zur Abfrage und Änderung von Informationen
+            verteilter <xref href="https://de.wikipedia.org/wiki/Verzeichnisdienst" format="html"
+                scope="external">Verzeichnisdienste</xref>. Seine aktuelle und dritte Version ist in
+                <xref href="https://tools.ietf.org/html/rfc4510" format="html" scope="external">RFC
+                4510</xref> bis <xref href="https://tools.ietf.org/html/rfc4532" format="html"
+                scope="external">RFC 4532</xref> spezifiziert und das eigentliche Protokoll in <xref
+                href="https://tools.ietf.org/html/rfc4511" format="html" scope="external">RFC
+                4511</xref>. </p>
+        <p>Der Standardport für ungesicherte Verbindungen ist <i>389</i> und der Standardport für
+            TLS-Verbindungen (LDAPS) <i>636</i></p>
+        <p><xref href="https://de.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol"
+                format="html" scope="external">Quelle</xref></p>
+    </body>
+</topic>

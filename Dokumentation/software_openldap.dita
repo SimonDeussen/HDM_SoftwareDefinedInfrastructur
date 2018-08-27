@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="software_openldap">
+    <title>OpenLDAP</title>
+    <body>
+        <p><b>OpenLDAP</b> ist eine Implementierung des <xref
+                href="https://de.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol"
+                format="html" scope="external">LDAP</xref>, die als <xref
+                href="https://de.wikipedia.org/wiki/Freie_Software" format="html" scope="external"
+                >freie Software</xref> unter der, BSD-Lizenz ähnlichen, OpenLDAP Public License
+            veröffentlicht wird. OpenLDAP ist Bestandteil der meisten aktuellen <xref
+                href="https://de.wikipedia.org/wiki/Linux-Distribution" format="html"
+                scope="external">Linux-Distributionen</xref> und läuft auch unter verschiedenen
+                <xref href="https://de.wikipedia.org/wiki/Unix" format="html" scope="external"
+                >Unix</xref>-Varianten, macOS und verschiedenen Windows-Versionen. </p>
+        <p>Da OpenLDAP den LDAP-Standard verfolgt, ist es mit OpenLDAP möglich, eine zentrale
+            Benutzerdatenverwaltung aufzubauen und zentral zu warten. </p>
+        <p><xref href="https://de.wikipedia.org/wiki/OpenLDAP" format="html" scope="external"
+                >Quelle</xref></p>
+    </body>
+</topic>

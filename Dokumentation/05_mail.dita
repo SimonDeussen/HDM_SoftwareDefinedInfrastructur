@@ -4,13 +4,17 @@
     <title>Docker</title>
     <body>
         <equation-figure>
-            <desc>Hier wird beschrieben wie wir auf dem Server Nextcloud mit Docker aufgesetzt
-                haben. Docker ist eine Software zur Isolierung von Anwendungen, wodurch diese
-                unabhängig vom OS und installierten Paketen ausführbar sind.</desc>
+            <desc>Hier wird beschrieben wie wir auf dem Server <xref href="software_nexclout.dita"
+                    >Nextcloud</xref> mit <xref href="software_docker.dita#software_docker"
+                        >Docker</xref> aufgesetzt haben. <xref href="software_docker.dita#software_docker"
+                            >Docker</xref> ist eine Software zur Isolierung von
+                Anwendungen, wodurch diese unabhängig vom OS und installierten Paketen ausführbar
+                sind.</desc>
         </equation-figure>
         <section id="section_k2l_2mk_y2b">
             <title>Installation von Docker</title>
-            <p>Damit Docker installiert werden kann, muss zu erst die nötige Software installiert
+            <p>Damit <xref href="software_docker.dita#software_docker"
+                >Docker</xref> installiert werden kann, muss zu erst die nötige Software installiert
                 werden:
                 
                 <codeblock>apt-get install \
@@ -48,10 +52,11 @@ apt-get install docker-ce</codeblock></p>
         </section>
         <section id="section_az2_kpk_y2b">
             <title>Configuring Nextcloud to use MariaDB</title>
-            <p>Damit der Nextcloud Container eine andere DB benutzt, muss lediglich ein
-                    <codeph>docker-compose </codeph>File erstellt werden, welches den
-                Nextcloud-Container mit einem MariaDB-Container verbindet. Hier waren wir von der
-                immensen Einfachheit überrascht:<fig id="fig_clz_rpk_y2b">
+            <p>Damit der <xref href="software_nexclout.dita#software_nexclout">Nextcloud</xref>
+                Container eine andere DB benutzt, muss lediglich ein <codeph>docker-compose
+                </codeph>File erstellt werden, welches den Nextcloud-Container mit einem
+                MariaDB-Container verbindet. Hier waren wir von der immensen Einfachheit
+                    überrascht:<fig id="fig_clz_rpk_y2b">
                     <title>Docker-compose File für MariaDB</title>
                     <image href="images/docker-using-mariadb.png" id="image_dlz_rpk_y2b"/>
                 </fig></p>
@@ -59,8 +64,9 @@ apt-get install docker-ce</codeblock></p>
         <section id="section_h5n_n4k_y2b">
             <title>Validating Nextcloud</title>
             <p>Wenn man mit dem Browser auf den C-Server besucht (welcher zur Zeit der Dokumentation
-                leider wieder Offline ist) kann man so auf die containerisierte Nextcloud zugreifen.
-                    <fig id="fig_zy2_v4k_y2b">
+                leider wieder Offline ist) kann man so auf die containerisierte <xref
+                    href="software_nexclout.dita#software_nexclout">Nextcloud</xref> zugreifen. <fig
+                    id="fig_zy2_v4k_y2b">
                     <title>Nextcloud in unserem Browser</title>
                     <image href="images/nextcloud-browser.png" id="image_az2_v4k_y2b"/>
                 </fig></p>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="software_nexclout">
+    <title>Nextcloud</title>
+    <body>
+        <p><b>Nextcloud</b> ist eine <xref href="https://de.wikipedia.org/wiki/Freie_Software"
+                format="html" scope="external">freie Software</xref> für das Speichern von Daten
+                (<xref href="https://de.wikipedia.org/wiki/Filehosting" format="html"
+                scope="external">Filehosting</xref>) auf einem eigenen <xref
+                href="https://de.wikipedia.org/wiki/Server" format="html" scope="external"
+                >Server</xref>. Bei Einsatz eines <xref
+                href="https://de.wikipedia.org/wiki/Client-Server-Modell" format="html"
+                scope="external">Clients</xref> wird der Server automatisch mit einem lokalen
+            Verzeichnis synchronisiert. Dadurch kann von mehreren Rechnern, aber auch über eine
+                <xref href="https://de.wikipedia.org/wiki/Webinterface" format="html"
+                scope="external">Weboberfläche</xref>, auf einen konsistenten Datenbestand
+            zugegriffen werden. Im Gegensatz zu kommerziellen Speicherdiensten wie <xref
+                href="https://de.wikipedia.org/wiki/Dropbox" format="html" scope="external"
+                >Dropbox</xref> oder <xref href="https://de.wikipedia.org/wiki/Microsoft_OneDrive"
+                format="html" scope="external">OneDrive</xref> kann Nextcloud auf einem privaten
+            Server oder <xref href="https://de.wikipedia.org/wiki/Webspace" format="html"
+                scope="external">Webspace</xref> ohne Zusatzkosten installiert werden. Dadurch
+            behält man die vollständige Kontrolle über seine Daten und die Bedenken gegenüber einem
+            Datenmissbrauch werden minimiert. </p>
+        <p><xref href="https://de.wikipedia.org/wiki/Nextcloud" format="html" scope="external"
+                >Quelle</xref></p>
+    </body>
+</topic>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="software_thunderbird">
+    <title>Mozilla Thunderbird</title>
+    <body>
+        <p><b><xref href="https://de.wikipedia.org/wiki/Mozilla" format="html" scope="external"
+                    >Mozilla</xref> Thunderbird</b> (<xref
+                href="https://de.wikipedia.org/wiki/Deutsche_Sprache" format="html" scope="external"
+                >deutsch</xref>
+            <i>Donnervogel</i>) ist ein <xref href="https://de.wikipedia.org/wiki/Freie_Software"
+                format="html" scope="external">freies</xref><xref
+                href="https://de.wikipedia.org/wiki/E-Mail-Programm" format="html" scope="external"
+                >E-Mail-Programm</xref> und zugleich ein <xref
+                href="https://de.wikipedia.org/wiki/Feedreader" format="html" scope="external"
+                >Feedreader</xref>, <xref href="https://de.wikipedia.org/wiki/Newsreader_(Usenet)"
+                format="html" scope="external">Newsreader</xref> sowie <xref
+                href="https://de.wikipedia.org/wiki/Extensible_Messaging_and_Presence_Protocol"
+                format="html" scope="external">XMPP</xref>-, <xref
+                href="https://de.wikipedia.org/wiki/Internet_Relay_Chat" format="html"
+                scope="external">IRC</xref>- und <xref href="https://de.wikipedia.org/wiki/Twitter"
+                format="html" scope="external">Twitter</xref>-Client des Mozilla-Projekts. Das
+            Programm basiert auf dem <xref href="https://de.wikipedia.org/wiki/Quelltext"
+                format="html" scope="external">Quelltext</xref> der <xref
+                href="https://de.wikipedia.org/wiki/Mozilla_Application_Suite" format="html"
+                scope="external">Mozilla Suite</xref> und ist unter anderem für die Betriebssysteme
+                <xref href="https://de.wikipedia.org/wiki/Microsoft_Windows" format="html"
+                scope="external">Windows</xref>, <xref href="https://de.wikipedia.org/wiki/Linux"
+                format="html" scope="external">Linux</xref>, <xref
+                href="https://de.wikipedia.org/wiki/MacOS" format="html" scope="external"
+                >macOS</xref>, <xref
+                href="https://de.wikipedia.org/wiki/Berkeley_Software_Distribution" format="html"
+                scope="external">BSD</xref>, <xref
+                href="https://de.wikipedia.org/wiki/Solaris_(Betriebssystem)" format="html"
+                scope="external">Solaris</xref>, <xref
+                href="https://de.wikipedia.org/wiki/EComStation" format="html" scope="external"
+                >eComStation</xref> und <xref href="https://de.wikipedia.org/wiki/OS/2"
+                format="html" scope="external">OS/2</xref> verfügbar. Es ist neben <xref
+                href="https://de.wikipedia.org/wiki/Microsoft_Outlook" format="html"
+                scope="external">Microsoft Outlook</xref> eines der am weitesten verbreiteten
+            Programme zum Lesen von News und E-Mails. Am 30.November 2015 überschritt die Zahl der
+            pro Tag aktiven Nutzer erstmals die 10-Millionen-Marke. Die Zahl aller Installationen
+            insgesamt wird derzeit auf 25 Millionen geschätzt.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/Mozilla_Thunderbird" format="html"
+                scope="external">Quelle</xref></p>
+    </body>
+</topic>
