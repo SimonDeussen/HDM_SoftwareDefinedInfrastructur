@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="dns01">
+<topic id="apache03">
     <title>Apache HTTP Server (httpd)</title>
     <body>
         <equation-figure id="equation-figure_rs4_jgj_y2b">
@@ -45,7 +45,7 @@
                     id="fig_nrm_4lj_y2b">
                     <title>eigene Index.html</title>
                     <image href="images/customindex.png" id="image_orm_4lj_y2b"/>
-                    <p>Als nächstes möchten wir die Dokumentation für  Apache installieren. Das
+                    <p>Als nächstes möchten wir die Dokumentation für Apache installieren. Das
                         entsprechende Paket heißt <codeph>apache2-doc</codeph>. Mit <codeph>apt-get
                             install apache2-doc</codeph> installieren wir es.</p>
                     <p>Um das Verzeichnis mit der installierten Dokumentation auf unserem Server

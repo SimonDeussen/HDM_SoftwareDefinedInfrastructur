@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="04_nextcloud">
-    <title>File Cloud</title>
+<topic id="04_filecloud">
+    <title>File Cloud (Nextcloud)</title>
     <body>
-        <p></p>
+        <p>
+            <equation-figure id="equation-figure_y52_tlq_y2b">
+                <desc>
+                    <p>In dieser Aufgabe setzen wir die freie Software Nextcloud auf. Es handelt
+                        sich dabei um eine Filehostinglösung, die viele weitere, komfortable
+                        Funktionen anbietet; beispielsweise CalDAV und CardDAV und Synchronisierung
+                        von verschiedenen Devices.</p>
+                </desc>
+            </equation-figure>
+        </p>
     </body>
 </topic>

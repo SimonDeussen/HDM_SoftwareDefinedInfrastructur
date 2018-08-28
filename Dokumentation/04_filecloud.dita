@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="filecloud04">
+    <title>File Cloud (Nextcloud)</title>
+    <body>
+        <p>
+            <equation-figure id="equation-figure_y52_tlq_y2b">
+                <desc>
+                    <p>In dieser Aufgabe setzen wir die freie Software Nextcloud auf. Es handelt
+                        sich dabei um eine Filehostinglösung, die viele weitere, komfortable
+                        Funktionen anbietet; beispielsweise CalDAV und CardDAV und Synchronisierung
+                        von verschiedenen Devices.</p>
+                </desc>
+            </equation-figure>
+        </p>
+        <section id="section_kgx_ymq_y2b">
+            <title>Installation</title>
+            <p>Nextcloud benötigt weitere Pakete um reibungsfrei zu funktionieren. Das sind neben
+                einem Webserver (den wir durch die Apache-Installation ja schon auf unserem Server
+                installiert haben) unter anderem eine Datenbank (wir haben <i>MySQL</i> schon
+                installiert, aber auch <i>mariadb</i> wäre möglich) und <i>php</i>. Die ganze Liste
+                ist dem Installationsbefehl untern zu entnehmen</p>
+            <p>
+                <codeblock>apt-get install mariadb-server libapache2-mod-php php-gd php-json php-mysql php-curl php-intl php-mcrypt php-imagick php-zip php-xmlwriter php-xmlreader php-xml php-mbstring php-simplexml</codeblock>
+            </p>
+            <p>Mittels <codeph>wget</codeph> laden wir die aktuellste Version von nextcloud herunter
+                und entpacken sie anschließend in das gewünschte Verzeichnis.
+                <codeblock>wget https://download.nextcloud.com/server/releases/latest.zip
+unzip latest.zip
+mv nextcloud/ /var/www/</codeblock></p>
+            <p>Wir verwenden das Verzeichnis <codeph>/var/www/html/nextcloud</codeph>. So können wir
+                die aktuelle Apache-Konfiguration unverändert lassen und Nextcloud unter der Domain
+                    <xref href="https://mi.hdm-stuttgart.de/nextcloud" format="html"
+                    scope="external"/> erreichen. Auch das früher erstellte SSL Zertifikat ist so
+                automatisch für Nextcloud mit gültig.</p>
+            <p>In Apache müssen wir einige Module aktivieren.</p>
+            <p>
+                <ul id="ul_oy2_z4q_y2b">
+                    <li>rewrite</li>
+                    <li>headers</li>
+                    <li>env</li>
+                    <li>dir</li>
+                    <li>mime</li>
+                    <li>proxy</li>
+                    <li>proxy_http</li>
+                    <li>proxy_wstunnel</li>
+                </ul>
+            </p>
+            <p>Die Aktivierung von Modulen erfolgt mit dem Befehl <codeph>a2enmod
+                &lt;mod></codeph>.</p>
+            <p>Anschließend müssen noch die Berechtigungen für die Dateien im Nextcloud-Ordner
+                angepasst werden. Zunächst setzen wir den Besitzer und die Gruppe aller Dateien auf
+                    <i>www-data</i>. Eine differenzierte Rechtevergabe wird später mit Hilfe eines
+                Skriptes vorgenommen.</p>
+            <p>Jetzt starten wir Apache neu.<codeblock>systemctl apache2</codeblock></p>
+            <p>Als nächstes legen wir eine Datenbank an, die unsere Nextcloud-Installation nutzen
+                kann.</p>
+            <p>
+                <codeblock>mysql -u root -p
+CREATE DATABASE nextcloud;
+GRANT ALL ON nextcloud.* to 'nextcloud'@'localhost' IDENTIFIED BY 'YOURdbPASSWORD';
+FLUSH PRIVILEGES;
+exit</codeblock>
+            </p>
+            <p>Um nun die Installation von Nextcloud zu starten, geben wir folgenden Befehl ein:</p>
+            <p>
+                <codeblock>sudo -u www-data php /var/www/html/nextcloud/occ maintenance:install --database "mysql" --database-name "nextcloud" --database-user "nextcloud" --database-pass "123" --admin-user "ncadmin" --admin-pass "123"</codeblock>
+            </p>
+            <p>Jetzt müssen wir noch unsere Domain und/oder IP-Adresse als <i>trusted domain</i> in
+                die Datei <codeph>/var/www/html/nextcloud/config/config.php</codeph> eintragen.</p>
+            <p>
+                <codeblock>...
+
+array (
+    0 => 'localhost',
+    1 => 'mi.hdm-stuttgart.de'
+    2 => 'sdi6a.mi.hdm-stuttgart.de',
+    3 => '141.62.75.106',
+),
+
+...</codeblock>
+            </p>
+            <p>Jetzt ist Nextcloud unter <xref href="https://mi.hdm-stuttgart.de/nextcloud"
+                    format="html" scope="external"/> (und sdi6a.mi... und der IP-Adresse des Servers
+                selbst) erreichbar.</p>
+        </section>
+        <section id="section_bdm_ptq_y2b">
+            <title>Weitere Einstellungen</title>
+            <p>Wir können den Ordner verschieben, in dem die Dateien der Nutzer gespeichert werden.
+                Das können wir ebenfalls in der
+                    Datei<codeph>/var/www/html/nextcloud/config/config.php</codeph> einstellen.</p>
+            <p>
+                <codeblock>'datadirectory' => '/var/nc_data',</codeblock>
+            </p>
+            <p>Nach dem Umstellen des Datadiretories müssen wir das aktuelle Verzeichnis
+                entsprechend verschieben.</p>
+            <p>
+                <codeblock>mv /var/www/nextcloud/data /var/nc_data </codeblock>
+            </p>
+            <p>Wie zuvor schon angekündigt, wird jetzt noch eine differenzierte Rechtevergabe
+                mittels Skript durchgeführt. Bei abweichenden Pfaden muss das Skript natürlich
+                entsprechend angepasst werden.</p>
+            <p>
+                <codeblock>#!/bin/bash
+ncpath='/var/www/nextcloud'
+ncdata='/var/nc_data'
+htuser='www-data'
+htgroup='www-data'
+rootuser='root'
+
+printf "Creating possible missing Directories\n"
+mkdir -p $ncpath/data
+mkdir -p $ncpath/updater
+
+printf "chmod Files and Directories\n"
+find ${ncpath} -type f -print0 | xargs -0 chmod 0640
+find ${ncpath} -type d -print0 | xargs -0 chmod 0750
+find ${ncdata} -type f -print0 | xargs -0 chmod 0640
+find ${ncdata} -type d -print0 | xargs -0 chmod 0750
+
+printf "chown Directories\n"
+chown -R ${rootuser}:${htgroup} ${ncpath}
+chown -R ${htuser}:${htgroup} ${ncpath}/apps/
+chown -R ${htuser}:${htgroup} ${ncpath}/config/
+chown -R ${htuser}:${htgroup} ${ncdata}/
+chown -R ${htuser}:${htgroup} ${ncpath}/themes/
+chown -R ${htuser}:${htgroup} ${ncpath}/updater/
+
+chmod +x ${ncpath}/occ
+
+printf "chmod/chown .htaccess\n"
+if [ -f ${ncpath}/.htaccess ]
+then
+        chmod 0644 ${ncpath}/.htaccess
+        chown ${rootuser}:${htgroup} ${ncpath}/.htaccess
+fi
+if [ -f ${ncdata}/.htaccess ]
+then
+        chmod 0644 ${ncdata}/.htaccess
+        chown ${rootuser}:${htgroup} ${ncdata}/.htaccess
+fi
+## END SCRIPT</codeblock>
+            </p>
+            <p>Zur Verbesserung der Performance, können nun noch Konfigurationen zum OPCache
+                vorgenommen werden, auf die aber an dieser Stelle nicht näher eingegangen wird.</p>
+        </section>
+        <section id="section_exz_j5q_y2b">
+            <title>User authentication with LDAP</title>
+            <p>Zuletzt soll das Einloggen bei Nextcloud via LDAP Account ermöglicht werden. Dafür
+                werden die Einstellungen direkt im Menü der Weboberfläche von Nextcloud vorgenommen.
+                Wir loggen uns also als <i>ncadmin</i> in der Weboberfläche ein und navigieren zu
+                den Einstellungen und dann zu <i>LDAP/AD Integration</i>.</p>
+            <p>
+                <fig id="fig_v2l_x5q_y2b">
+                    <title>Server und Base DN auswählen</title>
+                    <image href="images/nextcloud_ldap01.png" id="image_w2l_x5q_y2b"/>
+                </fig>
+                <fig id="fig_e3f_1vq_y2b">
+                    <title>Festlegen der Objektklasse(n)</title>
+                    <image href="images/nextcloud_ldap02.png" id="image_f3f_1vq_y2b"/>
+                </fig>
+                <fig id="fig_zvh_cvq_y2b">
+                    <title>LDAP Abfrage festlegen</title>
+                    <image href="images/nextcloud_ldap03.png" id="image_awh_cvq_y2b"/>
+                </fig>
+                <fig id="fig_q5y_dvq_y2b">
+                    <title>Gruppen festlegen</title>
+                    <image href="images/nextcloud_ldap04.png" id="image_r5y_dvq_y2b"/>
+                </fig>
+            </p>
+            <p>Nun kann man sich mittels LDAP-Account, der den festgelegten Ansprüchen entspicht,
+                bei Nextcloud einloggen und hat somit ein eigenes Nutzerkonto.</p>
+            <p>
+                <fig id="fig_jk5_jvq_y2b">
+                    <title>Login mit LDAP-Account</title>
+                    <image href="images/nextcloud_login.png" id="image_kk5_jvq_y2b"/>
+                </fig>
+            </p>
+            <p>Lädt der Nutzer nun eine Datei auf Nextcloud hoch, wird sie in seinem entsprechenden
+                Nutzerordner auf dem Server gespeichert.</p>
+            <p>
+                <fig id="fig_rfv_pvq_y2b">
+                    <title>Upload einer Datei</title>
+                    <image href="images/nextcloud_upload.png" id="image_sfv_pvq_y2b"/>
+                </fig>
+                <fig id="fig_gjj_tvq_y2b">
+                    <title>Datei im Filesystem</title>
+                    <image href="images/nextcloud_upload02.png" id="image_hjj_tvq_y2b"/>
+                </fig>
+            </p>
+        </section>
+    </body>
+</topic>
+<!--ncadmin / 123-->
