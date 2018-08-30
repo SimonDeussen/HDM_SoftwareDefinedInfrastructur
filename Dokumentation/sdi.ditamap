@@ -15,6 +15,7 @@
         <topicref href="06_surveillance.dita"/>
     </topichead>
     <topichead navtitle="Glossar">
+        <topicref href="glossary/certificateauthority.dita"/>
         <topicref href="glossary/apache.dita"/>
         <topicref href="glossary/apachedirectorystudio.dita"/>
         <topicref href="glossary/bind9.dita"/>

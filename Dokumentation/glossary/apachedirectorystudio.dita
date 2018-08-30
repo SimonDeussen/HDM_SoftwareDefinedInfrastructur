@@ -2,8 +2,35 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="apachedirectorystudio">
     <title>Apache Directory Studio</title>
-    <shortdesc>The Eclipse-based LDAP browser and directory client</shortdesc>
     <body>
-        <p>Apache Directory Studio is a graphical user interface for managing … LDAP data</p>
+        <p><b>Apache Directory</b> ist ein Projekt der <xref
+                href="https://de.wikipedia.org/wiki/Apache_Software_Foundation" format="html"
+                scope="external">Apache Software Foundation</xref>, das Lösungen rund um <xref
+                href="https://de.wikipedia.org/wiki/Verzeichnisdienst" format="html"
+                scope="external">Verzeichnisdienste</xref> zur Verfügung stellt. Besonders relevante
+            Technologien im Umfeld des Projektes sind <xref
+                href="https://de.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol"
+                format="html" scope="external">LDAP</xref> und <xref
+                href="https://de.wikipedia.org/wiki/Kerberos_(Informatik)" format="html"
+                scope="external">Kerberos</xref>; Apache Directory bietet für beide Protokolle freie
+            Implementierungen in <xref
+                href="https://de.wikipedia.org/wiki/Java_(Programmiersprache)" format="html"
+                scope="external">Java</xref> unter der <xref
+                href="https://de.wikipedia.org/wiki/Apache-Lizenz" format="html" scope="external"
+                >Apache-Lizenz</xref> an. </p>
+        <p>Zurzeit existieren folgende Unterprojekte: </p>
+        <ul id="ul_w5n_ylf_z2b">
+            <li><xref
+                    href="https://de.wikipedia.org/w/index.php?title=Apache_Directory_Server&amp;action=edit&amp;redlink=1"
+                    format="html" scope="external">Apache Directory Server</xref> – ein in Java
+                realisierter LDAP-Server</li>
+            <li>Triplesec – ein Server, der 2-Faktor-<xref
+                    href="https://de.wikipedia.org/wiki/Authentifizierung" format="html"
+                    scope="external">Authentifizierung</xref> unterstützt</li>
+            <li>Apache Directory Studio – <xref href="https://de.wikipedia.org/wiki/Eclipse_(IDE)"
+                    format="html" scope="external">Eclipse</xref>-basierte Werkzeuge rund um LDAP
+                und Verzeichnisdienste<p><xref href="https://de.wikipedia.org/wiki/Apache_Directory"
+                        format="html" scope="external">Quelle</xref></p></li>
+        </ul>
     </body>
 </topic>

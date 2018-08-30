@@ -16,7 +16,8 @@
         <section>
             <title>Browse an existing LDAP-Server</title>
             <p>Bei dieser Aufgabe soll eine Verbindung zu dem HdM-LDAP aufgebaut werden mit dem Tool
-                Apache Directory Studio. Anschließend geschiet ein Abfragen der eigenen
+                    <xref href="glossary/apachedirectorystudio.dita#apachedirectorystudio">Apache
+                    Directory Studio</xref>. Anschließend geschiet ein Abfragen der eigenen
                 Benutzerdaten anhand des HdM-Kürzels. </p>
             <p>Zunächste wurde das Tool nach Installations Anweisung der Website installiert. Dann
                 musste eine Connection angegeben werden an der LDAP Server der HdM. Folgende Daten
@@ -56,8 +57,9 @@
         </section>
         <section id="section_vvd_khj_y2b">
             <title>Set up an OpenLDAP server</title>
-            <p>In dieser Teilaufgabe wird auf unserer VM ein OpenLDAP Server aufgesetzt. Zunächst
-                muss dieser installiert werden
+            <p>In dieser Teilaufgabe wird auf unserer VM ein <xref
+                    href="glossary/openldap.dita#software_openldap">OpenLDAP</xref> Server
+                aufgesetzt. Zunächst muss dieser installiert werden
                 mit:<pre>aptitude install dialog
 aptitude install slapd</pre></p>
             <p>Nach der Installation erscheint direkt ein Manager in dem die Grundeinstellungen
@@ -83,10 +85,12 @@ aptitude install slapd</pre></p>
         </section>
         <section id="section_s4m_llj_y2b">
             <title>Accessing LDAP date by an email client</title>
-            <p>Bei dieser Aufgabe verwenden wir Thunderbird um die LDAP Daten unseres Servers in das
-                Adressbuch aufzunehmen. Dafür muss in der Thunderbird-GUI zunächst unter
-                    <i>Optionen</i> der Punkt <i>Verfassen</i> und dann <i>Addressieren</i>
-                ausgewählt werden. Dann erscheint folgender Dialog:<fig id="fig_e33_1mj_y2b">
+            <p>Bei dieser Aufgabe verwenden wir <xref
+                    href="glossary/thunderbird.dita#software_thunderbird">Thunderbird</xref> um die
+                LDAP Daten unseres Servers in das Adressbuch aufzunehmen. Dafür muss in der
+                Thunderbird-GUI zunächst unter <i>Optionen</i> der Punkt <i>Verfassen</i> und dann
+                    <i>Addressieren</i> ausgewählt werden. Dann erscheint folgender Dialog:<fig
+                    id="fig_e33_1mj_y2b">
                     <title>Festlegen des LDAP Servers</title>
                     <image href="images/thunderbird-1.png" id="image_f33_1mj_y2b"/>
                 </fig></p>

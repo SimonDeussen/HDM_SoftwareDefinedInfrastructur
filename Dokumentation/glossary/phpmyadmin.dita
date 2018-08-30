@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="phpmyadmin">
+    <title>phpMyAdmin</title>
+    <body>
+        <p><b>phpMyAdmin</b> ist eine <xref href="https://de.wikipedia.org/wiki/Freie_Software"
+                format="html" scope="external">freie</xref><xref
+                href="https://de.wikipedia.org/wiki/Webanwendung" format="html" scope="external"
+                >Webanwendung</xref> zur Administration von <xref
+                href="https://de.wikipedia.org/wiki/MySQL" format="html" scope="external"
+                >MySQL</xref>-<xref href="https://de.wikipedia.org/wiki/Datenbank" format="html"
+                scope="external">Datenbanken</xref>. Die Software ist in <xref
+                href="https://de.wikipedia.org/wiki/PHP" format="html" scope="external">PHP</xref>
+            implementiert; daher kommt der Name <i>phpMyAdmin</i>. Die meisten Funktionen können
+            ausgeführt werden, ohne selbst <xref href="https://de.wikipedia.org/wiki/SQL"
+                format="html" scope="external">SQL</xref>-Anweisungen zu schreiben, wie z.B.
+            Datensätze auflisten, Tabellen anlegen/löschen, Spalten hinzufügen, Datenbanken
+            anlegen/löschen und Benutzer verwalten. </p>
+        <p>phpMyAdmin ist unter der <xref
+                href="https://de.wikipedia.org/wiki/GNU_General_Public_License" format="html"
+                scope="external">GNU General Public License</xref> lizenziert und ist auch in vielen
+                <xref href="https://de.wikipedia.org/wiki/Linux-Distribution" format="html"
+                scope="external">Linux-Distributionen</xref> enthalten. Es werden derzeit 75
+            Sprachen unterstützt, wobei die Übersetzung je nach Sprache mehr oder weniger
+            vollständig ist.<xref href="https://de.wikipedia.org/wiki/PhpMyAdmin#cite_note-2"
+                format="html" scope="external">[2]</xref></p>
+        <p>phpMyAdmin ist weit verbreitet und wird unter anderem von großen <xref
+                href="https://de.wikipedia.org/wiki/Webhosting" format="html" scope="external"
+                >Webhosting</xref>-<xref href="https://de.wikipedia.org/wiki/Internetdienstanbieter"
+                format="html" scope="external">Providern</xref> verwendet. </p>
+        <p><xref href="https://de.wikipedia.org/wiki/PhpMyAdmin" format="html" scope="external"
+                >Quelle</xref></p>
+    </body>
+</topic>

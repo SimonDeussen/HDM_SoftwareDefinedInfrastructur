@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="certificateauthority">
+    <title>Certificate Authority</title>
+    <body>
+        <p>In der <xref href="https://de.wikipedia.org/wiki/Informationssicherheit" format="html"
+                scope="external">Informationssicherheit</xref> ist eine Zertifizierungsstelle (<xref
+                href="https://de.wikipedia.org/wiki/Englische_Sprache" format="html"
+                scope="external">englisch</xref><i><i>certificate authority</i></i> oder
+                <i>certification authority</i>, kurz <i>CA</i>) eine Organisation, die <xref
+                href="https://de.wikipedia.org/wiki/Digitales_Zertifikat" format="html"
+                scope="external">digitale Zertifikate</xref> herausgibt. Ein digitales Zertifikat
+            dient dazu, einen bestimmten <xref
+                href="https://de.wikipedia.org/wiki/%C3%96ffentlicher_Schl%C3%BCssel" format="html"
+                scope="external">öffentlichen Schlýssel</xref> einer Person oder Organisation
+            zuzuordnen. Diese Zuordnung wird von der Zertifizierungsstelle beglaubigt, indem sie sie
+            mit ihrer eigenen <xref href="https://de.wikipedia.org/wiki/Elektronische_Signatur"
+                format="html" scope="external">digitalen Unterschrift</xref> versieht. </p>
+        <p>Die digitalen Zertifikate enthalten „Schlüssel“ und Zusatzinformationen, die zur
+            Authentifizierung sowie zur Verschlüsselung und Entschlüsselung vertraulicher Daten
+            dienen, die über das Internet und andere Netze verbreitet werden. Als
+            Zusatzinformationen sind zum Beispiel Gültigkeitsdauer, Verweise auf <xref
+                href="https://de.wikipedia.org/wiki/Zertifikatsperrliste" format="html"
+                scope="external">Zertifikatsperrlisten</xref> etc. enthalten, die durch die CA mit
+            in das Zertifikat eingebracht werden. </p>
+        <p><xref href="https://de.wikipedia.org/wiki/Zertifizierungsstelle" format="html"
+                scope="external">Quelle</xref></p>
+    </body>
+</topic>

@@ -6,20 +6,24 @@
         <p>
             <equation-figure id="equation-figure_y52_tlq_y2b">
                 <desc>
-                    <p>In dieser Aufgabe setzen wir die freie Software Nextcloud auf. Es handelt
-                        sich dabei um eine Filehostinglösung, die viele weitere, komfortable
-                        Funktionen anbietet; beispielsweise CalDAV und CardDAV und Synchronisierung
-                        von verschiedenen Devices.</p>
+                    <p>In dieser Aufgabe setzen wir die freie Software <xref
+                            href="glossary/nextcloud.dita#software_nexclout">Nextcloud</xref> auf.
+                        Es handelt sich dabei um eine Filehostinglösung, die viele weitere,
+                        komfortable Funktionen anbietet; beispielsweise CalDAV und CardDAV und
+                        Synchronisierung von verschiedenen Devices.</p>
                 </desc>
             </equation-figure>
         </p>
         <section id="section_kgx_ymq_y2b">
             <title>Installation</title>
-            <p>Nextcloud benötigt weitere Pakete um reibungsfrei zu funktionieren. Das sind neben
-                einem Webserver (den wir durch die Apache-Installation ja schon auf unserem Server
-                installiert haben) unter anderem eine Datenbank (wir haben <i>MySQL</i> schon
-                installiert, aber auch <i>mariadb</i> wäre möglich) und <i>php</i>. Die ganze Liste
-                ist dem Installationsbefehl untern zu entnehmen</p>
+            <p><xref href="glossary/nextcloud.dita#software_nexclout">Nextcloud</xref> benötigt
+                weitere Pakete um reibungsfrei zu funktionieren. Das sind neben einem Webserver (den
+                wir durch die Apache-Installation ja schon auf unserem Server installiert haben)
+                unter anderem eine Datenbank (wir haben <i><xref href="glossary/mysql.dita#mysql"
+                        >MySQL</xref></i> schon installiert, aber auch <i><xref
+                        href="glossary/mariadb.dita#software_mariadb">mariadb</xref></i> wäre
+                möglich) und <i>php</i>. Die ganze Liste ist dem Installationsbefehl untern zu
+                entnehmen</p>
             <p>
                 <codeblock>apt-get install mariadb-server libapache2-mod-php php-gd php-json php-mysql php-curl php-intl php-mcrypt php-imagick php-zip php-xmlwriter php-xmlreader php-xml php-mbstring php-simplexml</codeblock>
             </p>
@@ -33,7 +37,8 @@ mv nextcloud/ /var/www/</codeblock></p>
                     <xref href="https://mi.hdm-stuttgart.de/nextcloud" format="html"
                     scope="external"/> erreichen. Auch das früher erstellte SSL Zertifikat ist so
                 automatisch für Nextcloud mit gültig.</p>
-            <p>In Apache müssen wir einige Module aktivieren.</p>
+            <p>In <xref href="glossary/apache.dita#software_apachehttpserver">Apache</xref> müssen
+                wir einige Module aktivieren.</p>
             <p>
                 <ul id="ul_oy2_z4q_y2b">
                     <li>rewrite</li>

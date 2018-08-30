@@ -6,9 +6,11 @@
         <equation-figure id="equation-figure_rs4_jgj_y2b">
             <desc>
                 <p>In dieser Aufgabe setzen wir auf einem der beiden zur Vefügung gestellten
-                    Webserver einen Webserver auf. Wir verwenden den Apache HTTP Server, einen der
-                    meistbenutzten Webserver weltweit. Weitere bekannte Webserver sind
-                    beispielsweise <i>nginx</i>, <i>lighttpd</i> oder <i>express</i> (node.js).</p>
+                    Webserver einen Webserver auf. Wir verwenden den <xref
+                        href="glossary/apache.dita#software_apachehttpserver">Apache HTTP
+                        Server</xref>, einen der meistbenutzten Webserver weltweit. Weitere bekannte
+                    Webserver sind beispielsweise <i>nginx</i>, <i>lighttpd</i> oder <i>express</i>
+                    (node.js).</p>
             </desc>
         </equation-figure>
         <section id="section_cds_hsf_zdb">
@@ -191,8 +193,9 @@ manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
             <p>Jetzt wollen wir mittel selbst-zertifizierter Zertifikate die Kommunikation über
                 HTTPS ermöglichen. Obwohl es mittlerweile über <xref href="https://letsencrypt.org"
                     format="html" scope="external"/> unter Verwendung des <i>certbots</i> eine sehr
-                komfortable Lösung gibt, haben wir in diesem Versuch eine eigene Certificate
-                Authority (CA) erstellt und verwendet.</p>
+                komfortable Lösung gibt, haben wir in diesem Versuch eine eigene <xref
+                    href="glossary/certificateauthority.dita#certificateauthority">Certificate
+                    Authority</xref> (CA) erstellt und verwendet.</p>
             <p><b>1. Eigene Certificate Authority (CA) erstellen</b></p>
             <p>Zu allererst erstellen wir einen neuen Ordner <codeph>ssl</codeph> in
                     <codeph>/etc/apache2/</codeph><codeblock>mkdir /etc/apache2/ssl</codeblock></p>

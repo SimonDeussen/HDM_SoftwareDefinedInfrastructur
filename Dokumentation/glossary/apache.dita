@@ -2,18 +2,69 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="software_apachehttpserver">
     <title>Apache HTTP Server</title>
-    <shortdesc>a free and open-source cross-plattform web server</shortdesc>
     <body>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
-            et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. </p>
+        <bodydiv>
+            <p>Der <b>Apache HTTP Server</b> [<xref
+                    href="https://de.wikipedia.org/wiki/Liste_der_IPA-Zeichen" format="html"
+                    scope="external">ə˽pýt˽i</xref>] ist ein quelloffenes und freies Produkt der
+                    <xref href="https://de.wikipedia.org/wiki/Apache_Software_Foundation"
+                    format="html" scope="external">Apache Software Foundation</xref> und einer der
+                meistbenutzten <xref href="https://de.wikipedia.org/wiki/Webserver" format="html"
+                    scope="external">Webserver</xref> im <xref
+                    href="https://de.wikipedia.org/wiki/Internet" format="html" scope="external"
+                    >Internet</xref>.</p>
+            <p>Neben <xref href="https://de.wikipedia.org/wiki/Unix" format="html" scope="external"
+                    >Unix</xref> und <xref href="https://de.wikipedia.org/wiki/Linux" format="html"
+                    scope="external">Linux</xref> unterstützt Apache <xref
+                    href="https://de.wikipedia.org/wiki/Win32" format="html" scope="external"
+                    >Win32</xref>, <xref href="https://de.wikipedia.org/wiki/Netware" format="html"
+                    scope="external">Netware</xref> sowie eine Vielzahl weiterer Betriebssysteme. In
+                Apache 2.4 wurde der Support für ältere, lange schon nicht mehr weiter entwickelte
+                Betriebssysteme wie <xref href="https://de.wikipedia.org/wiki/BeOS" format="html"
+                    scope="external">BeOS</xref>, <xref
+                    href="https://de.wikipedia.org/wiki/Transaction_Processing_Facility"
+                    format="html" scope="external">TPF</xref> und <xref
+                    href="https://de.wikipedia.org/wiki/A/UX" format="html" scope="external"
+                    >A/UX</xref> beendet.<xref
+                    href="https://de.wikipedia.org/wiki/Apache_HTTP_Server#cite_note-apache2upgrade-5"
+                    format="html" scope="external">[5]</xref> In Version 2.0 wurde die Stabilität
+                und Geschwindigkeit des Servers – vor allem auf Nicht-Unix-Systemen – erheblich
+                verbessert: Die Bibliothek <xref
+                    href="https://de.wikipedia.org/wiki/Apache_Portable_Runtime" format="html"
+                    scope="external">Apache Portable Runtime</xref> (APR) stellt eine
+                Verallgemeinerung wichtiger Systemaufrufe zur Verfügung, sodass die individuellen
+                Stärken des jeweiligen <xref href="https://de.wikipedia.org/wiki/Betriebssystem"
+                    format="html" scope="external">Betriebssystems</xref> ausgenutzt werden können.
+                Hinzu kommen verschiedene Multiprocessing-Module (MPM), die je nach Plattform
+                unterschiedliche Lösungen für die gleichzeitige Bedienung mehrerer <xref
+                    href="https://de.wikipedia.org/wiki/Client" format="html" scope="external"
+                    >Client</xref>-Anfragen anbieten: Beispielsweise setzt das MPM prefork für
+                klassische Unix-Systeme auf <xref href="https://de.wikipedia.org/wiki/Fork_(Unix)"
+                    format="html" scope="external">Forking</xref> von Prozessen, während mpm_winnt
+                für die unter Windows empfehlenswerteren Threads optimiert ist. </p>
+            <p>Der Apache-Webserver ist modular aufgebaut: Durch entsprechende <xref
+                    href="https://de.wikipedia.org/wiki/Modul_(Software)" format="html"
+                    scope="external">Module</xref> kann er beispielsweise die <xref
+                    href="https://de.wikipedia.org/wiki/Kommunikation" format="html"
+                    scope="external">Kommunikation</xref> zwischen <xref
+                    href="https://de.wikipedia.org/wiki/Webbrowser" format="html" scope="external"
+                    >Browser</xref> und Webserver verschlüsseln (<xref
+                    href="https://de.wikipedia.org/wiki/Transport_Layer_Security" format="html"
+                    scope="external">mod_ssl</xref>), als <xref
+                    href="https://de.wikipedia.org/wiki/Proxyserver" format="html" scope="external"
+                    >Proxyserver</xref> eingesetzt werden (mod_proxy) oder komplexe Manipulationen
+                von <xref href="https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol"
+                    format="html" scope="external">HTTP</xref>-<xref
+                    href="https://de.wikipedia.org/wiki/Kopfdaten" format="html" scope="external"
+                    >Kopfdaten</xref> (<xref
+                    href="https://de.wikipedia.org/w/index.php?title=Mod_headers&amp;action=edit&amp;redlink=1"
+                    format="html" scope="external">mod headers</xref>) und <xref
+                    href="https://de.wikipedia.org/wiki/Uniform_Resource_Locator" format="html"
+                    scope="external">URLs</xref> (<xref
+                    href="https://de.wikipedia.org/wiki/Mod_rewrite" format="html" scope="external"
+                    >mod rewrite</xref>) durchführen. </p>
+            <p><xref href="https://de.wikipedia.org/wiki/Apache_HTTP_Server" format="html"
+                    scope="external">Quelle</xref></p>
+        </bodydiv>
     </body>
 </topic>
