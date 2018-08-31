@@ -13,24 +13,33 @@
             <title>Wie DNS funktioniert</title>
             <lines/>
             <fig id="fig_qqd_k5w_jdb">
-                <title>Wie DNS funktioniert</title>
                 <image href="images/dns01.png" id="image_rqd_k5w_jdb" width="500"/>
+            </fig>
+            <fig id="fig_pxb_2mn_z2b">
+                <title>Wie DNS funktioniert</title>
                 <p><i>Bild von <xref href="https://safeum.com" format="html" scope="external"
                             >https://safeum.com</xref></i></p>
             </fig>
         </section>
-        <section id="section_a4g_jsf_zdb"><title>Voraussetzungen</title><lines/>Wir haben zwei
-            virtuelle Server mit den IP-Adressen<ul id="ul_zp4_3tw_jdb">
+        <section id="section_a4g_jsf_zdb">
+            <title>Voraussetzungen</title>
+            <lines/>
+            <p>Wir haben zwei virtuelle Server mit den IP-Adressen</p>
+            <ul id="ul_zp4_3tw_jdb">
                 <li><tt>141.62.75.106</tt></li>
                 <li><tt>141.62.75.116</tt></li>
-            </ul><p>Mittels ssh, können wir von unseren lokalen Maschinen auf die Server
-                zugreifen.</p><codeblock>ssh root@141.62.75.xx</codeblock></section>
+            </ul>
+            <p>Mittels <xref href="glossary/ssh.dita#ssh">ssh</xref>, können wir von unseren lokalen
+                Maschinen aus, auf die Server zugreifen.</p>
+            <codeblock>ssh root@141.62.75.xx</codeblock>
+        </section>
         <section id="section_gnw_msf_zdb">
             <title>Bind installieren</title>
             <lines/>
-            <p>Als erstes müssen wir <xref href="sofware_bind9.dita#bind9">bind9</xref>
+            <p>Als erstes müssen wir <xref href="glossary/bind9.dita#bind9">bind9</xref>
                 installieren. Diese Software stellt uns die DNS Services für unseren Server bereit.
-                Die Installation führen wir mittels APT (Advanced Packaging Tool) durch.</p>
+                Die Installation führen wir mittels <xref href="glossary/apt.dita#adpapt">APT
+                    (Advanced Packaging Tool)</xref> durch.</p>
             <codeblock>apt-get install bind9 bind9utils</codeblock>
             <p>
                 <lines/>
@@ -68,7 +77,7 @@
         </section>
         <section id="section_k1n_cyf_zdb">
             <title>Konfiguration</title>
-            <p><lines/>Um den eigenen Server aus default-DNS-Server verwenden zu können, ohne jede
+            <p><lines/>Um den eigenen Server als default-DNS-Server verwenden zu können, ohne jede
                 Domain einzeln hinzuzufügen, die wir erreiche können wollen, können wir
                     <i>recursion</i> verwenden. In der Datei
                     <codeph>/etc/bind/named.conf.options</codeph> können wir sie akivieren. Das kann
@@ -100,9 +109,9 @@
   auth-nxdomain no; 
   listen-on-v6 { any; }; 
 };</codeblock></p>
-            <p><lines/>Jetzt wollen wir sogenannte <i>host aliases</i> definieren. Dafür müssen wir
-                zwei Dateien erstellen. Eine für die <i>zone</i> und eine für die
-                    <i>reverse-zone</i>.</p>
+            <p>Jetzt wollen wir sogenannte <i>host aliases</i> definieren. Dafür müssen wir zwei
+                Dateien erstellen. Eine für die <i>zone</i> und eine für die <i>reverse
+                zone</i>.</p>
             <p>
                 <lines><codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph></lines>
                 <codeblock>$TTL    604800
@@ -150,18 +159,16 @@ mi.hdm-stuttgart.de.	IN	MX	10 	mx1.hdm-stuttgart.de.</codeblock></p>
         </section>
         <section id="section_jvx_my3_y2b">
             <title>DNS-Server testen &amp; verwenden</title>
-        </section>
-        <lines/>
-        <section id="section_mgl_wzj_y2b"><p>Nach der erfolgreichen Konfiguration des DNS-Servers,
-                kann er nun verwendet werden. Dafür wird die DNS-Konfiguration einer lokalen
-                Maschine so eingstellt, dass der eigene Server der default-DNS-Server ist. Das macht
-                man, in dem man in <codeph>/etc/resolv.conf</codeph> den Server als obersten
-                    <i>nameserver</i>
-                einträgt.<codeblock>nameserver 141.62.75.106 # IP-Adresse unseres DNS-Servers </codeblock></p>Um
-            den DNS-Server jetzt auf seine Funktionalität zu testen, kann man zum Beispiel das Tool
-                <codeph>dig</codeph> einsetzen. Der Befehl <codeph>dig www.google.de</codeph>
-            liefert folgendes Ergebnis:
-                <codeblock>; &lt;&lt;>> DiG 9.13.0 &lt;&lt;>> www.google.de
+            <lines/>
+            <p>Nach der erfolgreichen Konfiguration des DNS-Servers, kann er nun verwendet werden.
+                Dafür wird die DNS-Konfiguration einer lokalen Maschine so eingstellt, dass der
+                eigene Server der default-DNS-Server ist. Das macht man, in dem man in
+                    <codeph>/etc/resolv.conf</codeph> den Server als obersten <i>nameserver</i>
+                einträgt.<codeblock><b>nameserver 141.62.75.106</b> # IP-Adresse unseres DNS-Servers </codeblock></p>
+            <p>Um den DNS-Server jetzt auf seine Funktionalität zu testen, kann man Beispielsweise
+                das Tool <codeph>dig</codeph> einsetzen. Der Befehl <codeph>dig
+                    www.google.de</codeph></p>
+            <codeblock>; &lt;&lt;>> DiG 9.13.0 &lt;&lt;>> www.google.de
 ;; global options: +cmd
 ;; Got answer:
 ;; ->>HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 30031
@@ -192,13 +199,14 @@ www.google.de.		300	IN	A	172.217.16.67
 
 ;; Query time: 15 msec
 ;; SERVER: 141.62.75.106#53(141.62.75.106)
-;; WHEN: Mo Aug 27 12:52:26 C</codeblock><p>Wir
-                können unten sehen, dass der eigene DNS-Server verwendet wird. Weiterhin gibt er uns
-                in der <i>ANSWER SECTION</i> die IP-Adresse von www.google.de zurück. Er
-                funktioniert also.</p><p>Das ganze können wir auch noch für den eingetragenen
-                Mailserver testen. Der Befehl <codeph>dig mi.hdm-stuttgart.de MX</codeph> sucht nach
-                entsprechenden Records. Das Ergebnis zeigt erneut in der <i>ANSWER SECTION</i>, dass
-                auch das
+;; WHEN: Mo Aug 27 12:52:26 C</codeblock>
+            <p>Wir können unten (<tt>SERVER: 141.62.75.106[…]</tt>) sehen, dass der eigene
+                DNS-Server verwendet wird. Weiterhin gibt <codeph>dig</codeph> uns in der <i>ANSWER
+                    SECTION</i> die IP-Adresse von www.google.de zurück. Unser DNS-Server
+                funktioniert also.</p>
+            <p>Das ganze können wir auch noch für den eingetragenen Mailserver testen. Der Befehl
+                    <codeph>dig mi.hdm-stuttgart.de MX</codeph> sucht nach entsprechenden Records.
+                Das Ergebnis zeigt erneut in der <i>ANSWER SECTION</i>, dass auch das
                 funktioniert.<codeblock>; &lt;&lt;>> DiG 9.13.0 &lt;&lt;>> mi.hdm-stuttgart.de MX
 ;; global options: +cmd
 ;; Got answer:
@@ -222,6 +230,8 @@ ns6.mi.hdm-stuttgart.de. 604800	IN	A	141.62.75.106
 ;; Query time: 2 msec
 ;; SERVER: 141.62.75.106#53(141.62.75.106)
 ;; WHEN: Mo Aug 27 12:56:41 CEST 2018
-;; MSG SIZE  rcvd: 102</codeblock></p></section>
+;; MSG SIZE  rcvd: 102</codeblock></p>
+            <p> </p>
+        </section>
     </body>
 </topic>

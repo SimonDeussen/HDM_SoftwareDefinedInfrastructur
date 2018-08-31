@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="ssh">
+    <title>Secure Shell (ssh)</title>
+    <body>
+        <p><b>Secure Shell</b> oder <b>SSH</b> bezeichnet sowohl ein <xref
+                href="https://de.wikipedia.org/wiki/Netzwerkprotokoll" format="html"
+                scope="external">Netzwerkprotokoll</xref> als auch entsprechende <xref
+                href="https://de.wikipedia.org/wiki/Computerprogramm" format="html" scope="external"
+                >Programme</xref>, mit deren Hilfe man auf eine sichere Art und Weise eine <xref
+                href="https://de.wikipedia.org/wiki/Verschl%C3%BCsselung" format="html"
+                scope="external">verschlýsselte</xref> Netzwerkverbindung mit einem entfernten Gerýt
+            herstellen kann. Hýufig wird diese Methode verwendet, um lokal eine entfernte <xref
+                href="https://de.wikipedia.org/wiki/Kommandozeile" format="html" scope="external"
+                >Kommandozeile</xref> verfýgbar zu machen, das heiýt, auf einer lokalen Konsole
+            werden die Ausgaben der entfernten Konsole ausgegeben und die lokalen Tastatureingaben
+            werden an den entfernten Rechner gesendet. Genutzt werden kann dies beispielsweise zur
+            Fernwartung eines in einem entfernten Rechenzentrum stehenden <xref
+                href="https://de.wikipedia.org/wiki/Server" format="html" scope="external"
+                >Servers</xref>. Die neuere Protokoll-Version SSH-2 bietet weitere Funktionen wie
+            Datenýbertragung per <xref
+                href="https://de.wikipedia.org/wiki/SSH_File_Transfer_Protocol" format="html"
+                scope="external">SFTP</xref>. </p>
+        <p><xref href="https://de.wikipedia.org/wiki/Secure_Shell" format="html" scope="external"
+                >Quelle</xref></p>
+    </body>
+</topic>

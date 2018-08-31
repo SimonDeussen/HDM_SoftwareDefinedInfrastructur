@@ -185,12 +185,9 @@ fi
                 Nutzerordner auf dem Server gespeichert.</p>
             <p>
                 <fig id="fig_rfv_pvq_y2b">
-                    <title>Upload einer Datei</title>
+                    <title>Upload einer Datei in der Weboberfläche und Blick ins Filesystem des
+                        Servers</title>
                     <image href="images/nextcloud_upload.png" id="image_sfv_pvq_y2b"/>
-                </fig>
-                <fig id="fig_gjj_tvq_y2b">
-                    <title>Datei im Filesystem</title>
-                    <image href="images/nextcloud_upload02.png" id="image_hjj_tvq_y2b"/>
                 </fig>
             </p>
         </section>
