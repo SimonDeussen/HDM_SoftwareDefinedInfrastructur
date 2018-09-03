@@ -16,9 +16,8 @@
                 <image href="images/dns01.png" id="image_rqd_k5w_jdb" width="500"/>
             </fig>
             <fig id="fig_pxb_2mn_z2b">
-                <title>Wie DNS funktioniert</title>
-                <p><i>Bild von <xref href="https://safeum.com" format="html" scope="external"
-                            >https://safeum.com</xref></i></p>
+                <title>Wie DNS funktioniert (<i>Bild von <xref href="https://safeum.com"
+                            format="html" scope="external">https://safeum.com</xref></i>)</title>
             </fig>
         </section>
         <section id="section_a4g_jsf_zdb">
@@ -44,9 +43,13 @@
             <p>
                 <lines/>
             </p>
+        </section>
+        <section id="section_t5z_fwh_1fb">
+            <title>Grundeinstellungen anpassen</title>
+            <lines/>
             <p>
                 <ul id="ul_rqc_zzm_zdb">
-                    <li><b>Das Log-Level anpassen</b></li>
+                    <li><b>Log-Level anpassen</b></li>
                 </ul>
             </p>
             <p>Um das von uns gewünschte Log-Level anzupassen, müssen wir die Datei
@@ -69,23 +72,30 @@
             </ul>
             <p>Um IPv6 zu installieren, müssen wir die Datei <codeph>/etc/init.d/bind9</codeph>
                 erstellen. Sie muss folgende Zeile
-                    beinhalten:<codeblock>OPTIONS="-4 -u bind"</codeblock><lines/><ul
-                    id="ul_epm_l1n_zdb">
-                    <li><b>(Re)Start des Deamon</b></li>
-                </ul></p>
+                beinhalten:<codeblock>OPTIONS="-4 -u bind"</codeblock><lines/></p>
+            <ul id="ul_epm_l1n_zdb">
+                <li><b>(Re)Start des Deamon</b></li>
+            </ul>
+            <p>Damit die neuen Einstellungen auch angewendet werden, muss nun der Daemon neu
+                gestartet werden. </p>
             <codeblock>service bind9 restart</codeblock>
         </section>
-        <section id="section_k1n_cyf_zdb">
-            <title>Konfiguration</title>
-            <p><lines/>Um den eigenen Server als default-DNS-Server verwenden zu können, ohne jede
-                Domain einzeln hinzuzufügen, die wir erreiche können wollen, können wir
-                    <i>recursion</i> verwenden. In der Datei
-                    <codeph>/etc/bind/named.conf.options</codeph> können wir sie akivieren. Das kann
-                entweder für jeden oder nur <i>trusted</i> Clients
-                geschehen.<lines>Durch das hinzufügen eines <i>forwarder</i>, können wir einen anderen, externen DNS-Server definieren, der bei Adressen verwendet wird, die unser eigener Server nicht explizit kennt.</lines><codeblock>options { 
+        <section id="section_yqp_byh_1fb">
+            <title>Weitere Einstellungen</title>
+            <lines/>
+            <p>
+                <ul id="ul_ksp_byh_1fb">
+                    <li><b>recursion und forwarding</b></li>
+                </ul>
+            </p>
+            <p>Um jetzt den eigenen Server als default-DNS-Server verwenden zu können, ohne jede
+                Domain, die wir erreichen können wollen, einzeln hinzufügen zu müssen, können wir
+                    <i>recursion</i> und <i>forwarding</i>verwenden. In der Datei
+                    <codeph>/etc/bind/named.conf.options</codeph> können wir beides akivieren. Das
+                kann entweder für jeden oder nur <i>trusted</i> Clients erlaubt
+                werden.<lines>Während <i>recursion</i> für die Auflösung von Domains wie <xref href="http://foo.example.com" format="html" scope="external">foo.example.com</xref> gebraucht wird, sorgt das Definieren eines <i>forwarders</i> dafür, dass auhc nicht explizit bei unserem Server definierte Domains gefunden werden. Dafür wird eine DNS-Anfrage an einen weiteren, definierten DNS-Server weitergegeben. Wir verwenden dafür den DNS-Server der Hochschule, der  unter <tt>141.62.75.128</tt> zu erreichen ist</lines><codeblock>options { 
   directory "/var/cache/bind"; 
  <b>
-  # Disable recursive DNS queries 
   recursion yes; 
  
   allow-recursion { any; }; 
@@ -99,8 +109,7 @@
   # redundant infrastructure (primary / secondary dns) 
   allow-transfer { none; }; 
  
- <b> # Currently, we don't want to forward requests to stable nameservers 
-  forwarders { 
+ <b> forwarders { 
         141.62.64.128; 
   }; </b>
  
@@ -109,11 +118,17 @@
   auth-nxdomain no; 
   listen-on-v6 { any; }; 
 };</codeblock></p>
-            <p>Jetzt wollen wir sogenannte <i>host aliases</i> definieren. Dafür müssen wir zwei
-                Dateien erstellen. Eine für die <i>zone</i> und eine für die <i>reverse
-                zone</i>.</p>
+            <lines/>
             <p>
-                <lines><codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph></lines>
+                <ul id="ul_drp_cyh_1fb">
+                    <li><b>host aliases</b></li>
+                </ul>
+            </p>
+            <p>Jetzt wollen wir sogenannte <i>host aliases</i> definieren. Dafür müssen wir zwei
+                Dateien erstellen. Eine für die <i>zone</i> und eine für die <i>reverse zone</i>.
+                Sie bilden Domains auf eine bestimmte IP-Adresse ab. </p>
+            <p>
+                <lines><codeph id="codeph_jdh_sh3_1fb">/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph></lines>
                 <codeblock>$TTL    604800
 @       IN      SOA     ns6.mi.hdm-stuttgart.de. root.mi.hdm-stuttgart.de. (
                      2018040401         ; Serial
@@ -150,6 +165,12 @@ $TTL    604800
 ; PTR Records
 106   IN      PTR     sdi6a.mi.hdm-stuttgart.de.    ; 141.62.75.106</codeblock>
             </p>
+            <lines/>
+            <p>
+                <ul id="ul_ytv_kyh_1fb">
+                    <li><b>mail exchange record</b></li>
+                </ul>
+            </p>
             <p>Als nächstes konfigurieren wir den <i>mail exchange record</i>. Der Mailserver der
                 Hochschule ist via <tt>mx1.mi.hdm-stuttgart</tt> zu erreichen. Ein entsprechender
                 Record muss in <codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph> definiert
@@ -166,8 +187,8 @@ mi.hdm-stuttgart.de.	IN	MX	10 	mx1.hdm-stuttgart.de.</codeblock></p>
                     <codeph>/etc/resolv.conf</codeph> den Server als obersten <i>nameserver</i>
                 einträgt.<codeblock><b>nameserver 141.62.75.106</b> # IP-Adresse unseres DNS-Servers </codeblock></p>
             <p>Um den DNS-Server jetzt auf seine Funktionalität zu testen, kann man Beispielsweise
-                das Tool <codeph>dig</codeph> einsetzen. Der Befehl <codeph>dig
-                    www.google.de</codeph></p>
+                das Tool <xref href="glossary/dig.dita#dig">dig</xref> einsetzen. Der Befehl
+                    <codeph>dig www.google.de</codeph> liefert folgendes Ergebnis:</p>
             <codeblock>; &lt;&lt;>> DiG 9.13.0 &lt;&lt;>> www.google.de
 ;; global options: +cmd
 ;; Got answer:
@@ -201,9 +222,10 @@ www.google.de.		300	IN	A	172.217.16.67
 ;; SERVER: 141.62.75.106#53(141.62.75.106)
 ;; WHEN: Mo Aug 27 12:52:26 C</codeblock>
             <p>Wir können unten (<tt>SERVER: 141.62.75.106[…]</tt>) sehen, dass der eigene
-                DNS-Server verwendet wird. Weiterhin gibt <codeph>dig</codeph> uns in der <i>ANSWER
-                    SECTION</i> die IP-Adresse von www.google.de zurück. Unser DNS-Server
-                funktioniert also.</p>
+                DNS-Server verwendet wird. Weiterhin gibt <xref href="glossary/dig.dita#dig"
+                    >dig</xref> uns in der <i>ANSWER SECTION</i> die IP-Adresse von <xref
+                    href="http://www.google.de" format="html" scope="external">www.google.de
+                </xref>zurück. Unser DNS-Server funktioniert also.</p>
             <p>Das ganze können wir auch noch für den eingetragenen Mailserver testen. Der Befehl
                     <codeph>dig mi.hdm-stuttgart.de MX</codeph> sucht nach entsprechenden Records.
                 Das Ergebnis zeigt erneut in der <i>ANSWER SECTION</i>, dass auch das

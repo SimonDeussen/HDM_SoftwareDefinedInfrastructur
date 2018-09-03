@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="dig">
+    <title>Domain Information Groper (dig)</title>
+    <body>
+        <p>Die Software <b>dig</b>, ist ein Programm, das Informationen von DNS-Servern abfragen
+            kann. Es unterstütz IPv4 und IPv6. Das Haupteinsatzfeld ist die Analyse und Überprüfung
+            von DNS-Servern.</p>
+        <p><xref href="https://wiki.ubuntuusers.de/dig/" format="html" scope="external">Quelle /
+                weitere Informationen</xref></p>
+    </body>
+</topic>

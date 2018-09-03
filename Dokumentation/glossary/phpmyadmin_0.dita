@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="phpmyadmin_0">
+    <title>phpMyAdmin</title>
+    <body>
+        <p>phpMyAdmin ist eine in PHP implementierte, freie Webanwendung. Mit ihr können <xref
+                href="mysql.dita#mysql">MySQL</xref>-Datenbanken administriert werden. Die grafische
+            Oberfläche erlaubt die meisten Funktionen (Tabellen anlegen/löschen, …), ohne
+            tatsächlich SQL-Anweisungen schreiben zu müssen.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/PhpMyAdmin" format="html" scope="external"
+                >Quelle / weitere Informationen</xref></p>
+    </body>
+</topic>

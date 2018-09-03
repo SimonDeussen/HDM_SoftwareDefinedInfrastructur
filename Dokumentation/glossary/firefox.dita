@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="firefox">
+    <title>Mozilla Firefox</title>
+    <body>
+        <p><b>Mozilla Firefox</b> ist ein freier Webbrowser, der 2002 erstmalig veröffentlicht
+            wurde.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/Mozilla_Firefox" format="html" scope="external"
+                >Quelle / weitere Informationen</xref></p>
+    </body>
+</topic>

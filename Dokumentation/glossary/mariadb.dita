@@ -3,27 +3,9 @@
 <topic id="software_mariadb">
     <title>MariaDB</title>
     <body>
-        <p><b>MariaDB</b> ist ein <xref href="https://de.wikipedia.org/wiki/Freie_Software"
-                format="html" scope="external">freies</xref>, <xref
-                href="https://de.wikipedia.org/wiki/Relationale_Datenbank" format="html"
-                scope="external">relationales</xref>
-            <xref href="https://de.wikipedia.org/wiki/Open_Source" format="html" scope="external"
-                >Open-Source</xref>-<xref
-                href="https://de.wikipedia.org/wiki/Datenbankverwaltungssystem" format="html"
-                scope="external">Datenbankverwaltungssystem</xref>, das durch eine <xref
-                href="https://de.wikipedia.org/wiki/Abspaltung_(Softwareentwicklung)" format="html"
-                scope="external">Abspaltung</xref> (Fork) aus <xref
-                href="https://de.wikipedia.org/wiki/MySQL" format="html" scope="external"
-                >MySQL</xref> entstanden ist. Das Projekt wurde von MySQLs früherem Hauptentwickler
-                <xref href="https://de.wikipedia.org/wiki/Michael_Widenius" format="html"
-                scope="external">Michael Widenius</xref> initiiert, der auch die <xref
-                href="https://de.wikipedia.org/wiki/Storage" format="html" scope="external"
-                >Storage</xref>-<xref href="https://de.wikipedia.org/wiki/Engine" format="html"
-                scope="external">Engine</xref></p>
-        <p><i>Aria</i> entwickelte, auf welcher MariaDB aufbaut (Aria ist diejenige
-            Software-Schicht, welche die Basisfunktionalität der Datenbank enthält, d.h. das
-            Erstellen, Lesen, Ändern, Löschen von Daten). </p>
-        <p><xref href="https://de.wikipedia.org/wiki/MariaDB" format="html" scope="external"
-                >Quelle</xref></p>
+        <p><b>MariaDB</b> ist freies, relationales, Open-Source Datenbankverwaltungssystem. Es ist
+            ein Fork von <xref href="mysql.dita#mysql">MySQL</xref>.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/MariaDB" format="html" scope="external">Quelle
+                / weitere Informationen</xref></p>
     </body>
 </topic>

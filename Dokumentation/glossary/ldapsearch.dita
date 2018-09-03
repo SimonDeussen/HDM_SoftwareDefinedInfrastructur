@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="ldapsearch">
+    <title>ldapsearch</title>
+    <body>
+        <p><b>ldapsearch</b> ist ein Kommandozeilen-Tool zur Abfrage von Informationen auf
+            LDAP-Servern.</p>
+        <p>
+            <codeblock># subtree search for entries with a surname of smith. 
+# common name (cn), surname (sn) and telephoneNumber will be retrieved and printed to standard output.
+
+<b>ldapsearch -LLL "(sn=smith)" cn sn telephoneNumber</b></codeblock>
+        </p>
+        <p><xref href="https://linux.die.net/man/1/ldapsearch" format="html" scope="external">Quelle
+                / weitere Informationen</xref></p>
+    </body>
+</topic>

@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="mysql">
-    <title>MySql</title>
+    <title>MySQL</title>
     <body>
-        <p><b>MySQL</b> [<xref href="https://de.wikipedia.org/wiki/Liste_der_IPA-Zeichen"
-                format="html" scope="external">˽maɪɛskju˽˽ɛl</xref>]ist eines der weltweit
-            verbreitetsten <xref href="https://de.wikipedia.org/wiki/Relationale_Datenbank"
-                format="html" scope="external">relationalen Datenbankverwaltungssysteme</xref>. Es
-            ist als <xref href="https://de.wikipedia.org/wiki/Open_Source" format="html"
-                scope="external">Open-Source</xref>-Software sowie als kommerzielle
-            Enterpriseversion für verschiedene Betriebssysteme verfügbar und bildet die Grundlage
-            für viele <xref
-                href="https://de.wikipedia.org/wiki/Dynamische_Webseite#Dynamische_Webseiten"
-                format="html" scope="external">dynamische Webauftritte</xref>. </p>
-        <p>MySQL wurde seit 1994 vom schwedischen Unternehmen <xref
-                href="https://de.wikipedia.org/wiki/MySQL_AB" format="html" scope="external">MySQL
-                AB</xref> entwickelt. Im Februar 2008 wurde MySQL AB vom Unternehmen <xref
-                href="https://de.wikipedia.org/wiki/Sun_Microsystems" format="html" scope="external"
-                >Sun Microsystems</xref> übernommen, das seinerseits im Januar 2010 von <xref
-                href="https://de.wikipedia.org/wiki/Oracle" format="html" scope="external"
-                >Oracle</xref> gekauft wurde. </p>
-        <p>Der Name <i>MySQL</i> setzt sich zusammen aus dem Vornamen <i><xref
-                    href="https://de.wikipedia.org/wiki/My_(Vorname)" format="html" scope="external"
-                    >My</xref></i>, den die Tochter des MySQL-AB-Mitbegründers <xref
-                href="https://de.wikipedia.org/wiki/Michael_Widenius" format="html" scope="external"
-                >Michael Widenius</xref> trägt, und <xref href="https://de.wikipedia.org/wiki/SQL"
-                format="html" scope="external">SQL</xref>.</p>
-        <p><xref href="https://de.wikipedia.org/wiki/MySQL" format="html" scope="external"
-                >Quelle</xref></p>
+        <p><b>MySQL</b> ist eines verbreitetsten Datenbankverwaltungssysteme. Es ist sowohl als
+            Open-Source, also auch als kommerzielle Version verfügbar. Es wurde 1994 von einem
+            schwedischen Unternehmen entwickelt und gehört seit 2010 Oracle.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/MySQL" format="html" scope="external">Quelle /
+                weitere Informationen</xref></p>
     </body>
 </topic>

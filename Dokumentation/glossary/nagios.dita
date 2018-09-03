@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="nagios">
+    <title>Nagios</title>
+    <body>
+        <p>Nagios ist eine Software um IT-Infrastrukturen zu überwachen. Das Monitoring-Tool bietet
+            eine Sammlung von Modulen zur Überwachung von Netzwerken, Hosts und speziellen Diensten.
+            Die Daten können beispielsweise über eine Web-Oberfläche angesehen werden.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/Nagios" format="html" scope="external">Quelle /
+                weitere Informationen</xref></p>
+    </body>
+</topic>
