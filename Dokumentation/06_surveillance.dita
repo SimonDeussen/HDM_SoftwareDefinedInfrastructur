@@ -45,7 +45,7 @@ a2enmod cgi</codeblock></p>
             <p>Nachdem der nagios-Deamon dann gestartet wurde, kann das Web-Interface aufgerufen
                 werden.</p>
             <p>Obwohl es funktioniert, sind noch keine relevanten Werte zu sehen. Das liegt daran,
-                dass noch keine PLugins installiert wurden. Statt interessanter Werte, ist überall
+                dass noch keine Plugins installiert wurden. Statt interessanter Werte, ist überall
                 folgendes zu
                 lesen:<codeblock>(No output on stdout) stderr: execvp(/usr/local/nagios/libexec/check_load, ...) failed. errno is 2: No such file or directory </codeblock></p>
             <p>Um die benötigten Plugins zu installieren, laden wir die entsprechende Datei wieder
@@ -58,8 +58,9 @@ make
 make install</pre>
             </p>
             <p>Eine letzte Einstellung, um die reibungslose Funktion von Nagios zu garantieren ist
-                das eintragen einer E-Mail-Adresse. Dafür muss die Datei
-                    <codeph>/usr/local/nagios/etc/objects/contacts.cfg</codeph> editiert
+                das eintragen einer E-Mail-Adresse.  iSo kann Nagios alerts verschicken wenn
+                bestimmte Events eintreten, wenn zum Beispiel der Server abstürzt. Dafür muss die
+                Datei <codeph>/usr/local/nagios/etc/objects/contacts.cfg</codeph> editiert
                 werden:<codeblock>##############################################################$
 #
 # CONTACTS

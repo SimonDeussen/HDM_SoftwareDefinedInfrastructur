@@ -25,7 +25,7 @@
                     installiert</xref>, aber auch <i><xref
                         href="glossary/mariadb.dita#software_mariadb">mariadb</xref></i> wäre
                 möglich) und <i>php</i> benötigt. Die ganze Liste ist dem folgenden
-                Installationsbefehlzu entnehmen.</p>
+                Installationsbefehl zu entnehmen.</p>
             <p>
                 <codeblock>apt-get install mariadb-server libapache2-mod-php php-gd php-json php-mysql php-curl php-intl php-mcrypt php-imagick php-zip php-xmlwriter php-xmlreader php-xml php-mbstring php-simplexml</codeblock>
             </p>

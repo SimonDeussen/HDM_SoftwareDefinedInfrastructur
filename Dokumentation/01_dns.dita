@@ -6,7 +6,7 @@
         <equation-figure>
             <desc>
                 <p>In dieser Aufgabe setzen wir unseren eigenen DNS Server auf einer der uns zur
-                    Vefügung gestellten Virtuellen Maschinen auf.</p>
+                    Vefügung gestellten Virtuellen Maschinen auf.DNS wird benutzt um gut lesbare Domain Namen wie google.com in vom Menschen unlesbare, aber dafür von Maschinen lessbare, IP Addressen umzuwandeln. </p>
             </desc>
         </equation-figure>
         <section id="section_cds_hsf_zdb">

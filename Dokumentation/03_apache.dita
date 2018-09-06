@@ -206,7 +206,7 @@ manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
             <lines/>
             <p>Jetzt wollen wir mittels selbst-zertifizierter Zertifikate die Kommunikation über
                 HTTPS ermöglichen. Obwohl es mittlerweile über <xref href="https://letsencrypt.org"
-                    format="html" scope="external"/> unter Verwendung des <i><xref
+                    format="html" scope="external">LetsEncrypt</xref> unter Verwendung des <i><xref
                         href="https://certbot.eff.org/" format="html" scope="external"
                         >certbots</xref></i> eine sehr komfortable Lösung gibt, haben wir in diesem
                 Versuch eine eigene <xref
@@ -361,22 +361,13 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock>
             </p>
         </section>
         <section id="section_d3q_t4k_y2b">
-<<<<<<< HEAD
-            <title>MySQL database administration</title>
-            <p>Wir möchten <xref href="glossary/mysql.dita#mysql">MySQL</xref> und eine
-                Weboberfläche installieren, mit der der wir die Datenbank administrieren können. Als
-                Weboberfläche verwenden wir <i><xref href="glossary/phpmyadmin.dita#phpmyadmin"
-                        >phpmyadmin</xref></i>. Außerdem wird noch das Paket <i>apache-utils</i>
-                benötigt.</p>
-            <p>Wir installieren beide Pakete mit</p>
-=======
+
             <title>MySQL Datenbank Administration</title>
             <p><lines/>Wir möchten MySQL und eine Weboberfläche installieren, mit der der wir die
                 Datenbank(en) anschließend administrieren können. Als Weboberfläche verwenden wir
                     <xref href="glossary/phpmyadmin.dita#phpmyadmin">phpmyadmin</xref>. Außerdem
                 wird noch das Paket <i>apache-utils</i> benötigt.</p>
             <p>Wir installieren beide Pakete und den Datenbankserver mit</p>
->>>>>>> 4d90791b37d906a991c720c660c65bc4011e25c0
             <p>
                 <codeblock>apt-get install mysql-server phpmyadmin apache-utils</codeblock>
             </p>
