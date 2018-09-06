@@ -25,5 +25,7 @@
         <topicref href="glossary/nextcloud.dita"/>
         <topicref href="glossary/openldap.dita"/>
         <topicref href="glossary/thunderbird.dita"/>
+        <topicref href="glossary/mysql.dita"/>
+        <topicref href="glossary/phpmyadmin.dita"/>
     </topichead>
 </map>

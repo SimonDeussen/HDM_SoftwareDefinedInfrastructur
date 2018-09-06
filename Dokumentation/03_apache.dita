@@ -332,9 +332,11 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
         </section>
         <section id="section_d3q_t4k_y2b">
             <title>MySQL database administration</title>
-            <p>Wir möchten MySQL und eine Weboberfläche installieren, mit der der wir die Datenbank
-                administrieren können. Als Weboberfläche verwenden wir <i>phpmyadmin</i>. Außerdem
-                wird noch das Paket <i>apache-utils</i> benötigt.</p>
+            <p>Wir möchten <xref href="glossary/mysql.dita#mysql">MySQL</xref> und eine
+                Weboberfläche installieren, mit der der wir die Datenbank administrieren können. Als
+                Weboberfläche verwenden wir <i><xref href="glossary/phpmyadmin.dita#phpmyadmin"
+                        >phpmyadmin</xref></i>. Außerdem wird noch das Paket <i>apache-utils</i>
+                benötigt.</p>
             <p>Wir installieren beide Pakete mit</p>
             <p>
                 <codeblock>apt-get install mysql-server phpmyadmin apache-utils</codeblock>
