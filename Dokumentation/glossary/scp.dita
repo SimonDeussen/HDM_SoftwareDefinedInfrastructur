@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="scp">
+    <title>Secure Copy (scp)</title>
+    <body>
+        <p><b>Secure Copy</b> ist ein Protokoll und Programm zur verschlüsselten Übertratung von
+            Daten zwischen zwei Computern. Für die Anmeldung und Verbindung wird <xref
+                href="ssh.dita#ssh">SSH</xref> genutzt.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/Secure_Copy" format="html" scope="external"
+                >Quelle / weitere Informationen</xref></p>
+    </body>
+</topic>

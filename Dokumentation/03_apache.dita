@@ -17,36 +17,47 @@
             <title>Wie ein Webserver funktioniert</title>
             <lines/>
             <fig id="fig_mxb_shj_y2b">
-                <title>Wie ein Webserver funktioniert</title>
                 <image href="images/webserver.png" id="image_nxb_shj_y2b"/>
-                <p><i>Bild von <xref href="https://www.itwissen.info/Webserver-web-server.html"
-                            format="html" scope="external"/></i></p>
+            </fig>
+            <fig id="fig_uyc_4g3_1fb">
+                <title>Wie ein Webserver funktioniert (<i>Bild von <xref
+                            href="https://www.itwissen.info/Webserver-web-server.html" format="html"
+                            scope="external"/>)</i></title>
             </fig>
         </section>
-        <section id="section_a4g_jsf_zdb"><title>Apache HTTP Server
-            installieren</title><lines/>Zuerst müssen wir die aktuellste Version von Apache auf
-            unserem Server installieren. <codeblock>apt get install apache2</codeblock></section>
+        <section id="section_a4g_jsf_zdb">
+            <title>Apache HTTP Server installieren</title>
+            <lines/>
+            <p>Zuerst müssen wir die aktuellste Version von Apache auf unserem Server
+                installieren.</p>
+            <codeblock>apt get install apache2</codeblock>
+        </section>
         <section id="section_lxy_bjj_y2b">
-            <title>First Steps</title>
+            <title>Erste Schritte</title>
             <lines/>
             <p>Nach der Installation von Apache bekommen wir beim Aufruf des Servers über einen
                 Browser die Standardseite von Apache präsentiert. So lässt sich zunächst die
-                erfolgreiche Installation des Webservers verifizieren.<fig id="fig_olc_kjj_y2b">
-                    <title>Apache Standardseite</title>
+                erfolgreiche Installation des Webservers verifizieren.<lines/><fig
+                    id="fig_olc_kjj_y2b">
                     <image href="images/apache-default.jpg" id="image_plc_kjj_y2b"/>
+                </fig><fig id="fig_wx4_wg3_1fb">
+                    <title>Apache Standardseite</title>
                 </fig></p>
-            <p>Das vorkonfigurierte Standardverzeichnis von Apache liegt unter
-                    <codeph>/var/www/html/</codeph>. Löschen wir die vorgefertigte
-                    <codeph>index.html</codeph> (oder nennen sie um), wird der eigene DocumentRoot
-                    dargestellt.<fig id="fig_w55_clj_y2b">
-                    <title>Document Root</title>
+            <p>Das vorkonfigurierte Standardverzeichnis für die auszuliefernden (HTML)-Dateien liegt
+                unter <codeph>/var/www/html/</codeph>. Löschen wir die vorgefertigte
+                    <codeph>index.html</codeph> (oder benennen sie um), wird der eigene DocumentRoot
+                als Verzeichnisstruktur dargestellt.<fig id="fig_w55_clj_y2b">
                     <image href="images/indexroot.png" id="image_x55_clj_y2b"/>
+                </fig><fig id="fig_trx_1h3_1fb">
+                    <title>Document Root</title>
                 </fig></p>
-            <p>Wir können eine beliebige eigene index.html an dieser Stelle hinterlegen. Wenn wir
-                nun mit dem Browser die Seite aufrufen, wird diese angezeigt.<fig
+            <p>Wir können eine beliebige eigene <tt>index.html</tt> an dieser Stelle hinterlegen.
+                Wenn wir nun mit dem Browser die Seite aufrufen, wird diese angezeigt.<lines/><fig
                     id="fig_nrm_4lj_y2b">
-                    <title>eigene Index.html</title>
                     <image href="images/customindex.png" id="image_orm_4lj_y2b"/>
+                </fig><fig id="fig_twg_dh3_1fb">
+                    <title>eigene Index.html</title>
+                </fig><fig>
                     <p>Als nächstes möchten wir die Dokumentation für Apache installieren. Das
                         entsprechende Paket heißt <codeph>apache2-doc</codeph>. Mit <codeph>apt-get
                             install apache2-doc</codeph> installieren wir es.</p>
@@ -57,8 +68,8 @@
                             <codeph>/usr/share/doc/apache2-doc/manual</codeph> zu finden ist. Die
                         aufzurufende Root-Seite ist die index.html in diesem Verzeichnis.</p>
                     <p>Als nächstes haben wir diese HTML-Dokumentation (d.h. den Teil, der bereits
-                        geschrieben war) mittels <codeph>scp</codeph> von einem lokalen Client auf
-                        unseren Server
+                        geschrieben war) mittels <xref href="glossary/scp.dita#scp">scp</xref> von
+                        einem lokalen Client auf unseren Server
                         geladen.<codeblock>scp -r * root@141.62.75.106:/home/sdidoc/</codeblock></p>
                     <p>Damit die Dokumentation nun mit einem Browser aufgerufen werden kann, muss in
                         Apache ein entsprechender Alias konfiguriert werden.</p>
@@ -89,7 +100,7 @@
             <lines/>
             <p>Virtual host Direktiven erlauben sogenannte Subdomain. Statt unter <xref
                     href="http://sdi6a.mi.hdm-stuttgart.de/doc" format="html" scope="external"/>
-                kann die Dokumentation, wenn der eigene DNS-Server verwendet und entsprechend
+                kann die Dokumentation, wenn der eigene DNS-Server verwendet wird und entsprechend
                 konfiguriert ist, dann auch unter<xref href="http://doc.mi.hdm-stuttgart.de/"
                     format="html" scope="external"/> erreicht werden.</p>
             <p>Das soll für die Adressen<ul id="ul_twj_fvj_y2b">
@@ -99,15 +110,17 @@
                             scope="external"/></li>
                 </ul></p>
             <p>eingerichtet werden. Die Subdomain <i>doc</i> führt zur Dokumentation dieser
-                Vorlesung, <i>manual</i> zur installierte Dokumentation von Apache selbst. </p>
-            <p>Zunächst konfigurieren wir hierfür <i>bind</i>. In der schon früher angelegten
-                Zone-File (<codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph>). Hier fügen wir
+                Vorlesung, <i>manual</i> zur installierten Dokumentation von Apache selbst. </p>
+            <p>Zunächst konfigurieren wir hierfür <xref href="glossary/bind9.dita#bind9"
+                >bind</xref>. In der schon <xref href="01_dns.dita#dns01/codeph_jdh_sh3_1fb">früher
+                    angelegten Zone-File</xref>
+                    (<codeph>/etc/bind/zones/db.mi.hdm-stuttgart.de</codeph>). Hier fügen wir
                 folgende Einträge
                 hinzu:<codeblock>doc.mi.hdm-stuttgart.de.	IN	A	141.62.75.106
 manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
                 müssen wir auch Apache selbst konfigurieren. Für jede der beiden Seiten, legen wir
                 eine Konfigurationsdatei in <codeph>/etc/apache2/sites-available</codeph>. Wir
-                nennen sie sdidoc.conf und manual.conf<codeblock><b># sdidoc.conf</b>
+                nennen sie <tt>sdidoc.conf</tt> und <tt>manual.conf</tt>.<codeblock><b># sdidoc.conf</b>
 
 &lt;VirtualHost *:80>
 	# The ServerName directive sets the request scheme, hostname and port that
@@ -169,7 +182,7 @@ manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
 	# after it has been globally disabled with "a2disconf".
 	#Include conf-available/serve-cgi-bin.conf
 &lt;/VirtualHost></codeblock></p>
-            <p>Anschließend muss man die beiden Seiten noch aktivieren. Das ist manuell mittels der
+            <p>Anschließend müssen beide Seiten noch aktiviert werden. Das ist manuell mittels der
                 Erstellung eines Symlinks möglich oder mit den bereitgestellten Kommandos von Apache
                 selbst (<codeph>a2ensite</codeph> und <codeph>a2dissite</codeph>).</p>
             <p>Mittels Symlink:</p>
@@ -181,19 +194,22 @@ manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
                 <codeblock>a2ensite manual</codeblock>
             </p>
             <p>Nach einem Neustart von bind (<codeph>systemctl restart bind9</codeph>) und Apache
-                    (<codeph>systemctl reload apache2</codeph>) funktionieren die Subdomains.<fig
-                    id="fig_uhg_rxj_y2b">
-                    <title>doc.mi.hdm-stuttgart.de</title>
+                    (<codeph>systemctl reload apache2</codeph>) funktionieren die
+                    Subdomains.<lines/><fig id="fig_uhg_rxj_y2b">
                     <image href="images/subdomain.png" id="image_vhg_rxj_y2b"/>
+                </fig><fig id="fig_tpn_c33_1fb">
+                    <title>doc.mi.hdm-stuttgart.de</title>
                 </fig></p>
         </section>
         <section id="section_lvg_hzj_y2b">
             <title>SSL / TLS Support</title>
             <lines/>
-            <p>Jetzt wollen wir mittel selbst-zertifizierter Zertifikate die Kommunikation über
+            <p>Jetzt wollen wir mittels selbst-zertifizierter Zertifikate die Kommunikation über
                 HTTPS ermöglichen. Obwohl es mittlerweile über <xref href="https://letsencrypt.org"
-                    format="html" scope="external"/> unter Verwendung des <i>certbots</i> eine sehr
-                komfortable Lösung gibt, haben wir in diesem Versuch eine eigene <xref
+                    format="html" scope="external"/> unter Verwendung des <i><xref
+                        href="https://certbot.eff.org/" format="html" scope="external"
+                        >certbots</xref></i> eine sehr komfortable Lösung gibt, haben wir in diesem
+                Versuch eine eigene <xref
                     href="glossary/certificateauthority.dita#certificateauthority">Certificate
                     Authority</xref> (CA) erstellt und verwendet.</p>
             <p><b>1. Eigene Certificate Authority (CA) erstellen</b></p>
@@ -211,11 +227,9 @@ manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
             </p>
             <p>Um den Key mittels Passwort zu schützen kann man zusätzlich noch das Attribut
                     <codeph>-des3</codeph> verwenden.</p>
-        </section>
-        <section id="section_lyb_bgk_y2b"><p>Jetzt wollen wir ein SSL-Zertifikat erstellen, dass von
-                der CA selbst signiert ist.
-                <codeblock>openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem</codeblock></p><p>Im
-                folgenden Dialog kann man einige Angaben machen zur CA
+            <p>Jetzt wollen wir ein SSL-Zertifikat erstellen, dass von der CA selbst signiert ist.
+                <codeblock>openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem</codeblock></p>
+            <p>Im folgenden Dialog kann man einige Angaben machen zur CA
                 machen.<codeblock>Country Name (2 letter code) [AU]:DE
 State or Province Name (full name) [Some-State]:BW
 Locality Name (eg, city) []:Stuttgart
@@ -224,41 +238,52 @@ Organizational Unit Name (eg, section) []:sdi6a
 Common Name (e.g. server FQDN or YOUR name) []:mi.hdm-stuttgart.de
 Email Address []:</codeblock>Die
                 dadurch generierte Datei <codeph>rootCA.pem</codeph> ist ein selbst-signiertes
-                Zerfitikat. Es ist für 1024 Tage gültig. </p><p><b>2. CA im Browser des Clients
-                    importieren</b></p><p>Damit der selbsterstellen CA in den Browsern der Clients
-                vertraut wird, müssen diese importiert werden. Hierfür benötigt man das erzeugte
-                    <codeph>rootCA.pem</codeph> Zertifikat.</p><p>In <i>Firefox</i> geht man wie
-                folgt vor:<ul id="ul_d5p_rgk_y2b">
+                Zerfitikat. Es ist für 1024 Tage gültig. </p>
+            <p><b>2. CA im Browser des Clients importieren</b></p>
+            <p>Damit der selbsterstellen CA in den Browsern der Clients vertraut wird, müssen diese
+                importiert werden. Hierfür benötigt man das erzeugte <codeph>rootCA.pem</codeph>
+                Zertifikat.</p>
+            <p>In <xref href="glossary/firefox.dita#firefox">Firefox</xref> geht man wie folgt
+                    vor:<ul id="ul_d5p_rgk_y2b">
                     <li>Einstellungen öffnen</li>
                     <li>Reiter <i>Datenschutz &amp; Sicherheit</i> auswählen</li>
                     <li>Unter <i>Zertifikate</i> auf <i>Zertifikate anzeigen...</i></li>
                     <li>Unter <i>Zertifizierungstellen</i> auf <i>Importieren...</i></li>
-                    <li><codeph>rootCA.pem</codeph> auswählen</li>
-                </ul></p><p>
+                    <li><tt>rootCA.pem</tt> auswählen<lines/></li>
+                </ul></p>
+            <p>
                 <fig id="fig_jt3_3hk_y2b">
-                    <title>Importierte CA in Firefox</title>
                     <image href="images/rootCAimport.png" id="image_kt3_3hk_y2b"/>
                 </fig>
-            </p><p><b>3. SSL Zertifikat erzeugen</b></p>Jetzt generieren wir für unsere Subdomains
-            einen Certificate Signing Request (CSR). <p>Zunächst müssen wir auch hier wieder einen
-                privaten Schlüssel generieren. Das funktioniert mit dem Befehl</p><p>
+                <fig id="fig_cwm_t33_1fb">
+                    <title>Importierte CA in Firefox</title>
+                </fig>
+            </p>
+            <p><b>3. SSL Zertifikat erzeugen</b></p>
+            <p>Zunächst müssen wir auch hier wieder einen privaten Schlüssel generieren. Das
+                funktioniert mit dem Befehl</p>
+            <p>
                 <codeblock>openssl genrsa -out doc.key 2048</codeblock>
-            </p><p>Daraufhin generieren wir einen <i>Certificate Signing Request</i>
-                (CSR).</p><codeblock>openssl req -new -key doc.key -out doc.csr</codeblock><p>Im
-                folgenden Dialog kann man erneut einige Angaben machen. Wichtig für uns ist nur der
-                    <i>Common Name</i>. Dieser muss entsprechend der Subdomain vergeben
-                werden.</p><codeblock>Country Name (2 letter code) [AU]:DE
+            </p>
+            <p>Daraufhin generieren wir einen <i>Certificate Signing Request</i> (CSR).</p>
+            <codeblock>openssl req -new -key doc.key -out doc.csr</codeblock>
+            <p>Im folgenden Dialog kann man erneut einige Angaben machen. Wichtig für uns ist nur
+                der <i>Common Name</i>. Dieser muss entsprechend der Subdomain vergeben werden.</p>
+            <codeblock>Country Name (2 letter code) [AU]:DE
 State or Province Name (full name) [Some-State]:BW
 Locality Name (eg, city) []:HdM
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:HdM
 Organizational Unit Name (eg, section) []:MI
 <b>Common Name (e.g. server FQDN or YOUR name) []:doc.mi.hdm-stuttgart.de</b>
-Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
-                signieren wir den mittels des CA root keys. </p><p>
+Email Address []:pl042@hdm-stuttgart.de</codeblock>
+            <p>Jetzt signieren wir den CSR mittels des CA root keys. </p>
+            <p>
                 <pre><b>openssl x509 -req -in doc.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out doc.crt -days 500 -sha256</b></pre>
-            </p><p>Es wird ein Zertifikat generiert, das von der CA signiert wurde.</p><p>Um auf die
-                Subdomain schließlich wie HTTPS zugreifen zu können, erstellen wir eine neue Datei
-                    <codeph>/etc/apache2/sites-available/sdidoc-ssl.conf</codeph></p><codeblock>&lt;IfModule mod_ssl.c>
+            </p>
+            <p>Es wird ein Zertifikat generiert, das von der CA signiert wurde.</p>
+            <p>Um auf die Subdomain schließlich mit HTTPS zugreifen zu können, erstellen wir eine
+                neue Datei <codeph>/etc/apache2/sites-available/sdidoc-ssl.conf</codeph></p>
+            <codeblock>&lt;IfModule mod_ssl.c>
         &lt;VirtualHost _default_:443>
             ServerName doc.mi.hdm-stuttgart.de
             ServerAdmin webmaster@localhost
@@ -272,18 +297,20 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
             SSLCertificateFile     /etc/apache2/ssl/doc.crt
             SSLCertificateKeyFile  /etc/apache2/ssl/doc.key 
         &lt;/VirtualHost>
-&lt;/IfModule></codeblock><p>Rufen
-                wir jetzt <xref href="https://doc.mi.hdm-stuttgart.de" format="html"
+&lt;/IfModule></codeblock>
+            <p>Rufen wir jetzt <xref href="https://doc.mi.hdm-stuttgart.de" format="html"
                     scope="external"/> auf, erkennen wir am grünen Schloss links neben der URL, dass
-                HTTPS funktioniert.</p><fig id="fig_wzk_ljk_y2b">
+                HTTPS funktioniert.</p>
+            <fig id="fig_wzk_ljk_y2b">
                 <title>HTTPS Übertragung</title>
                 <image href="images/sslworks.png" id="image_xzk_ljk_y2b"/>
-                <p>Äquivalent zu dieser Subdomain, wird der Vorgang für alle weiteren erneut
+                <p>Äquivalent zu dieser Subdomain, wird der Vorgang für alle weiteren, erneut
                     ausgeführt. Gegebenenfalls kann ein sogenanntes Wildcard-Zertifikat ausgestellt
                     werden, dass für verschiedene Subdomains des Typs
                         <tt>https://*.mi.hdm-stuttgart.de</tt> gültig ist. Darauf gehen wir in
                     dieser Dokumentation allerdings nicht näher ein.</p>
-            </fig></section>
+            </fig>
+        </section>
         <section id="section_sbj_rlk_y2b">
             <title>LDAP authentication</title>
             <p>
@@ -321,16 +348,20 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
 &lt;/IfModule>
 </codeblock>
             </p>
-            <p>Nach einem Neustart von Apache, fordert uns unser Browser nun beim Aufrufen der
-                entsprechenden Adresse auf, uns via LDAP zu authentifizieren.</p>
+            <p>Nach einem Neustart von Apache, fordert uns unser Browser nun beim Aufruf der Seite
+                auf, uns mittels Benutzernamen und Passwort zu authentifizieren. Ein Login ist mit
+                den in LDAP hinterlegten Benutzeraccounts möglich.<lines/></p>
             <p>
                 <fig id="fig_aht_d4k_y2b">
-                    <title>Apache fordert Authentifizierung via LDAP</title>
                     <image href="images/apacheLDAP.png" id="image_bht_d4k_y2b"/>
+                </fig>
+                <fig id="fig_ak4_dj3_1fb">
+                    <title>Apache fordert Authentifizierung via LDAP</title>
                 </fig>
             </p>
         </section>
         <section id="section_d3q_t4k_y2b">
+<<<<<<< HEAD
             <title>MySQL database administration</title>
             <p>Wir möchten <xref href="glossary/mysql.dita#mysql">MySQL</xref> und eine
                 Weboberfläche installieren, mit der der wir die Datenbank administrieren können. Als
@@ -338,22 +369,37 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
                         >phpmyadmin</xref></i>. Außerdem wird noch das Paket <i>apache-utils</i>
                 benötigt.</p>
             <p>Wir installieren beide Pakete mit</p>
+=======
+            <title>MySQL Datenbank Administration</title>
+            <p><lines/>Wir möchten MySQL und eine Weboberfläche installieren, mit der der wir die
+                Datenbank(en) anschließend administrieren können. Als Weboberfläche verwenden wir
+                    <xref href="glossary/phpmyadmin.dita#phpmyadmin">phpmyadmin</xref>. Außerdem
+                wird noch das Paket <i>apache-utils</i> benötigt.</p>
+            <p>Wir installieren beide Pakete und den Datenbankserver mit</p>
+>>>>>>> 4d90791b37d906a991c720c660c65bc4011e25c0
             <p>
                 <codeblock>apt-get install mysql-server phpmyadmin apache-utils</codeblock>
             </p>
-            <p>Bei der Installation müssen wir in Dialogen genauere Einstellungen vornehmen.</p>
+            <p>Bei der Installation müssen wir in Dialogen genauere Einstellungen
+                vornehmen.<lines/></p>
             <p>
                 <fig id="fig_kcy_fpk_y2b">
-                    <title>Wahl des Webservers zur automatischen Konfiguration</title>
                     <image href="images/phpmyadmin1.png" id="image_lcy_fpk_y2b"/>
                 </fig>
+                <fig id="fig_ets_kj3_1fb">
+                    <title>Wahl des Webservers zur automatischen Konfiguration</title>
+                </fig>
                 <fig id="fig_zvx_hpk_y2b">
-                    <title>Automatische Konfiguration</title>
                     <image href="images/phpmyadmin2.png" id="image_awx_hpk_y2b"/>
                 </fig>
+                <fig id="fig_dxh_lj3_1fb">
+                    <title>Automatische Konfiguration</title>
+                </fig>
                 <fig id="fig_t5n_kpk_y2b">
-                    <title>Passwortvergabe für die Datenbank</title>
                     <image href="images/phpmyadmin3.png" id="image_u5n_kpk_y2b"/>
+                </fig>
+                <fig id="fig_hzt_lj3_1fb">
+                    <title>Passwortvergabe für die Datenbank</title>
                     <p>Anschließend müssen wir noch in der Datei
                             <codeph>/etc/apache2/apache2.conf</codeph> die folgende Zeile
                         hinzufügen</p>
@@ -366,15 +412,16 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock><p>Jetzt
                     <p>Benutzername und Passwort können in der Datei
                             <codeph>/etc/phpmyadmin/config-db.php</codeph> nachgeschaut oder
                         geändert werden.<fig id="fig_swg_2qk_y2b">
-                            <title>Login-Screen von phpMyAdmin</title>
                             <image href="images/phpmyadmin.png" id="image_twg_2qk_y2b"/>
+                        </fig><fig id="fig_fmq_4j3_1fb">
+                            <title>Login-Screen von phpMyAdmin</title>
                         </fig></p>
                 </fig>
             </p>
         </section>
         <section id="section_ilc_fqk_y2b">
-            <title>Providing web-based user management to your LDAP Server</title>
-            <p>Zunächst installieren wir das Paket
+            <title>Web-basiertes User-Management für den LDAP Server</title>
+            <p><lines/>Zunächst installieren wir das Paket
                 <codeph>ldap-account-manager</codeph><codeblock>apt-get install ldap-account-manager</codeblock></p>
             <p>Anschließend ist die Weboberfläche direkt unter <xref
                     href="http://mi.hdm-stuttgart.de/lam" format="html" scope="external"/> zu

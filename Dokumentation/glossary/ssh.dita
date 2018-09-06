@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="ssh">
+    <title>Secure Shell (ssh)</title>
+    <body>
+        <p><b>Secure Shell</b> oder <b>SSH</b> ist ein Netzwerkprotokoll und ein Programm, mit deren
+            Hilfe man auf eine sichere Art und Weise eine verschlüsselte Netzwerkverbindung mit
+            einem entfernten Gerät herstellen kann. </p>
+        <p>Häufig wird diese Methode verwendet, um lokal eine entfernte Kommandozeile verfügbar zu
+            machen. Das heißt, auf einer lokalen Konsole werden die Ausgaben der entfernten Konsole
+            ausgegeben und die lokalen Tastatureingaben werden an den entfernten Rechner gesendet.
+            Genutzt werden kann dies beispielsweise zur Fernwartung eines in einem entfernten
+            Rechenzentrum stehenden Servers.</p>
+        <p><xref href="https://de.wikipedia.org/wiki/Secure_Shell" format="html" scope="external"
+                >Quelle / weitere Informationen</xref></p>
+    </body>
+</topic>

@@ -2,157 +2,192 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="ldap02">
     <title>Lightweight Directory Access Protocol (LDAP)</title>
-
     <body>
         <equation-figure>
             <desc>
-                <p><xref href="glossary/ldap.dita#untitled4">LDAP</xref> ist ein
-                    Verzeichniszugriffsprotokol zum Abfragen und Ändern von Informationen verteilter
-                    Verzeichnissdienste. Es beschreibt im genauen, wie man von einem oder mehreren
-                    LDAP-Servern Daten abfrägt. Häufige Anwendungsfälle sind Email-Adressbücher und
-                    User-Authentifizierung im Web sowie in Organisationen (Intranet). </p>
+                <p>In dieser Aufgabe soll eine Verbindung zum LDAP der Hochschule aufgebaut werden.
+                    Dabei sollen der Aufbau des Protokolls und verschiedene Software kennen gelernt
+                    werden.</p>
             </desc>
         </equation-figure>
+        <section id="section_kcf_mzh_1fb">
+            <title>Was ist LDAP</title>
+            <lines/>
+            <p><xref href="glossary/ldap.dita#untitled4">LDAP</xref> ist ein
+                Verzeichniszugriffsprotokol zum Abfragen und Ändern von Informationen verteilter
+                Verzeichnissdienste. Es beschreibt, wie man von einem oder mehreren LDAP-Servern
+                Daten abfragen kann. Häufige Anwendungsfälle sind Email-Adressbücher und
+                User-Authentifizierung im Web oder innerhalb von Firmen oder ähnlichen
+                Organisationen (Intranet). </p>
+        </section>
         <section>
-            <title>Browse an existing LDAP-Server</title>
-            <p>Bei dieser Aufgabe soll eine Verbindung zu dem HdM-LDAP aufgebaut werden mit dem Tool
-                    <xref href="glossary/apachedirectorystudio.dita#apachedirectorystudio">Apache
-                    Directory Studio</xref>. Anschließend geschiet ein Abfragen der eigenen
-                Benutzerdaten anhand des HdM-Kürzels. </p>
-            <p>Zunächste wurde das Tool nach Installations Anweisung der Website installiert. Dann
-                musste eine Connection angegeben werden an der LDAP Server der HdM. Folgende Daten
-                wurden verwendet:<fig id="fig_pyy_hy3_y2b">
-                    <title>Connection Daten für HdM-Ldap Server</title>
-                    <image href="images/Ldap%20Server%20Connection%20Daten.png" id="image_qyy_hy3_y2b"/>
-                    
+            <title>Navigation auf einem LDAP-Server</title>
+            <lines/>
+            <p>Zunächst wurde die Software nach der <xref
+                    href="https://directory.apache.org/studio/" format="html" scope="external"
+                    >Installations-Anweisung der Website</xref> installiert. Nach dem erstmaligen
+                Start, konnten die Daten für eine Verbindung mit dem gewünschten Server eingegeben
+                werden. <lines/><fig id="fig_pyy_hy3_y2b">
+                    <image href="images/Ldap%20Server%20Connection%20Daten.png"
+                        id="image_qyy_hy3_y2b"/>
+                </fig><fig id="fig_xmh_h13_1fb">
+                    <title>Verbindungsdaten für den HdM-LDAP-Server</title>
                 </fig>
             </p>
-            <p>Zusehen sind hier alle Daten der <codeph>ou-userlist</codeph>: <fig id="fig_obt_qy3_y2b">
-                <title>Alle Benutzer in ou-userlist</title>
-                <image href="images/All%20Users%20in%20HdM%20Ldap.png" id="image_pbt_qy3_y2b"/>
-            </fig></p>
-            <p>Der OU-Tag steht für Organisational Unit, ein Verzeichnis in dem die HdM alle
-                registrierten Personen speichert. Diese Personen sind alle Mitglieder ein oder mehrer
-                Gruppen der <codeph>ou=grouplist</codeph>. Diese Gruppen geben den Nutzer ensprechende
-                Rechte innerhalb des HdM Intranets.</p>
-            <p>Anschließend wurde nach dem eigenen Benutzer durch anlegen eines Filters mit
-                <codeph>(uid=sd092)</codeph><fig id="fig_hw5_3z3_y2b">
-                    <title>Nach Eingabe des Filters</title>
-                    <image href="images/Connection%20to%20HdM%20Ldap%20with%20Filter.png" id="image_iw5_3z3_y2b"/>
+            <p>Zunächst werden alle Daten des LDAP-Servers angezeigt. Da keine Filter angewendet
+                werden, sind es sehr viele Daten.<lines/><fig id="fig_obt_qy3_y2b">
+                    <image href="images/All%20Users%20in%20HdM%20Ldap.png" id="image_pbt_qy3_y2b"/>
+                </fig><fig id="fig_pt1_j13_1fb">
+                    <title>Alle Benutzer in ou-userlist</title>
                 </fig></p>
-            <p>So konnten die Daten von mir eingesehen werden: 
-                <fig id="fig_wts_mz3_y2b">
-                    <title>Meine Daten (sd092)</title>
+            <p>Der <tt>ou</tt>-Tag steht für <i>Organisational Unit</i>, ein Verzeichnis in dem die
+                HdM alle registrierten Personen speichert. Diese Personen sind alle Mitglieder von
+                einer oder mehrer Gruppen der <tt>ou=grouplist</tt>. Diese Gruppen geben den Nutzern
+                ensprechende Rechte innerhalb des HdM-Intranets.</p>
+            <p>Anschließend haben wir unsere eigenen Benutzer gesucht. Hierfür verwendeten wir einen
+                Filter. <codeph>(uid=sd092)</codeph> bzw <codeph>(uid=pl042)</codeph>.<lines/><fig
+                    id="fig_hw5_3z3_y2b">
+                    <image href="images/Connection%20to%20HdM%20Ldap%20with%20Filter.png"
+                        id="image_iw5_3z3_y2b"/>
+                </fig><fig id="fig_jbv_513_1fb">
+                    <title>Nach Eingabe des Filters</title>
+                </fig></p>
+            <p>Die Daten eines gefundenen Benutzers konnten dann im Detail eingesehen werden.
+                    <lines/><fig id="fig_wts_mz3_y2b">
                     <image href="images/Data%20For%20Myself%20Ldap.png" id="image_xts_mz3_y2b"/>
+                </fig><fig id="fig_yn5_x13_1fb">
+                    <title>Die Daten des Benutzers sd092</title>
                 </fig>
             </p>
-            <p>Der nächste Teil der Aufgabe war noch die Abfrage mit der Commandline. Dafür benutzt man
-                das Tool <codeph>ldapsearch</codeph> mit folgenden
+            <p>Nun sollte außerdem die Abfrage von den Benutzerdaten auf der Kommandozeile erfolgen.
+                Dafür verwendeten wir das Tool <xref href="glossary/ldapsearch.dita#ldapsearch"
+                    >ldapsearch</xref> mit folgenden
                 Parametern:<codeblock>ldapsearch -D "uid=sd092,ou=userlist,dc=hdm-stuttgart,dc=de" -W -p 389 -h ldap1.mi.hdm-stuttgart.de -b "dc=hdm-stuttgart,dc=de" -s sub "(uid=sd092)"</codeblock>
             </p>
-            <p>Heraus kamen dann die geichen Daten in der Commandline:<fig id="fig_m5v_x1j_y2b">
-                <title>Ldap-Search</title>
-                <image href="images/Ldap%20Search.png" id="image_n5v_x1j_y2b"/>
-            </fig></p>
+            <p>Das zurückgelieferte Ergebnis gleicht natürlich den Daten, die über die grafische
+                Oberfläche zu sehen waren.<lines/><fig id="fig_m5v_x1j_y2b">
+                    <image href="images/Ldap%20Search.png" id="image_n5v_x1j_y2b"/>
+                </fig><fig id="fig_nl3_gb3_1fb">
+                    <title>Ergebnis von ldapsearch</title>
+                </fig></p>
         </section>
         <section id="section_vvd_khj_y2b">
-            <title>Set up an OpenLDAP server</title>
-            <p>In dieser Teilaufgabe wird auf unserer VM ein <xref
-                    href="glossary/openldap.dita#software_openldap">OpenLDAP</xref> Server
-                aufgesetzt. Zunächst muss dieser installiert werden
-                mit:<pre>aptitude install dialog
-aptitude install slapd</pre></p>
-            <p>Nach der Installation erscheint direkt ein Manager in dem die Grundeinstellungen
-                vorgenommen werden können. Zuerst wir das Passwort vergeben.<fig
+            <title>Einrichten eines OpenLDAP-Servers</title>
+            <lines/>
+            <p>Zuerst müssen wir die Pakete <tt>slapd</tt>, <tt>slapd-utils</tt> (slapd steht für
+                    <i>Standalon LDAP Daemon</i>) und <tt>dialog</tt> installieren. Noch während der
+                Installation, erscheinen Dialogfenster, in denen die Grundeinstellungen vorgenommen
+                werden können. Zuerst muss das Passwort vergeben werden.<lines/><fig
                     id="fig_iny_djj_y2b">
-                    <title>Passwort Vergabe slapd</title>
                     <image href="images/slap-pw.png" id="image_jny_djj_y2b"/>
-                    <p>Als nächstes wird das slapd-Backend gewählt:<fig id="fig_jbz_wjj_y2b">
-                            <title>Auswahl slapd-Backend</title>
+                </fig><fig id="fig_eh2_xb3_1fb">
+                    <title>Passwortvergabe bei der slapd-Installation</title>
+                    <p>Danach muss ein entsprechendes Backend ausgewählt werden.<lines/></p>
+                    <p>
+                        <fig id="fig_jbz_wjj_y2b">
                             <image href="images/slapd-backend.png" id="image_kbz_wjj_y2b"/>
-                        </fig></p>
-                    <p>Hier ist ausgabe der Config-Files zusehen:<fig id="fig_rwm_k4j_y2b">
-                            <title>Slapd Konfiguration</title>
+                        </fig>
+                        <fig id="fig_gqg_zb3_1fb">
+                            <title>Auswahl eines slapd-Backends</title>
+                        </fig>
+                    </p>
+                    <p>Die durch diese Einstellungen generierte Konfigurationsdatei sieht
+                        anschließend so aus:<lines/></p>
+                    <p>
+                        <fig id="fig_rwm_k4j_y2b">
                             <image href="images/slapd-display_config.png" id="image_swm_k4j_y2b"/>
-                        </fig></p>
-                    <p>Anschließend wurde eine Connection via Apache Directory Studio zu unserem
-                        Server aufgebaut und mit der GUI wurden die Daten wie in der Anleitung
-                        beschrieben eingebaut.<fig id="fig_jkx_hlj_y2b">
-                            <title>Population unseres LDAP Servers erfolgreich</title>
+                        </fig>
+                        <fig id="fig_qsf_bd3_1fb">
+                            <title>slapd Konfiguration</title>
+                        </fig>
+                    </p>
+                    <p>Danach bauen wir mit Apache Directory Studio eine Verbindung zu unserem
+                        Server auf. Wie schon bei der Verbindung mit dem LDAP-Server der Hochschule,
+                        geben wir in der grafischen Oberfläche die entsprechenden Parameter an und
+                        können anschließend eine Verbindung aufbauen.<lines/><fig
+                            id="fig_jkx_hlj_y2b">
                             <image href="images/our-own-ldap-works.png" id="image_kkx_hlj_y2b"/>
+                        </fig><fig id="fig_ms3_4d3_1fb">
+                            <title>Population unseres LDAP Servers erfolgreich</title>
                         </fig></p>
                 </fig></p>
         </section>
         <section id="section_s4m_llj_y2b">
-            <title>Accessing LDAP date by an email client</title>
-            <p>Bei dieser Aufgabe verwenden wir <xref
-                    href="glossary/thunderbird.dita#software_thunderbird">Thunderbird</xref> um die
-                LDAP Daten unseres Servers in das Adressbuch aufzunehmen. Dafür muss in der
-                Thunderbird-GUI zunächst unter <i>Optionen</i> der Punkt <i>Verfassen</i> und dann
-                    <i>Addressieren</i> ausgewählt werden. Dann erscheint folgender Dialog:<fig
+            <title>Zugriff auf den LDAP-Server mit einem Mail-Client</title>
+            <p><lines/>Bei dieser Aufgabe verwenden wir <xref
+                    href="glossary/thunderbird.dita#software_thunderbird">Thunderbird</xref>. Wir
+                möchten, dass im Adressbuch des Mail-Clients die Daten aus unserem LDAP-Servers
+                auftauchen. Dafür muss in der Thunderbird-GUI zunächst unter <i>Optionen</i> der
+                Punkt <i>Verfassen</i> und dann <i>Addressieren</i> ausgewählt werden. Im
+                erscheinenden Dialogfenster, werden folgende Parameter eingegeben:<lines/><fig
                     id="fig_e33_1mj_y2b">
-                    <title>Festlegen des LDAP Servers</title>
                     <image href="images/thunderbird-1.png" id="image_f33_1mj_y2b"/>
+                </fig><fig id="fig_abc_vd3_1fb">
+                    <title>Konfiguration in Thunderbird</title>
+                </fig></p>
+            <p>Es ist außerdem wichtig, die richtigen Suchfilter zu verwenden:<lines/><fig
+                    id="fig_jy3_fmj_y2b">
+                    <image href="images/thunderbird-2.png" id="image_ky3_fmj_y2b"/>
+                </fig><fig id="fig_et4_xd3_1fb">
+                    <title>Suchfilter Thunderbird</title>
+                </fig>Damit ist das Konfigurieren schon fertig. Im Adressbuch von Thunderbird, kann
+                man nun die Daten des LDAP-Servers durchsuchen und einsehen.<fig
+                    id="fig_gvh_lmj_y2b">
+                    <image href="images/thunderbird-3.png" id="image_hvh_lmj_y2b"/>
+                </fig><fig id="fig_h2g_c23_1fb">
+                    <title>Anzeige der LDAP-Daten im Adressbuch von Thunderbird</title>
                 </fig></p>
         </section>
-        <p>Wichtig ist hier, dass die richitgen Suchfilter angelegt werden:<fig id="fig_jy3_fmj_y2b">
-                <title>Suchfilter Thunderbird</title>
-                <image href="images/thunderbird-2.png" id="image_ky3_fmj_y2b"/>
-            </fig>Danach ist die Konfiguration schon fertig und wir können die Daten direkt in
-            Thunderbird sehen.<fig id="fig_gvh_lmj_y2b">
-                <title>LDAP direkt in Thunderbird</title>
-                <image href="images/thunderbird-3.png" id="image_hvh_lmj_y2b"/>
-            </fig></p>
         <section id="section_i1j_vmj_y2b">
-            <title>LDAP based user login</title>
-            <p>In dieser letzten LDAP Aufgabe, kommt aller bisher erarbeitete schlussendlich
-                zusammen: Unser zweiter Server wird so konfiguriert, dass er den LDAP Server auf
-                unserem ersten zur Authentifizierung der Logins benutzt. Hier gab es einige
-                Probleme, trotzdem schafften wir es als erste Gruppe diesen Teil hinzu bekommen.
-                Denn in dem Tutorial waren für unseren Setup falsche Konfigurationsangaben.</p>
-            <p>Auf dem zweiten Server wurde zu erst libpam-ldap
-                installiert:<codeblock>aptidude install libpam-ldap</codeblock></p>
-            <p>Dann mussten die Files <codeph>/etc/pam.d/common-account</codeph>,
+            <title>LDAP-basiertes User-Login auf den Servern</title>
+            <p><lines/><i>In dieser letzten Aufgabe, kommt alles bisher erarbeitete zusammen: Unser
+                    zweiter Server wird so konfiguriert, dass er den LDAP-Server auf unserem ersten,
+                    zur Authentifizierung der Logins benutzt. Trotz einiger Probleme (im Tutorial
+                    standen falsche Konfigurationsdaten für das bei uns vorliegende Setup),
+                    schafften wir diesen Teil als erste Gruppe.</i></p>
+            <p>Zuerst, installieren wir auf dem zweiten Server das Paket
+                <tt>libpam-ldap</tt>.<codeblock>aptidude install libpam-ldap</codeblock></p>
+            <p>Dann müssen die Dateien <codeph>/etc/pam.d/common-account</codeph>,
                     <codeph>/etc/pam.d/common-auth</codeph>,
                     <codeph>/etc/pam.d/common-password</codeph> und
-                    <codeph>/etc/pam.d/common-session</codeph>. Es wurden die Angaben der in der
-                Doku verlinkten <xref
+                    <codeph>/etc/pam.d/common-session</codeph> angepasst werden. Hierfür haben wir
+                uns an der Dokumentation der verlinkten <xref
                     href="https://wiki.debian.org/LDAP/PAM#PAM_Setup_with_libpam-ldapd"
-                    format="html" scope="external">Website </xref>übernommen.</p>
-            <p>Leider waren die Angaben zur <codeph>common-auth</codeph> File falsch, oder zumindest
-                unglücklich gewählt. Diese Werte wurden in dem Tutorial angegeben:
+                    format="html" scope="external">Website </xref> orientiert.</p>
+            <p>Die Angaben zur Datei <codeph>common-auth</codeph> sind auf der Website für unser
+                Setup allerdings falsch, bzw. unglücklich gewählt.
                 <pre>auth    sufficient      pam_unix.so nullok_secure
 auth    requisite       pam_succeed_if.so uid >= 1000 quiet
 auth    sufficient      pam_ldap.so use_first_pass
 auth    required        pam_deny.so</pre></p>
-            <p>Hier wird in der zweiten Zeile eingestellt, dass die User Id kleiner als 1000 sein
-                muss. Dies hat den Hintergrund, dass oft Systeme so aufgesetzt werde, dass es
-                weniger als 1000 lokale User gibt, und erst ab einer User-Id über 1000 der
-                LDAP-based Login genutzt wird. Das Keyword quiet sorget dafür, dass nichts passierte
-                und auch nichts geprinted wurde. </p>
-            <p>Da alle Konfigs korrekt waren und es auch keine Fehlermeldungen gab, standen wir von
-                dem Problem das es eigentlich richtig funktionieren sollte. Leider gaben wir unseren
-                selbst angelgeten Testuser die User-Id <codeph>123</codeph> und <codeph>567</codeph>
-                die beide unter den 1000 lagen. Schließlich kamen wir auf den Fehler und passten die
-                Konfiguration an: <fig id="fig_qrt_hpj_y2b">
-                    <title>Fehlerhafte konfiguration wurde berichtigt.</title>
+            <p>Die Bedingung in der zweiten Zeile, dass die User-ID größer oder gleich 1000 sein
+                muss, traf auf die von uns angelegten (Test)User nicht zu, darum funktionierte das
+                LogIn zunächst nicht. Diese Zeile hat den Hintergrund, dass Systeme oft so
+                aufgesetzt werden, dass es weniger als 1000 lokale User gibt, die die unteren IDs
+                bekommen, und dann ab einer User-ID von (über) 1000, die für den LDAP-based-Login
+                genutzten User definiert werden. Durch den Zusatz  <tt>quiet</tt>, wurde außerdem
+                keine (Fehler)Meldung ausgegeben, so dass zunächst nicht klar war, woran der Login
+                scheiterte.<lines/></p>
+            <p>
+                <fig id="fig_qrt_hpj_y2b">
                     <image href="images/ldap-based-login%20works.png" id="image_rrt_hpj_y2b"/>
+                </fig>
+                <fig id="fig_wfk_3f3_1fb">
+                    <title>Korrektur der entsprechenden Zeile der Datei common-auth</title>
+                </fig>
+            </p>
+            <p>Nachdem der entsprechende Wert von 1000 auf 100 geändert wurde, klappte der Login
+                schließlich.</p>
+            <p>Außerdem lässt sich nun in den Logs des LDAP-Servers sehen, wer sich wann
+                (erfolgreich) eingeloggt hat.<lines/><fig id="fig_lpq_4pj_y2b">
+                    <image href="images/ldap-works.png" id="image_mpq_4pj_y2b"/>
+                </fig><fig id="fig_g4s_nf3_1fb">
+                    <title>Der Login via LDAP funktioniert</title>
                 </fig></p>
         </section>
-        <p>Nachdem der Wert von 1000 auf 100 geändert wurde, klappte der Login und wir konnten auch
-            in der LDAP-Logs des LDAP servers sehen, dass es funktioniert hat:<fig
-                id="fig_lpq_4pj_y2b">
-                <title>LDAP Login works!</title>
-                <image href="images/ldap-works.png" id="image_mpq_4pj_y2b"/>
-            </fig></p>
         <section id="section_qz1_qpj_y2b">
             <title>Anmerkung zur Java Application</title>
-            <p>Aufgrund des hohen Zeitaufwands wurde beschlossen, dass die Java-App nicht gebaut
-                werden musste.</p>
+            <p><lines/>Aufgrund des hohen Zeitaufwands, wurde diese Aufgabe nicht bearbeitet.</p>
         </section>
-        
-        
-       
-              
     </body>
 </topic>

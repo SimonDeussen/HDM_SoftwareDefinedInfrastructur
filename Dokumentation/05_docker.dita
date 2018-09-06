@@ -4,27 +4,24 @@
     <title>Docker</title>
     <body>
         <equation-figure>
-            <desc>Hier wird beschrieben wie wir auf dem Server <xref href="glossary/nexcloud.dita"
-                >Nextcloud</xref> mit <xref href="glossary/docker.dita"
-                    >Docker</xref> aufgesetzt haben. <xref href="glossary/docker.dita"
-                            >Docker</xref> ist eine Software zur Isolierung von
-                Anwendungen, wodurch diese unabhängig vom OS und installierten Paketen ausführbar
-                sind.</desc>
+            <desc>Bei dieser Aufgabe haben wir unter Verwendung von Docker erneut eine Instanz von
+                Nextcloud aufgesetzt. <xref href="glossary/docker.dita">Docker</xref> ist eine
+                Software zur Isolierung von Anwendungen, wodurch diese unabhängig vom Betriebssystem
+                und installierten Paketen ausführbar sind.</desc>
         </equation-figure>
         <section id="section_k2l_2mk_y2b">
             <title>Installation von Docker</title>
-            <p>Damit <xref href="glossary/docker.dita"
-                >Docker</xref> installiert werden kann, muss zu erst die nötige Software installiert
-                werden:
-                
+            <lines/>
+            <p>Damit <xref href="glossary/docker.dita">Docker</xref> installiert werden kann, müssen
+                zuerst die Abhängigkeiten erfüllt werden. Diese sind folgende Pakete:
                 <codeblock>apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
     software-properties-common</codeblock></p>
-            <p>Danach wird der GPG Key hinzugefürt:
-                <codeblock>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -</codeblock>Jetzt
-                kann das Packet heruntergeladen und installiert werden
+            <p>Jetzt fügen wir den GPG Key hinzu.
+                <codeblock>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -</codeblock>Im
+                Anschluss kann das eigentliche Packet heruntergeladen und installiert werden
                 .<codeblock>add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
@@ -32,44 +29,48 @@
 
 apt-get update
 apt-get install docker-ce</codeblock></p>
-            <p/>
         </section>
         <section id="section_otz_xnk_y2b">
-            <title>Installation vom Nextcloud Container</title>
-            <p>Und anschließend kann der Container mit <codeph>docker image pull</codeph> gepullt
-                    werden:<fig id="fig_xrt_14k_y2b">
-                    <title>Nextcloud installation</title>
+            <title>Installation des Nextcloud-Containers</title>
+            <p>Ein gewünschter Container kann mit dem Befehl <codeph>docker image pull
+                    &lt;container></codeph> heruntergeladen werden.</p>
+            <p>Da wir eine Instanz von Nextcloud aufsetzen möchten, geben wir also den Befehl
+                    <codeph>docker image pull nextcloud</codeph> ein.<lines/><fig
+                    id="fig_xrt_14k_y2b">
                     <image href="images/docker-installation-nextcloud.png" id="image_yrt_14k_y2b"/>
+                </fig><fig id="fig_kxt_xl3_1fb">
+                    <title>Herunterladen des Nextcloud Containers</title>
                 </fig></p>
-            <p>Sobald der Download abgeschlossen ist, kann der Container gestartet werden.
-                Wichtig ist, dass der Parameter <codeph>-p 8080:80</codeph>  mitgegeben
-                wird, um den Port entsprechend zu mappen.<fig id="fig_al4_j4k_y2b">
+            <p>Sobald der Download abgeschlossen ist, kann der Container direkt gestartet werden.
+                Wichtig ist, dass der Parameter <codeph>-p 8080:80</codeph> mitgegeben wird, um den
+                Port entsprechend zu mappen.<lines/><fig id="fig_al4_j4k_y2b">
+                    <image href="images/docker-nectcloud-starting.png" id="image_bl4_j4k_y2b"/>
+                </fig><fig id="fig_icn_1m3_1fb">
                     <title>Starting Nextcloud</title>
-                    <image href="images/docker-nectcloud-starting.png"
-                        id="image_bl4_j4k_y2b"/>
                 </fig></p>
-                
         </section>
         <section id="section_az2_kpk_y2b">
-            <title>Configuring Nextcloud to use MariaDB</title>
-            <p>Damit der <xref href="glossary/nextcloud.dita">Nextcloud</xref> Container eine andere
-                DB benutzt, muss lediglich ein <codeph>docker-compose </codeph>File erstellt werden,
-                welches den Nextcloud-Container mit einem <xref
+            <title>Konfiguration von Nextcloud zur Verwendung von MariaDB</title>
+            <p>Damit der Nextcloud Container eine andere Datenbank benutzt als standardmäßig
+                vorgesehen, muss in diesem Fall lediglich ein <codeph>docker-compose</codeph> File
+                erstellt werden, welches den Nextcloud-Container mit einem <xref
                     href="glossary/mariadb.dita#software_mariadb">MariaDB</xref>-Container
-                verbindet. Hier waren wir von der immensen Einfachheit überrascht:<fig
-                    id="fig_clz_rpk_y2b">
-                    <title>Docker-compose File für MariaDB</title>
+                verbindet. Es ist überraschend, wie simpel und unkompliziert eine solche Verknüpfung
+                    funktioniert.<fig id="fig_clz_rpk_y2b">
                     <image href="images/docker-using-mariadb.png" id="image_dlz_rpk_y2b"/>
+                </fig><fig id="fig_kzt_fm3_1fb">
+                    <title>Docker-Compose-File für Nextcloud/MariaDB</title>
                 </fig></p>
         </section>
         <section id="section_h5n_n4k_y2b">
-            <title>Validating Nextcloud</title>
-            <p>Wenn man mit dem Browser auf den C-Server besucht (welcher zur Zeit der Dokumentation
-                leider wieder Offline ist) kann man so auf die containerisierte <xref
-                    href="glossary/nextcloud.dita">Nextcloud</xref> zugreifen. <fig
+            <title>Testen der Nextcloud Instanz</title>
+            <p>Wenn man mit dem Browser auf einem Client nun den Server aufruft (unter Angabe des
+                bei der Installation festgelegten Ports 8080), kann man direkt auf die via Docker
+                realisierte Instanz von Nextcloud zugreifen und sie verwenden.<fig
                     id="fig_zy2_v4k_y2b">
-                    <title>Nextcloud in unserem Browser</title>
                     <image href="images/nextcloud-browser.png" id="image_az2_v4k_y2b"/>
+                </fig><fig id="fig_eht_mm3_1fb">
+                    <title>Nextcloud funktioniert</title>
                 </fig></p>
         </section>
     </body>

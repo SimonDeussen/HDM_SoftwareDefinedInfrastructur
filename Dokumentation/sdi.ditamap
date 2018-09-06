@@ -15,17 +15,25 @@
         <topicref href="06_surveillance.dita"/>
     </topichead>
     <topichead navtitle="Glossar">
-        <topicref href="glossary/certificateauthority.dita"/>
-        <topicref href="glossary/apache.dita"/>
+        <topicref href="glossary/apt.dita"/>
         <topicref href="glossary/apachedirectorystudio.dita"/>
+        <topicref href="glossary/apache.dita"/>
         <topicref href="glossary/bind9.dita"/>
+        <topicref href="glossary/certificateauthority.dita"/>
+        <topicref href="glossary/dig.dita"/>
         <topicref href="glossary/docker.dita"/>
         <topicref href="glossary/ldap.dita"/>
+        <topicref href="glossary/ldapsearch.dita"/>
         <topicref href="glossary/mariadb.dita"/>
-        <topicref href="glossary/nextcloud.dita"/>
-        <topicref href="glossary/openldap.dita"/>
+        <topicref href="glossary/firefox.dita"/>
         <topicref href="glossary/thunderbird.dita"/>
         <topicref href="glossary/mysql.dita"/>
-        <topicref href="glossary/phpmyadmin.dita"/>
+        <topicref href="glossary/nagios.dita"/>
+        <topicref href="glossary/nextcloud.dita"/>
+        <topicref href="glossary/openldap.dita"/>
+        <topicref href="glossary/phpmyadmin_0.dita"/>
+        <topicref href="glossary/scp.dita"/>
+        <topicref href="glossary/ssh.dita"/>
+        <topicref href="glossary/wget.dita"/>
     </topichead>
 </map>

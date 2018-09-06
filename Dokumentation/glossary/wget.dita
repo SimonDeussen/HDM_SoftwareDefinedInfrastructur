@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="wget">
+    <title>Wget</title>
+    <body>
+        <p>Wget ist ein freies Kommandozeilenprogramm zum Herunterladen von Dateien aus dem
+            Internet. Es werden ftp, http und https unterstützt.</p>
+        <p>Ein Programm ähnlicher Funktion ist <tt>curl</tt></p>
+        <p>
+            <codeblock>curl https://www.hdm-stuttgart.de </codeblock>
+        </p>
+        <p><xref href="https://de.wikipedia.org/wiki/Wget" format="html" scope="external">Quelle /
+                weitere Informationen</xref></p>
+    </body>
+</topic>

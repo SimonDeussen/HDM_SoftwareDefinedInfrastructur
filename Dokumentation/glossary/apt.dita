@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="adpapt">
+    <title>Advanced Packaging Tool (APT)</title>
+    <body>
+        <p>Das <b>Advanced Packaging Tool</b> (APT) ist das Paketverwaltungssystem von Ubuntu. </p>
+        <p>Es bietet eine leichte Syntax zur Suche, Installation, Deinstallation und Aktualisierung
+            von
+            Programmpaketen.<codeblock># Installation<b>
+apt-get install &lt;paketname></b>
+
+# Deinstallation<b>
+apt-get remove &lt;paketname></b>
+
+# Aktualisierung aller installierten Programme<b>
+apt-get upgrade</b></codeblock></p>
+        <p><xref href="https://de.wikipedia.org/wiki/Advanced_Packaging_Tool" format="html"
+                scope="external">Quelle / weitere Informationen</xref>
+        </p>
+    </body>
+</topic>
