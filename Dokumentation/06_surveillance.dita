@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="nagios06">
-    <title>Systems surveillance with Nagios</title>
+    <title>Systems surveillance mit Nagios</title>
     <body>
         <p>
             <equation-figure>
@@ -44,9 +44,13 @@ a2enmod cgi</codeblock></p>
                 anmelden.<codeblock>htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin</codeblock></p>
             <p>Nachdem der nagios-Deamon dann gestartet wurde, kann das Web-Interface aufgerufen
                 werden.</p>
-            <p>Obwohl es funktioniert, sind noch keine relevanten Werte zu sehen. Das liegt daran,
-                dass noch keine Plugins installiert wurden. Statt interessanter Werte, ist überall
-                folgendes zu
+        </section>
+        <section id="section_fdc_gbh_cfb">
+            <title>Weitere Einstellungen</title>
+            <lines/>
+            <p>Obwohl das Web-Interface nun funktioniert, sind noch keine relevanten Werte zu sehen.
+                Das liegt daran, dass noch keine Plugins installiert wurden. Statt interessanter
+                Werte, ist überall folgendes zu
                 lesen:<codeblock>(No output on stdout) stderr: execvp(/usr/local/nagios/libexec/check_load, ...) failed. errno is 2: No such file or directory </codeblock></p>
             <p>Um die benötigten Plugins zu installieren, laden wir die entsprechende Datei wieder
                 mit wget herunter. Wieder entpacken wir die Datei und bauen sie anschließend.</p>
@@ -58,9 +62,10 @@ make
 make install</pre>
             </p>
             <p>Eine letzte Einstellung, um die reibungslose Funktion von Nagios zu garantieren ist
-                das eintragen einer E-Mail-Adresse.  iSo kann Nagios alerts verschicken wenn
-                bestimmte Events eintreten, wenn zum Beispiel der Server abstürzt. Dafür muss die
-                Datei <codeph>/usr/local/nagios/etc/objects/contacts.cfg</codeph> editiert
+                das eintragen einer E-Mail-Adresse. So kann Nagios Nachrichten verschicken wenn
+                bestimmte Events eintreten. Ein mögliches Szenario ist etwa der Absturz des Servers.
+                Dafür muss die Datei <codeph>/usr/local/nagios/etc/objects/contacts.cfg</codeph>
+                editiert
                 werden:<codeblock>##############################################################$
 #
 # CONTACTS
@@ -80,10 +85,11 @@ define contact {
 }</codeblock>Jetzt
                 kann das <xref href="http://141.62.75.106/nagios/" format="html" scope="external"
                     >Nagios-Interface</xref> wieder aufgerufen werden - die Fehlermeldungen sind
-                verschwunden und die entsprechenden Werte werden korrekt ausgegeben.<fig
+                verschwunden und die entsprechenden Werte werden korrekt ausgegeben.<lines/><fig
                     id="fig_hsc_rgk_y2b">
-                    <title>Nagios funktioniert!</title>
                     <image href="images/NAGIOS-works.png" id="image_isc_rgk_y2b"/>
+                </fig><fig id="fig_lhp_hbh_cfb">
+                    <title>Nagios funktioniert!</title>
                 </fig></p>
         </section>
     </body>

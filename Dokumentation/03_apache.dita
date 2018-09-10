@@ -218,11 +218,14 @@ manual.mi.hdm-stuttgart.de.	IN	A	141.62.75.106</codeblock>Selbstverständlich
             <p>Jetzt generieren wir den privaten Key der CA.</p>
             <p>
                 <codeblock>openssl genrsa -out rootCA.key 2048</codeblock>
+                <lines/>
             </p>
             <p>
                 <fig id="fig_qpn_g2k_y2b">
-                    <title>Generierung des Private Key</title>
                     <image href="images/genCA.png" id="image_rpn_g2k_y2b"/>
+                </fig>
+                <fig id="fig_xcq_sbh_cfb">
+                    <title>Generierung des Private Key</title>
                 </fig>
             </p>
             <p>Um den Key mittels Passwort zu schützen kann man zusätzlich noch das Attribut
@@ -300,10 +303,12 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock>
 &lt;/IfModule></codeblock>
             <p>Rufen wir jetzt <xref href="https://doc.mi.hdm-stuttgart.de" format="html"
                     scope="external"/> auf, erkennen wir am grünen Schloss links neben der URL, dass
-                HTTPS funktioniert.</p>
+                HTTPS funktioniert.<lines/></p>
             <fig id="fig_wzk_ljk_y2b">
-                <title>HTTPS Übertragung</title>
                 <image href="images/sslworks.png" id="image_xzk_ljk_y2b"/>
+            </fig>
+            <fig id="fig_gjl_51h_cfb">
+                <title>HTTPS Übertragung</title>
                 <p>Äquivalent zu dieser Subdomain, wird der Vorgang für alle weiteren, erneut
                     ausgeführt. Gegebenenfalls kann ein sogenanntes Wildcard-Zertifikat ausgestellt
                     werden, dass für verschiedene Subdomains des Typs
@@ -312,7 +317,7 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock>
             </fig>
         </section>
         <section id="section_sbj_rlk_y2b">
-            <title>LDAP authentication</title>
+            <title>LDAP Authentifizierung</title>
             <p>
                 <lines/>
             </p>
@@ -402,7 +407,7 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock>
                             scope="external"/> zu erreichen.</p>
                     <p>Benutzername und Passwort können in der Datei
                             <codeph>/etc/phpmyadmin/config-db.php</codeph> nachgeschaut oder
-                        geändert werden.<fig id="fig_swg_2qk_y2b">
+                        geändert werden.<lines/><fig id="fig_swg_2qk_y2b">
                             <image href="images/phpmyadmin.png" id="image_twg_2qk_y2b"/>
                         </fig><fig id="fig_fmq_4j3_1fb">
                             <title>Login-Screen von phpMyAdmin</title>
@@ -416,11 +421,13 @@ Email Address []:pl042@hdm-stuttgart.de</codeblock>
                 <codeph>ldap-account-manager</codeph><codeblock>apt-get install ldap-account-manager</codeblock></p>
             <p>Anschließend ist die Weboberfläche direkt unter <xref
                     href="http://mi.hdm-stuttgart.de/lam" format="html" scope="external"/> zu
-                erreichen.</p>
+                erreichen.<lines/></p>
             <p>
                 <fig id="fig_rlm_1sk_y2b">
-                    <title>Login-Screen des LDAP Account Managers</title>
                     <image href="images/lam-login.png" id="image_slm_1sk_y2b"/>
+                </fig>
+                <fig id="fig_bl2_5bh_cfb">
+                    <title>Login-Screen des LDAP Account Managers</title>
                 </fig>
             </p>
             <p>Geht man oben rechts auf <i>LAM-Einstellungen</i> und dann auf <i>Serverprofile

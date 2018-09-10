@@ -23,13 +23,13 @@
         <section>
             <title>Navigation auf einem LDAP-Server</title>
             <lines/>
-            <p>Der erste Teil dieser Aufgabe ist zunächst, mit dem <xref
+            <p>Zuerst soll mit dem Programm <xref
                     href="glossary/apachedirectorystudio.dita#apachedirectorystudio">Apache
-                    Directory Studio </xref>den LDAP Server der HdM zu untersuchen. Dafür wurde die
-                Software nach der <xref href="https://directory.apache.org/studio/" format="html"
-                    scope="external">Installations-Anweisung der Website</xref> installiert. Nach
-                dem erstmaligen Start, konnten die Daten für eine Verbindung mit dem gewünschten
-                Server eingegeben werden. <lines/><fig id="fig_pyy_hy3_y2b">
+                    Directory Studio</xref> der LDAP Server der HdM untersucht werden. Dafür wurde
+                die Software nach der <xref href="https://directory.apache.org/studio/"
+                    format="html" scope="external">Installations-Anweisung der Website</xref>
+                installiert. Beim erstmaligen Start, konnten die Daten für die Verbindung mit dem
+                gewünschten Server eingegeben werden. <lines/><fig id="fig_pyy_hy3_y2b">
                     <image href="images/Ldap%20Server%20Connection%20Daten.png"
                         id="image_qyy_hy3_y2b"/>
                 </fig><fig id="fig_xmh_h13_1fb">
@@ -133,7 +133,7 @@
                 </fig><fig id="fig_et4_xd3_1fb">
                     <title>Suchfilter Thunderbird</title>
                 </fig>Damit ist das Konfigurieren schon fertig. Im Adressbuch von Thunderbird, kann
-                man nun die Daten des LDAP-Servers durchsuchen und einsehen.<fig
+                man nun die Daten des LDAP-Servers durchsuchen und einsehen.<lines/><fig
                     id="fig_gvh_lmj_y2b">
                     <image href="images/thunderbird-3.png" id="image_hvh_lmj_y2b"/>
                 </fig><fig id="fig_h2g_c23_1fb">
@@ -167,10 +167,10 @@ auth    required        pam_deny.so</pre></p>
                 LogIn zunächst nicht. Diese Zeile hat den Hintergrund, dass Systeme oft so
                 aufgesetzt werden, dass es weniger als 1000 lokale User gibt, die die unteren IDs
                 bekommen, und dann ab einer User-ID von (über) 1000, die für den LDAP-based-Login
-                genutzten User definiert werden. Das heist, User mit einer ID unter 1000 können sich
-                nicht einloggen, da es sie nicht lokal gibt, und LDAP nicht genutzt wird. Durch den
-                Zusatz <tt>quiet</tt>, wurde außerdem keine (Fehler)Meldung ausgegeben, so dass
-                zunächst nicht klar war, woran der Login scheiterte.<lines/></p>
+                genutzten User definiert werden. Das heißt, User mit einer ID unter 1000 sind keine
+                legitimierten Nutzeraccounts und können hier zum Login also nicht genutzt werden.
+                Durch den Zusatz <tt>quiet</tt>, wurde außerdem keine (Fehler)Meldung ausgegeben, so
+                dass zunächst nicht klar war, woran der Login scheiterte.<lines/></p>
             <p>
                 <fig id="fig_qrt_hpj_y2b">
                     <image href="images/ldap-based-login%20works.png" id="image_rrt_hpj_y2b"/>
